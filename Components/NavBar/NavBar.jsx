@@ -17,35 +17,37 @@ function NavBar(props){
             imageStyle:{
                 width: 45, 
                 height: 45,
-                marginRight: 8
+                margin: 6
             }, 
             centerStyle:{
                 flex: 1,
                 flexDirection: "row",
-                justifyContent:"center"
+                justifyContent:"center", 
+                alignItems: "center"
             },
             textStyle:{
                 color:"white",
                 fontSize: 40, 
-                fontFamily: "Poppins",
+                //fontFamily: "Poppins",
                 fontWeight:"bold",
-                marginLeft : 15
+                marginLeft : 10
             }, 
             navBarStyle:{
-                backgroundColor: '#cc0000'
+                marginTop:15,
+                height: 60, 
+                backgroundColor: '#cc0000', 
             }, 
             navIconStyle: {
-                marginLeft: 20
+                marginLeft: 30
             }, 
             dotIconStyle: {
-                marginRight: 10
+                marginRight: 20
             }, 
         }
     )
 
     return(
-        <SafeAreaView style={style.container}>
-            
+        <View style={style.container}> 
             {/* NavBar */}
             <NavigationBar
                 componentLeft = {() => 
@@ -62,7 +64,7 @@ function NavBar(props){
                 componentCenter = {() => 
                     <View style={style.centerStyle}>
                             <Image style={style.imageStyle} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
-                        <Text style={style.textStyle}>{props.title} </Text>
+                        <Text style={style.textStyle}>{props.title}</Text>
                     </View>
                 }
 
@@ -76,12 +78,10 @@ function NavBar(props){
                         style={style.dotIconStyle}
                     />
                 }
-
-
                 navigationBarStyle= {style.navBarStyle}
                 statusBarStyle    = {{ barStyle: 'light-content'}}
             /> 
-        </SafeAreaView>
+        </View>
     )
 }
 
