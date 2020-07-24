@@ -63,7 +63,7 @@ class DepartmentDropDown extends React.Component{
     // Shows the dept code in the dropdown and create the dropdown 
     showDepartmentCode(){
         
-        // Create labels and values for the dropdown 
+        // Create labels and values for the dropdowns
         const deptValues = this.state.deptCode.map((value_i) => (
             {value: value_i}
         ));
