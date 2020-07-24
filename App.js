@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements';
 import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
+
 const style = StyleSheet.create(
   {
     profileViewStyle: {
