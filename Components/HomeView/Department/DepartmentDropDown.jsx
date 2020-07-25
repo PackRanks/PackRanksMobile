@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {StyleSheet,View,Text} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
-import ReactDOM from 'react-dom'
+import CourseNumberSlider from './CourseNumberSlider/CourseNumberSlider.jsx'
+
 
 // Styling for the components
 const style = StyleSheet.create({
@@ -15,7 +16,13 @@ const style = StyleSheet.create({
         fontSize : 18, 
         fontWeight: "bold",
         color: "#cc0000"
+    }, 
+    container: {
+        justifyContent: "center", 
+        alignItems: "center", 
+        color:"white"
     }
+
 })
 
 const dropdownStyles = StyleSheet.create({
@@ -40,11 +47,14 @@ class DepartmentDropDown extends React.Component{
         this.state = {
             dept : null, 
             deptCode: null, 
-            component : null
+            component : null, 
+            minCourseNumber: 0, 
+            maxCourseNumber: 999
         }
         
         this.getDepts=this.getDepts.bind(this)
         this.getDepts(); 
+        this.showDepartmentCode=this.showDepartmentCode.bind(this)
     }
 
      // Getting the codes for the dept 
@@ -63,7 +73,7 @@ class DepartmentDropDown extends React.Component{
     // Shows the dept code in the dropdown and create the dropdown 
     showDepartmentCode(){
         
-        // Create labels and values for the dropdowns
+        // Create labels and values for the dropdown
         const deptValues = this.state.deptCode.map((value_i) => (
             {value: value_i}
         ));
@@ -77,7 +87,7 @@ class DepartmentDropDown extends React.Component{
             { component : <View style={style.termViewStyle}>
                                 <Text style={style.termTextStyle}> Select a Dept</Text>
                                 <RNPickerSelect
-                                style={{...dropdownStyles}}
+                                    style={{...dropdownStyles}}
                                     onValueChange={(value) => this.setState({gepType : value})}
                                     placeholder={{ label: 'Select a Dept', value: null,color:"gray"}}
                                     Icon={() => {return <Icon name='arrow-drop-down' type='material'color='black'/>}}
@@ -90,8 +100,9 @@ class DepartmentDropDown extends React.Component{
     
     render(){
         return(
-            <View id="departmentOptions">
+            <View style={style.container}>
                 {this.state.component}
+                <CourseNumberSlider/>
             </View>
         )
     } 
