@@ -24,10 +24,8 @@ class RangeSlider extends React.Component {
                     min={0}
                     max={999}
                     step={1}
+                    enableLabel
                 />
-                <Text>Two Markers:</Text>
-                <Text>{this.state.values[0]}</Text>
-                <Text>{this.state.values[1]}</Text>
             </View>
         )
     }
