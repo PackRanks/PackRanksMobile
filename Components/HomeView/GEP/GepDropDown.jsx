@@ -7,7 +7,9 @@ import { Icon } from 'react-native-elements';
 const style = StyleSheet.create({
     termViewStyle: {
         margin: 15, 
-        flexDirection : "row", 
+        flexDirection : "row",
+        justifyContent: "center", 
+        alignContent: "center" 
     },
     termTextStyle: {
         marginRight: 15,

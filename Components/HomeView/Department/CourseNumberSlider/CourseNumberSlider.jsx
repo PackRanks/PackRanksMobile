@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View,Image} from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import { Icon } from 'react-native-elements'
 
 class RangeSlider extends React.Component {
     state = {
@@ -12,6 +13,7 @@ class RangeSlider extends React.Component {
         this.setState({
             values
         });
+        
     }
 
     render() {
@@ -24,7 +26,14 @@ class RangeSlider extends React.Component {
                     min={0}
                     max={999}
                     step={1}
+                    allowOverlap={true}
                     enableLabel
+                    selectedStyle={{
+                        backgroundColor: '#cc0000',
+                      }}
+                      unselectedStyle={{
+                        backgroundColor: 'silver',
+                      }}
                 />
             </View>
         )

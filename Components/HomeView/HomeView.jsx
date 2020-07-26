@@ -6,13 +6,11 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import { render } from 'react-dom';
 import GepDropDown from './GEP/GepDropDown.jsx'
 import DepartmentDropDown from './Department/DepartmentDropDown.jsx'
+import { ScrollView } from 'react-native-gesture-handler';
+import NavBar from '../NavBar/NavBar.jsx'
+
 
 const style = StyleSheet.create({
-    container: {
-        justifyContent: "center", 
-        alignItems: "center", 
-        color:"white"
-    }, 
     titleStyle : {
         textAlign: "center",
         fontSize : 30, 
@@ -34,6 +32,9 @@ const style = StyleSheet.create({
     termViewStyle: {
         margin: 15, 
         flexDirection : "row", 
+         justifyContent: "center", 
+        alignItems: "center", 
+        color:"white"
     },
     termTextStyle: {
         marginRight: 15,
@@ -41,8 +42,12 @@ const style = StyleSheet.create({
         fontWeight: "bold",
         color: "#cc0000"
     }, 
-    dividerStyle: {
-        color: "gray"
+    segemntedControlsStyle: {
+        width: "90%", 
+        flexDirection : "row", 
+         justifyContent: "center", 
+        alignSelf: "center", 
+        color:"white"
     }
 })
 
@@ -92,8 +97,7 @@ class HomeView extends React.Component{
     
     render(){
         return(
-            <View>
-                <View style={style.container}> 
+                <View > 
                     <Text style={style.titleStyle}>Welcome to PackRanks!</Text>
                     <Text style={style.descriptionStyle}>Desc</Text>
                     <Text style={style.descriptionStyle}>Desc</Text>
@@ -112,16 +116,19 @@ class HomeView extends React.Component{
                             ]}
                         />
                     </View>
-                    <SegmentedControl
-                        values={['GEP', 'Department']}
-                        selectedIndex={0}
-                        onValueChange={(value) => this.setState({typeCourse : value})}
-                        style={{width: "80%"}}
-                    />
-                    {this.CourseSelection(this.state.typeCourse)}
-                    {console.log(this.state)}
+                    <View style={{alignContent: "center"}}>
+                        <SegmentedControl
+                                values={['GEP', 'Department']}
+                                selectedIndex={0}
+                                onValueChange={(value) => this.setState({typeCourse : value})}
+                                style={style.segemntedControlsStyle}
+                            />
+                    </View>
+                        {this.CourseSelection(this.state.typeCourse)}     
+                  
+                        
+                    
                 </View>
-            </View>
         )
     }
 }

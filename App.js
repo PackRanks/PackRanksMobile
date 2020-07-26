@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView,Text, Button,View,StyleSheet,Image} from 'react-native';
+import {SafeAreaView,Text, Button,View,StyleSheet,Image,ScrollView} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
@@ -9,6 +9,10 @@ import HomeView from "./Components/HomeView/HomeView.jsx";
 
 const style = StyleSheet.create(
   {
+    viewStyle : {
+      flex: 1, 
+      flexDirection : "column"
+    }, 
     profileViewStyle: {
       marginTop:-100,
       height:300,
@@ -36,9 +40,11 @@ const style = StyleSheet.create(
 // Home Screen 
 function HomeScreen({ navigation }) {
   return (
-    <View>
-        <NavBar navi={navigation} title={"Home"}/>
-       <HomeView/>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <NavBar navi={navigation} title={"Home"}/>
+      <ScrollView>
+        <HomeView/>
+      </ScrollView>
     </View>
   );
 }

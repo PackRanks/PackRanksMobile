@@ -12,7 +12,7 @@ function NavBar(props){
         {
             container:{
                 backgroundColor:"#cc0000",
-                justifyContent: "center"
+                justifyContent: "center",
             },
             imageStyle:{
                 width: 45, 

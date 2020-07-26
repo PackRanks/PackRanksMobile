@@ -1,28 +1,48 @@
 import React from 'react'
+import Button from 'apsl-react-native-button'
 import {StyleSheet,View,Text} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
 import CourseNumberSlider from './CourseNumberSlider/CourseNumberSlider.jsx'
-
+import CourseCard from '../../CourseCard/CourseCard'
 
 // Styling for the components
 const style = StyleSheet.create({
     termViewStyle: {
         margin: 15, 
-        flexDirection : "row", 
+        flexDirection : "row",
     },
-    termTextStyle: {
+    courseNumberTextStyle: {
         marginRight: 15,
         fontSize : 18, 
         fontWeight: "bold",
-        color: "#cc0000"
+        color: "#cc0000", 
+        textAlign : "center"
     }, 
     container: {
         justifyContent: "center", 
         alignItems: "center", 
         color:"white"
+    }, 
+    sliderStyle : {
+        marginTop: 50
+    }, 
+    buttonStyle : {
+        width : 150,
+        height : 55,
+        backgroundColor: "#cc0000", 
+        borderColor : "#cc0000", 
+        borderRadius : 200
+    }, 
+    textButtonStyle : {
+        color : "white", 
+        textAlign: "center", 
+        fontWeight : "bold"
+    }, 
+    buttonView : {
+        justifyContent: "center", 
+        alignItems: "center" 
     }
-
 })
 
 const dropdownStyles = StyleSheet.create({
@@ -85,7 +105,7 @@ class DepartmentDropDown extends React.Component{
 
         this.setState(
             { component : <View style={style.termViewStyle}>
-                                <Text style={style.termTextStyle}> Select a Dept</Text>
+                                <Text style={style.courseNumberTextStyle}> Select a Dept</Text>
                                 <RNPickerSelect
                                     style={{...dropdownStyles}}
                                     onValueChange={(value) => this.setState({gepType : value})}
@@ -100,9 +120,19 @@ class DepartmentDropDown extends React.Component{
     
     render(){
         return(
-            <View style={style.container}>
-                {this.state.component}
-                <CourseNumberSlider/>
+            <View>
+                <View style={style.container}>
+                    {this.state.component}
+                    <Text style={style.courseNumberTextStyle}>Please use the slider for the desired course number! </Text>
+                    <View style={style.sliderStyle}>
+                        <CourseNumberSlider/>
+                    </View>
+                    <View style={style.buttonStyle}>
+                        <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => alert('Right button pressed')}>Get Courses</Button>
+                    </View>
+                </View>
+                <CourseCard/>
+
             </View>
         )
     } 
