@@ -4,7 +4,9 @@ import { Avatar, Button, Card, Title, Text, Paragraph, List,IconButton} from 're
 import { Divider } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
+import { Icon } from 'react-native-elements'; 
 
+// Styling for the whole component 
 const styles = StyleSheet.create(
   {
     cardStyle: {
@@ -86,7 +88,7 @@ const styles = StyleSheet.create(
      width: "100%",
     }, 
     seatView :{
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
     seatHeader: {
       color: "#cc0000", 
@@ -95,7 +97,17 @@ const styles = StyleSheet.create(
     seatDesc: {
       color: "gray", 
       fontWeight: "normal"
+    },
+    TimeView : {
+      flexDirection : 'column', 
+      justifyContent : "center", 
+      alignItems: 'center', 
+      width: "100%"
     }, 
+    timeDesc: {
+      color: "gray", 
+      fontWeight: "normal"
+    },
   } 
 )
 
@@ -128,8 +140,11 @@ class CardComponent extends React.Component{
     this.Prerequisite = this.Prerequisite.bind(this)
     this.MapPortion=this.MapPortion.bind(this)
     this.SeatArrangement = this.SeatArrangement.bind(this)
+    this.TimePortion = this.TimePortion.bind(this)
+    this.WeekDays = this.WeekDays.bind(this)
   }
 
+  // Course Name in the Card Content 
   CourseName(){
     return(
       <View style={styles.courseTitleView}>
@@ -139,7 +154,7 @@ class CardComponent extends React.Component{
     )
   }
 
-
+  // Catalog Link in the Card Content 
   Catalog(){
     return(
       <TouchableHighlight activeOpacity={.9}  underlayColor="#d3d3d3" onPress={() => this.CatalogHandleOpenWithWebBrowser()}>
@@ -148,6 +163,7 @@ class CardComponent extends React.Component{
     )
   }
 
+  // Prerequisite for the course in the Card Content 
   Prerequisite(){
     return(
       <View style={styles.preReqView}>
@@ -157,16 +173,18 @@ class CardComponent extends React.Component{
     )
   }
 
+  // Open Browser to RateMyProf Link
   RateMyProfessorHandleOpenWithWebBrowser(){
     WebBrowser.openBrowserAsync(this.state.RateMyProf);
   } 
 
 
+  // Open Browser for the catalog link
   CatalogHandleOpenWithWebBrowser(){
     WebBrowser.openBrowserAsync(this.state.catalog);
   } 
 
-
+  // RateMyProf Link in the Card Content 
   RateMyProfLink(){
     return(
       <TouchableHighlight activeOpacity={.9}  underlayColor="#d3d3d3" onPress={() => this.RateMyProfessorHandleOpenWithWebBrowser()}>
@@ -175,6 +193,7 @@ class CardComponent extends React.Component{
     )
   }
 
+  // Map View for the Card Content 
   MapPortion(){
     return(
       <View style={styles.container}>
@@ -200,6 +219,7 @@ class CardComponent extends React.Component{
     )
   }
 
+  // Display the number of seats available and seat status in a particular course
   SeatArrangement(){
     return(
       <View style={styles.seatView}>
@@ -209,9 +229,43 @@ class CardComponent extends React.Component{
     )
   }
 
+  // Display the meeting time and days for a course
+  TimePortion(){
+    return(
+      <View style={styles.TimeView}>
+        <Icon name='alarm' type='material' color='gray'/>
+        {this.WeekDays()}
+        <Title style={styles.timeDesc}>{this.state.time}</Title>
+      </View>
+    )
+  }
+
+  // Highlight the days of meetings in red and gray for days of not meeting for a course 
+  WeekDays(){
+
+    const daysOfWeek = ['S','M','T','W','Th','F','S']
+    const dayComponent = []
+
+    for(let num = 0; num < 7; num++){
+      if(this.state.days.indexOf(daysOfWeek[num]) !== -1){
+          dayComponent.push(<Title style={{color : "#cc0000",marginRight: 10}}>{daysOfWeek[num]}</Title>)
+      }
+
+      else{
+        dayComponent.push(<Title style={{color : "gray",marginRight: 10}}>{daysOfWeek[num]}</Title>)
+      }
+    }
+
+    return(
+      <View style={{flexDirection: 'row'}}>
+        {dayComponent}
+      </View>
+    )
+  }
 
 
   render(){
+    // Rating for the courses 
     const Rating = props => <Text style={styles.ratingStyle}>{this.state.rating}</Text>
       const theme = {
         colors: {
@@ -226,6 +280,8 @@ class CardComponent extends React.Component{
                   <List.Section>
                       <Card elevation={11}>
                       <Divider style={{ backgroundColor: 'white', width: "100%" }}/>
+
+                        {/* Card Header*/}
                         <Card.Content>
                               <List.Accordion
                                 title={this.state.courseTitle}
@@ -234,7 +290,7 @@ class CardComponent extends React.Component{
                                 descriptionStyle={styles.descStyle}
                                 left={Rating}
                               >
-
+                                    {/* Content of the Card */}
                                     <Divider style={{ backgroundColor: 'gray', width: "100%", marginBottom: 10 }}/>
                                     <List.Item
                                       left={() => this.CourseName()}
@@ -256,13 +312,16 @@ class CardComponent extends React.Component{
                                     <List.Item
                                       left={() => this.SeatArrangement()}
                                     />
-                                    
-
+                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 10}}/>
+                                    <List.Item
+                                      left={() => this.TimePortion()}
+                                    />
                               </List.Accordion>
                         </Card.Content>
                         <Card.Actions>
-                              <Button theme={theme} onPress={() => alert("Hello")}>Added to WishList</Button>
-                          </Card.Actions>
+                              {/* Button for the closed and open card */}
+                              <Button theme={theme} onPress={() => alert('Added to Wishlist')}>Added to WishList</Button>
+                        </Card.Actions>
                       </Card>
                   </List.Section>
           </View>
