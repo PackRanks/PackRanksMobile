@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView,Text, Button,View,StyleSheet,Image,ScrollView} from 'react-native';
+import {Text,View,StyleSheet,Image,ScrollView} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
@@ -7,12 +7,9 @@ import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
 
+
 const style = StyleSheet.create(
   {
-    viewStyle : {
-      flex: 1, 
-      flexDirection : "column"
-    }, 
     profileViewStyle: {
       marginTop:-100,
       height:300,
@@ -43,7 +40,7 @@ function HomeScreen({ navigation }) {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Home"}/>
       <ScrollView>
-        <HomeView/>
+        <HomeView/>    
       </ScrollView>
     </View>
   );
@@ -53,7 +50,12 @@ function HomeScreen({ navigation }) {
 //  WishList Screen
 function WishlistScreen({ navigation }) {
   return (
-    <NavBar navi={navigation} title={"Wishlist"}/>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <NavBar navi={navigation} title={"Wishlist"}/>
+      <ScrollView>
+        <HomeView/>
+      </ScrollView>
+    </View>
   ); 
 }
 
@@ -61,31 +63,48 @@ function WishlistScreen({ navigation }) {
 // About Screen
 function AboutScreen({ navigation }) {
   return (
-    <NavBar navi={navigation} title={"About"}/>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <NavBar navi={navigation} title={"About"}/>
+      <ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
 // Help Screen
 function HelpScreen({ navigation }) {
   return (
-    <NavBar navi={navigation} title={"Help"}/>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <NavBar navi={navigation} title={"Help"}/>
+      <ScrollView>
+      </ScrollView>
+    </View>
   );
 } 
 
 // Contact Screen
 function ContactScreen({ navigation }) {
   return (
-    <NavBar navi={navigation} title={"Contact"}/>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <NavBar navi={navigation} title={"Contact"}/>
+      <ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
 // Account Setting Screen
 function AccountSettingScreen({ navigation }) {
   return (
-    <NavBar navi={navigation} title={"Settings"}/>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <NavBar navi={navigation} title={"Settings"}/>
+      <ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
+// Creates the Content with the customized profile section in the vertical drawer 
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>

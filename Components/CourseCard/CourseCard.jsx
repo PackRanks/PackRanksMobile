@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React,{useState} from 'react'; 
 import {View,StyleSheet} from 'react-native'
 import { Avatar, Button, Card, Title, Text, Paragraph, List,IconButton} from 'react-native-paper';
 
@@ -15,31 +15,54 @@ const styles = StyleSheet.create(
       },
       titleStyle:{
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "bold", 
+        color: "black"
       },
       descStyle:{
         fontSize: 16
+      }, 
+      cardViewComponent : 
+      {
+        justifyContent : "center", 
+        alignItems: "center"
       }
     }
   )
 
+// Write a function that parse through the whole json file 
+
 
 function CardComponent(){
-    const Rating = props => <Text style={styles.ratingStyle}>69</Text>
+    const Rating = props => <Text style={styles.ratingStyle}>99</Text>
+    const theme = {
+      colors: {
+        primary: '#cc0000',
+        accent: '#cc0000',
+      },
+    }
 
+    
     return(
         <View>
-            <Card>
-                    <Card.Title title="Card Title" subtitle="Card Subtitle" left={Rating} />
-                    {/*<Card.Content>
-                    <Title>Card title</Title>
-                    <Paragraph>Card content</Paragraph>
-                    </Card.Content>*/}
-                    <Card.Actions>
-                    <Button>Cancel</Button>
-                    <Button>Ok</Button>
+                <List.Section>
+                <Card elevation={5}>
+                  <Card.Content>
+                        <List.Accordion
+                          title={"MA 242 - 50A"}
+                          titleStyle={styles.titleStyle}
+                          description="Kurtz, Lesile Anne"
+                          descriptionStyle={styles.descStyle}
+                          left={Rating}
+                        >
+                          <List.Item title="First item" />
+                          <List.Item title="Second item" />
+                        </List.Accordion>
+                  </Card.Content>
+                  <Card.Actions>
+                        <Button theme={theme} onPress={() => alert("Hello")}>Added to WishList</Button>
                     </Card.Actions>
-            </Card>
+                </Card>
+      </List.Section>
         </View>
     )
 }

@@ -1,15 +1,13 @@
-import React, {useState} from 'react'; 
+import React from 'react'; 
 import RNPickerSelect from 'react-native-picker-select';
 import {View,Text,StyleSheet} from 'react-native';
 import { Icon } from 'react-native-elements'; 
 import SegmentedControl from '@react-native-community/segmented-control';
-import { render } from 'react-dom';
 import GepDropDown from './GEP/GepDropDown.jsx'
 import DepartmentDropDown from './Department/DepartmentDropDown.jsx'
-import { ScrollView } from 'react-native-gesture-handler';
-import NavBar from '../NavBar/NavBar.jsx'
 
 
+// Styling 
 const style = StyleSheet.create({
     titleStyle : {
         textAlign: "center",
@@ -97,10 +95,8 @@ class HomeView extends React.Component{
     
     render(){
         return(
-                <View > 
+                <View> 
                     <Text style={style.titleStyle}>Welcome to PackRanks!</Text>
-                    <Text style={style.descriptionStyle}>Desc</Text>
-                    <Text style={style.descriptionStyle}>Desc</Text>
                     <Text style={style.featuresStyle}>Use the Wishlist and Seat Notification features!</Text>
                     <View style={style.termViewStyle}>
                         <Text style={style.termTextStyle}>Select a Term</Text>
@@ -116,18 +112,13 @@ class HomeView extends React.Component{
                             ]}
                         />
                     </View>
-                    <View style={{alignContent: "center"}}>
                         <SegmentedControl
                                 values={['GEP', 'Department']}
                                 selectedIndex={0}
                                 onValueChange={(value) => this.setState({typeCourse : value})}
                                 style={style.segemntedControlsStyle}
-                            />
-                    </View>
+                        />
                         {this.CourseSelection(this.state.typeCourse)}     
-                  
-                        
-                    
                 </View>
         )
     }

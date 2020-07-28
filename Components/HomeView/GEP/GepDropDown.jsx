@@ -1,8 +1,8 @@
 import React from 'react'
-import {StyleSheet,View,Text} from 'react-native'
+import {StyleSheet,View,Text, ViewComponent} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
-
+import CourseCard from '../../CourseCard/CourseCard'
 
 const style = StyleSheet.create({
     termViewStyle: {
@@ -16,6 +16,9 @@ const style = StyleSheet.create({
         fontSize : 18, 
         fontWeight: "bold",
         color: "#cc0000"
+    }, 
+    courseStyle: { 
+        
     }
 })
 
@@ -36,8 +39,6 @@ const dropdownStyles = StyleSheet.create({
   });
 
 class GepDropDown extends React.Component{
-
-
     constructor(){
         super()
         this.state = {
@@ -63,15 +64,20 @@ class GepDropDown extends React.Component{
         }
         
         return(
-            <View style={style.termViewStyle}>
-                <Text style={style.termTextStyle}> Select a GEP</Text>
-                <RNPickerSelect
-                style={{...dropdownStyles}}
-                    onValueChange={(value) => this.setState({gepType : value})}
-                    placeholder={{ label: 'Select a GEP', value: null,color:"gray"}}
-                    Icon={() => {return <Icon name='arrow-drop-down' type='material'color='black'/>}}
-                    items={gepFinal}
-                />
+            <View>
+                <View style={style.termViewStyle}>
+                    <Text style={style.termTextStyle}> Select a GEP</Text>
+                    <RNPickerSelect
+                    style={{...dropdownStyles}}
+                        onValueChange={(value) => this.setState({gepType : value})}
+                        placeholder={{ label: 'Select a GEP', value: null,color:"gray"}}
+                        Icon={() => {return <Icon name='arrow-drop-down' type='material'color='black'/>}}
+                        items={gepFinal}
+                    />
+                </View>
+                <View style={style.courseStyle}> 
+                    <CourseCard/>
+                </View>
             </View>
         )
     }

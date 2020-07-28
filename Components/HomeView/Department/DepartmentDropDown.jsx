@@ -8,7 +8,7 @@ import CourseCard from '../../CourseCard/CourseCard'
 
 // Styling for the components
 const style = StyleSheet.create({
-    termViewStyle: {
+    deptViewStyle: {
         margin: 15, 
         flexDirection : "row",
     },
@@ -104,7 +104,7 @@ class DepartmentDropDown extends React.Component{
         }
 
         this.setState(
-            { component : <View style={style.termViewStyle}>
+            { component : <View style={style.deptViewStyle}>
                                 <Text style={style.courseNumberTextStyle}> Select a Dept</Text>
                                 <RNPickerSelect
                                     style={{...dropdownStyles}}
@@ -116,8 +116,7 @@ class DepartmentDropDown extends React.Component{
                         </View>
            }) 
         }
-
-    
+        
     render(){
         return(
             <View>
@@ -131,8 +130,6 @@ class DepartmentDropDown extends React.Component{
                         <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => alert('Right button pressed')}>Get Courses</Button>
                     </View>
                 </View>
-                <CourseCard/>
-
             </View>
         )
     } 
