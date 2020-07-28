@@ -84,7 +84,18 @@ const styles = StyleSheet.create(
     map: {
      height: 400,
      width: "100%",
-    }
+    }, 
+    seatView :{
+      flexDirection: 'row'
+    },
+    seatHeader: {
+      color: "#cc0000", 
+      fontWeight: "bold"
+    },
+    seatDesc: {
+      color: "gray", 
+      fontWeight: "normal"
+    }, 
   } 
 )
 
@@ -103,7 +114,8 @@ class CardComponent extends React.Component{
       preReq: " MA 241 with grade of C- or better or AP Calculus credit, or Higher Level IB credit.", 
       location: "2203 SAS Hall", 
       time: "11:30 AM - 12:20 PM", 
-      days: "MWF",  
+      days: "MWF", 
+      seatStatus: 'Open',  
       seatAval: "7",
       seatTotal : "35", 
       latitude: 35.785110, 
@@ -115,6 +127,7 @@ class CardComponent extends React.Component{
     this.CatalogHandleOpenWithWebBrowser = this.CatalogHandleOpenWithWebBrowser.bind(this)
     this.Prerequisite = this.Prerequisite.bind(this)
     this.MapPortion=this.MapPortion.bind(this)
+    this.SeatArrangement = this.SeatArrangement.bind(this)
   }
 
   CourseName(){
@@ -187,6 +200,15 @@ class CardComponent extends React.Component{
     )
   }
 
+  SeatArrangement(){
+    return(
+      <View style={styles.seatView}>
+              <Title style={styles.seatHeader}>Seat ({this.state.seatStatus}):  </Title>
+              <Title style={styles.seatDesc}>{this.state.seatAval}/{this.state.seatTotal}</Title>
+      </View>
+    )
+  }
+
 
 
   render(){
@@ -229,6 +251,10 @@ class CardComponent extends React.Component{
                                     <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20,marginBottom: 30}}/>
                                     <List.Item
                                       left={() => this.MapPortion()}
+                                    />
+                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
+                                    <List.Item
+                                      left={() => this.SeatArrangement()}
                                     />
                                     
 
