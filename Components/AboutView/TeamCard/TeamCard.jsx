@@ -39,27 +39,57 @@ const style = StyleSheet.create({
         marginBottom : 10
     }, 
     roleStyle : {
-        color : "#cc0000", 
+        color : "gray", 
+        textAlign : "center",
         fontSize : 14, 
         marginBottom : 10
     }
 })
 
 
-function TeamCard(){
+function getPic(name){ 
+
+    if(name === 'Mathew Chanda'){
+        return require('../../../assets/Picture/MathewPic.jpeg')
+    }
+
+
+    else if(name === 'Ishaan Radia'){
+        return require('../../../assets/Picture/IshaanPic.jpeg')
+    }
+
+
+    else if(name === 'Harshal Suthar'){
+        return require('../../../assets/Picture/HarshalPic.jpeg')
+    }
+
+
+    else{
+        return require('../../../assets/Picture/AnthonyPic.jpeg')
+    }
+
+}
+
+
+
+function TeamCard(props){
+
+    getPic(props.name)
+    
+    
     return(
         <View>
-            <Card title = "Andong Wang" containerStyle={{width : "50%"}} titleStyle={{size : 90,color : "#cc0000"}}>
+            <Card title = {props.name} containerStyle={{width : 250}} titleStyle={{size : 90,color : "#cc0000"}}>
                 <View style={style.content}>
                     <View style={style.profileView}>
-                        <Image source={require('../../../assets/Picture/GOD_OF_FANG_SWE.jpeg')} style={style.picStyle}/>
-                        <Text style={style.titleStyle}>Data Scientist</Text>
-                        <Text style={style.roleStyle}>He wrote no code</Text>
+                        <Image source={getPic(props.name)} style={style.picStyle}/>
+                        <Text style={style.titleStyle}>{props.title}</Text>
+                        <Text style={style.roleStyle}>{props.role}</Text>
                     </View>
                     <View style={style.buttonView}>
-                        <Icon name='logo-linkedin' type="ionicon" color='#cc0000' onPress={() => Linking.openURL('https://www.linkedin.com/in/anthony-wang-3aa134164/')} />
-                        <Icon name='logo-github'type="ionicon" color='#cc0000' style={{marginLeft : 10}} onPress={() => Linking.openURL('https://github.com/AndongW')} />
-                        <Icon name='mail' type="material" color='#cc0000' style={{marginLeft : 10}} onPress={() => Linking.openURL('mailto:awang25@ncsu.edu')} />
+                        <Icon name='logo-linkedin' type="ionicon" color='black' onPress={() => Linking.openURL(props.linkedin)} />
+                        <Icon name='logo-github'type="ionicon" color='black' style={{marginLeft : 10}} onPress={() => Linking.openURL(props.github)} />
+                        <Icon name='mail' type="material" color='black' style={{marginLeft : 10}} onPress={() => Linking.openURL('mailto:'+ props.mail)} />
                     </View>
                 </View>
             </Card>

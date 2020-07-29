@@ -25,6 +25,11 @@ const style = StyleSheet.create(
             color : "gray", 
             marginTop : 10, 
             marginBottom : 10
+        }, 
+        cardView : {
+            flex : 1,
+            justifyContent : 'center',
+            alignItems: 'center',
         }
     }
 )
@@ -71,7 +76,12 @@ function AboutView(){
                 </Text>
                 <Text style={style.header}>The Team</Text>
             </View>
-            <TeamCard/>
+            <View style={style.cardView}>
+                <TeamCard name={"Ishaan Radia"} title={"Princpal Software Engineer"} role={"Wrote Implemented production-ready web scraping system and created an ETL pipeline with Python and MongoDB. Developed React components and integrated them with the back-end REST API Flask endpoints."} linkedin={'https://www.linkedin.com/in/ishaan-radia/'} github={'https://github.com/iiradia'} mail={'iiradia@ncsu.edu'}/>
+                <TeamCard name={"Harshal Suthar"}  title={"Software Engineer"} role={"Focused on application security and front-end development."} linkedin={'https://www.linkedin.com/in/harshal-suthar/'} github={'https://github.com/h-suthar'} mail={'hksuthar@ncsu.edu'}/>
+                <TeamCard name={"Mathew Chanda"}  title={"Software Engineer"} role={"Focused on the front-end React components and the MongoDB non-relational model."} linkedin={'https://www.linkedin.com/in/mathewchandancsu/'} github={'https://github.com/MathewChanda'} mail={'mvchanda@ncsu.edu'}/>
+                <TeamCard name={"Anthony Wang"}  title={"Data Scientist"} role={"Wrote Developed the proprietary PackRanks rating formula."} linkedin={'https://www.linkedin.com/in/anthony-wang-3aa134164/'} github={'https://github.com/AndongW'} mail={'awang25@ncsu.edu'}/>
+            </View>
         </View>
     )
 }

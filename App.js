@@ -110,7 +110,7 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={style.profileViewStyle}>
-        <Image source={require("./assets/Picture/GOD_OF_FANG_SWE.jpeg")} style={style.picStyle}/>
+        <Image source={require("./assets/Picture/AnthonyPic.jpeg")} style={style.picStyle}/>
         <Text style={style.textProfileStyle}>Hello, Andong Wang</Text>
       </View>
       <DrawerItemList {...props} />
