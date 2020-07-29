@@ -53,7 +53,6 @@ function WishlistScreen({ navigation }) {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Wishlist"}/>
       <ScrollView>
-        <HomeView/>
       </ScrollView>
     </View>
   ); 
