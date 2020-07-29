@@ -79,7 +79,7 @@ function TeamCard(props){
     
     return(
         <View>
-            <Card title = {props.name} containerStyle={{width : 250}} titleStyle={{size : 90,color : "#cc0000"}}>
+            <Card title = {props.name} containerStyle={{width : 250, borderRadius : 30}} titleStyle={{size : 90,color : "#cc0000"}}>
                 <View style={style.content}>
                     <View style={style.profileView}>
                         <Image source={getPic(props.name)} style={style.picStyle}/>
