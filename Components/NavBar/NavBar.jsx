@@ -20,17 +20,17 @@ function NavBar(props){
                 margin: 6
             }, 
             centerStyle:{
-                flex: 1,
                 flexDirection: "row",
                 justifyContent:"center", 
-                alignItems: "center"
+                paddingLeft: "17%"
             },
             textStyle:{
                 color:"white",
                 fontSize: 40, 
                 //fontFamily: "Poppins",
                 fontWeight:"bold",
-                marginLeft : 10
+                marginLeft : 10,
+                flex: 1,
             }, 
             navBarStyle:{
                 marginTop:15,
@@ -64,19 +64,20 @@ function NavBar(props){
                 componentCenter = {() => 
                     <View style={style.centerStyle}>
                             <Image style={style.imageStyle} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
-                        <Text style={style.textStyle}>{props.title}</Text>
+                        <Text style={style.textStyle} allowFontScaling={true} >{props.title}</Text>
                     </View>
                 }
 
                 componentRight = {() => 
-                    <Icon
-                        size={30}
-                        name='dots-vertical'
-                        type='material-community'
-                        color='#fff'
-                        onPress={() => props.navi.openDrawer()}
-                        style={style.dotIconStyle}
-                    />
+                    // <Icon
+                    //     size={30}
+                    //     name='dots-vertical'
+                    //     type='material-community'
+                    //     color='#fff'
+                    //     onPress={() => props.navi.openDrawer()}
+                    //     style={style.dotIconStyle}
+                    // />
+                    <View></View>
                 }
                 navigationBarStyle= {style.navBarStyle}
                 statusBarStyle    = {{ barStyle: 'light-content'}}

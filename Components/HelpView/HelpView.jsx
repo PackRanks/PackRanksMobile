@@ -2,6 +2,10 @@ import React from 'react'
 import { View, StyleSheet, Linking } from 'react-native'
 import { List, Text, Divider } from 'react-native-paper'
 
+// Global constants
+const titleNumLines = 3
+const descNumLines = 10
+
 // Styles applied to the wrapping View and each heading
 const styles = StyleSheet.create(
     {
@@ -18,7 +22,9 @@ const styles = StyleSheet.create(
         linkStyle: {
             color: "#007bff"
         },
-        //desc
+        descStyle: {
+            marginTop: -25 // maybe make this a percentage???
+        }
     }
 )
 
@@ -33,27 +39,41 @@ const GEPLink = (
 // Titles and descriptions for the FAQ accordions
 const FAQInfo = [
     {
-        title: "How do I search for just one course?",
-        item: "update"
+        title: <Text>How do I search for just one course?</Text>,
+        item: <Text>
+                    1. Select the "Department" tab on the Home screen {"\n"}
+                    2. Choose a department from the dropdown {"\n"}
+                    3. Then, either: {"\n"} 
+                    {'\u0009'} - Drag both endpoints of the slider to the same number {"\n"}
+                    {'\u0009'}{'\u0009'} OR {"\n"}
+                    {'\u0009'} - Enter the same number into both text boxes on either side of the slider
+              </Text>
+    },
+    // Omitting this FAQ 
+    // {
+    //     title: <Text>Why don't I see an option to add a course to my wishlist?</Text>,
+    //     item: <Text>update</Text>
+    // },
+    {
+        title: <Text>What benefits do I get from making an account?</Text>,
+        item: <Text>Great question! When you make an account, you are able to create your own wishlist of courses 
+                    that you would like to take! In addition, we will send you an email whenever a seat opens up 
+                    in a course that was closed or waitlisted on your wishlist!
+              </Text>
     },
     {
-        title: "Why don't I see an option to add a course to my wishlist?",
-        item: "update"
+        title: <Text>Why do I see a course with a higher rating ranked above a course with a lower rating?</Text>,
+        item: <Text>A course with a higher rating that is ranked above a course with a lower rating either has a 
+                    duplicate professor as a course that is ranked near the top of the list or is a Problem Session
+                    or Recitation section.
+              </Text>
     },
     {
-        title: "What benefits do I get from making an account?",
-        item: "update"
+        title: <Text>How are ratings calculated?</Text>,
+        item: <Text>Check out our About Us for more information!</Text>
     },
     {
-        title: "Why do I see a course with a higher rating ranked above a course with a lower rating?",
-        item: "update"
-    },
-    {
-        title: "How are ratings calculated?",
-        item: "update"
-    },
-    {
-        title: "What is a GEP?",
+        title: <Text>What is a GEP?</Text>,
         item: <Text>GEP stands for {GEPLink}, which is the set of courses all students at NC State must complete prior to graduation.</Text>
     }
 ]
@@ -61,41 +81,43 @@ const FAQInfo = [
 // Titles and descriptions for the Instructions accordions
 const InstructionsInfo = [
     {
-        title: "Searching for GEPs",
-        item: "update"
+        title: <Text>Searching for GEPs</Text>,
+        item: <Text>update</Text>
     },
     {
-        title: "Searching by Department",
-        item: "update"
+        title: <Text>Searching by Department</Text>,
+        item: <Text>update</Text>
     },
     {
-        title: "Using the Wishlist",
-        item: "update"
+        title: <Text>Adding to your Wishlist</Text>,
+        item: <Text>update</Text>
     },
     {
-        title: "Viewing your Wishlist",
-        item: "update"
+        title: <Text>Viewing your Wishlist</Text>,
+        item: <Text>update</Text>
     },
     {
-        title: "Remove courses from your Wishlist",
-        item: "poppopopopo"
+        title: <Text>Remove courses from your Wishlist</Text>,
+        item: <Text>update</Text>
     }
 ]
 
 // .map solution derived from: https://reactnativeforyou.com/how-to-use-map-function-in-react-native/
 // Creates an Accordion for each FAQ title and its description 
 FAQs = () => {
-    return FAQInfo.map(element => {
+    return FAQInfo.map((element, i) => {
         return (
             <React.Fragment>
                 <List.Accordion
+                    key={i}
                     title={element.title}
-                    titleNumberOfLines={3}
+                    titleNumberOfLines={titleNumLines}
                     theme={{ colors: { primary: '#cc0000' }}} // changes title color to red when expanded
                 >
                     <List.Item 
-                        //title={""}
                         description={element.item}
+                        descriptionStyle={styles.descStyle}
+                        descriptionNumberOfLines={descNumLines}
                     />
                 </List.Accordion>
                 <Divider />
@@ -106,15 +128,20 @@ FAQs = () => {
 
 // Creates an Accordion for each Instruction title and its description 
 Instructions = () => {
-    return InstructionsInfo.map(element => {
+    return InstructionsInfo.map((element, i) => {
         return (
             <React.Fragment>
                 <List.Accordion
+                    key={i}
                     title={element.title}
-                    titleNumberOfLines={3}
+                    titleNumberOfLines={titleNumLines}
                     theme={{ colors: { primary: '#cc0000' }}}
                 >
-                    <List.Item title={element.item} />
+                    <List.Item 
+                        description={element.item}
+                        descriptionStyle={styles.descStyle}
+                        descriptionNumberOfLines={descNumLines}
+                    />
                 </List.Accordion>
                 <Divider />
             </React.Fragment>

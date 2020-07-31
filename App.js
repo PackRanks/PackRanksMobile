@@ -3,7 +3,7 @@ import {Text,View,StyleSheet,Image,ScrollView} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
-import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
+import {DrawerContentScrollView,DrawerItemList,DrawerItem} from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
 import AboutView from './Components/AboutView/AboutView.jsx'
@@ -129,10 +129,14 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer> 
-      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName="Home" drawerContentOptions={{activeTintColor: "#cc0000"} }>
+      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} 
+        initialRouteName="Home" 
+        drawerContentOptions={{activeTintColor: "#cc0000"}}
+      >
         {/* Options for the drawer */}
         <Drawer.Screen name="Home" component={HomeScreen}
            options={{
+            drawerLabel: 'Home',
             title: 'Home',
             drawerIcon: ({focused, size}) => (
               <Icon
@@ -146,8 +150,9 @@ export default function App() {
           }}
         />
 
-        <Drawer.Screen name="Wishlist" component={WishlistScreen} 
+        <Drawer.Screen name="Wishlist" component={WishlistScreen}
              options={{
+              drawerLabel: 'Wishlist',
               title: 'Wishlist',
               drawerIcon: ({focused, size}) => (
                 <Icon
