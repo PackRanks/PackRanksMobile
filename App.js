@@ -7,6 +7,7 @@ import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
 import AboutView from './Components/AboutView/AboutView.jsx'
+import HelpView from "./Components/HelpView/HelpView.jsx";
 
 const style = StyleSheet.create(
   {
@@ -77,7 +78,7 @@ function HelpScreen({ navigation }) {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Help"}/>
       <ScrollView>
-
+        <HelpView />
       </ScrollView>
     </View>
   );
