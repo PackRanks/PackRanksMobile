@@ -50,7 +50,7 @@ const FAQInfo = [
     },
     {
         title: "How are ratings calculated?",
-        item: "poppopopopo"
+        item: "update"
     },
     {
         title: "What is a GEP?",

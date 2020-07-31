@@ -6,11 +6,8 @@ import { Icon } from 'react-native-elements';
 import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
-<<<<<<< Updated upstream
-import AboutView from './Components/AboutView/AboutView.jsx'
-=======
 import HelpView from "./Components/HelpView/HelpView.jsx";
->>>>>>> Stashed changes
+import AboutView from "./Components/AboutView/AboutView.jsx"
 
 const style = StyleSheet.create(
   {
@@ -81,11 +78,7 @@ function HelpScreen({ navigation }) {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Help"}/>
       <ScrollView>
-<<<<<<< Updated upstream
-
-=======
         <HelpView />
->>>>>>> Stashed changes
       </ScrollView>
     </View>
   );
