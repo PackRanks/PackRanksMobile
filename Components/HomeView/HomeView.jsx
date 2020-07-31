@@ -51,18 +51,16 @@ const style = StyleSheet.create({
 
 const dropdownStyles = StyleSheet.create({
     inputIOS: {
-      fontSize: 18,
-      borderWidth: 1,
-      borderRadius: 10,
-      color: 'black',
-      backgroundColor: "white",
-      paddingLeft: 20,
-      paddingBottom : 8,
-      paddingRight: 20, 
-      textAlign: "center",
-      justifyContent: "center",
-      fontWeight : "bold"
-    }
+        fontSize: 18,
+        borderWidth: 1,
+        borderRadius: 50,
+        color: 'black',
+        backgroundColor: "white",
+        paddingLeft: 20,
+        paddingRight: 20, 
+        textAlign: "center",
+        justifyContent: "center",
+      }
   });
 
 
@@ -103,7 +101,6 @@ class HomeView extends React.Component{
                         <RNPickerSelect
                         style={{...dropdownStyles}}
                             onValueChange={(value) => this.setState({term : value})}
-                            Icon={() => {return <Icon name='arrow-drop-down' type='material'color='black'/>}}
                             placeholder={{ label: 'Select a Term', value: null,color:"gray"}}
                             items={[
                                 { label: '2020 Fall Term', value: '2020 Fall Term' },
