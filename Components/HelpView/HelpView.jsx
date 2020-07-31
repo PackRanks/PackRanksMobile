@@ -130,13 +130,13 @@ function HelpView() {
             <Text style={styles.headingStyle}>FAQ</Text>
             <List.Section>
                 <Divider />
-                {FAQs()}
+                {FAQs}
             </List.Section>
 
             <Text style={styles.headingStyle}>Instructions</Text>
             <List.Section>
                 <Divider />
-                {Instructions()}
+                {Instructions}
             </List.Section>
 
         </View>

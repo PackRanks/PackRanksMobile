@@ -6,8 +6,13 @@ import { Icon } from 'react-native-elements';
 import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
+<<<<<<< HEAD
 import HelpView from "./Components/HelpView/HelpView.jsx";
 import AboutView from "./Components/AboutView/AboutView.jsx"
+=======
+import AboutView from './Components/AboutView/AboutView.jsx'
+import HelpView from "./Components/HelpView/HelpView.jsx";
+>>>>>>> f9d74574272bbc3cec5337c36c7d1c5aab2cec54
 
 const style = StyleSheet.create(
   {

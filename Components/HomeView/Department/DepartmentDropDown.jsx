@@ -47,17 +47,15 @@ const style = StyleSheet.create({
 
 const dropdownStyles = StyleSheet.create({
     inputIOS: {
-      fontSize: 18,
-      borderWidth: 1,
-      borderRadius: 10,
-      color: 'black',
-      backgroundColor: "white",
-      paddingLeft: 20,
-      paddingBottom : 8,
-      paddingRight: 20, 
-      textAlign: "center",
-      justifyContent: "center",
-      fontWeight : "bold"
+        fontSize: 18,
+        borderWidth: 1,
+        borderRadius: 50,
+        color: 'black',
+        backgroundColor: "white",
+        paddingLeft: 20,
+        paddingRight: 20, 
+        textAlign: "center",
+        justifyContent: "center",
     }
   });
 
@@ -110,7 +108,6 @@ class DepartmentDropDown extends React.Component{
                                     style={{...dropdownStyles}}
                                     onValueChange={(value) => this.setState({gepType : value})}
                                     placeholder={{ label: 'Select a Dept', value: null,color:"gray"}}
-                                    Icon={() => {return <Icon name='arrow-drop-down' type='material'color='black'/>}}
                                     items = {deptFinal}
                                 />
                         </View>
