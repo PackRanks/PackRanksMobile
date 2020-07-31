@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyleSheet,View,Text, ViewComponent} from 'react-native'
+import {StyleSheet,View,Text, ViewComponent,Dimensions} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
 import CourseCard from '../../CourseCard/CourseCard'
+import {  RFValue } from "react-native-responsive-fontsize";
 
 const style = StyleSheet.create({
     termViewStyle: {
@@ -24,7 +25,7 @@ const style = StyleSheet.create({
 
 const dropdownStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: 18,
+        fontSize: RFValue(23,Dimensions.get('window').height),
         borderWidth: 1,
         borderRadius: 10,
         color: 'black',
@@ -37,7 +38,7 @@ const dropdownStyles = StyleSheet.create({
       }, 
       inputAndroid: {
         width : 200,
-        fontSize: 18,
+        fontSize: RFValue(23,Dimensions.get('window').height),
         borderWidth: 10,
         borderRadius: 50,
         color: 'black',

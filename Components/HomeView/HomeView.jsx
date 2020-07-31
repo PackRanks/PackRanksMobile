@@ -1,29 +1,29 @@
 import React from 'react'; 
 import RNPickerSelect from 'react-native-picker-select';
-import {View,Text,StyleSheet} from 'react-native';
+import {View,Text,StyleSheet,Dimensions} from 'react-native';
 import { Icon } from 'react-native-elements'; 
 import SegmentedControl from '@react-native-community/segmented-control';
 import GepDropDown from './GEP/GepDropDown.jsx'
 import DepartmentDropDown from './Department/DepartmentDropDown.jsx'
-
+import {  RFValue } from "react-native-responsive-fontsize";
 
 // Styling 
 const style = StyleSheet.create({
     titleStyle : {
         textAlign: "center",
-        fontSize : 30, 
+        fontSize : RFValue(35,Dimensions.get('window').height), 
         fontWeight: "bold", 
         color: "#cc0000"
     }, 
     descriptionStyle: {
         textAlign: "center",
-        fontSize : 19, 
+        fontSize : RFValue(24,Dimensions.get('window').height), 
         fontWeight: "bold", 
         color: "#cc0000"
     }, 
     featuresStyle: {
         marginTop: 10,
-        fontSize : 17, 
+        fontSize : RFValue(22,Dimensions.get('window').height), 
         color: "#cc0000",
         textAlign: "center"
     }, 
@@ -36,7 +36,7 @@ const style = StyleSheet.create({
     },
     termTextStyle: {
         marginRight: 15,
-        fontSize : 18, 
+        fontSize : RFValue(23,Dimensions.get('window').height), 
         fontWeight: "bold",
         color: "#cc0000"
     }, 
@@ -52,7 +52,7 @@ const style = StyleSheet.create({
 
 const dropdownStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: 18,
+        fontSize: RFValue(23,Dimensions.get('window').height),
         borderWidth: 1,
         borderRadius: 10,
         color: 'black',
@@ -65,7 +65,7 @@ const dropdownStyles = StyleSheet.create({
       }, 
       inputAndroid: {
         width : 200,
-        fontSize: 18,
+        fontSize: RFValue(23,Dimensions.get('window').height),
         borderWidth: 10,
         borderRadius: 50,
         color: 'black',

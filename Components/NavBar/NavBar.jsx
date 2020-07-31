@@ -1,9 +1,9 @@
 import React from 'react'
-import {Image,StyleSheet,SafeAreaView,Text,Button,Touchable,View} from 'react-native'
+import {Image,StyleSheet,SafeAreaView,Text,Button,Touchable,View,Dimensions} from 'react-native'
 import { NavigationBar } from 'navigationbar-react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements'
-
+import {  RFValue } from "react-native-responsive-fontsize";
 
 function NavBar(props){
 
@@ -27,7 +27,7 @@ function NavBar(props){
             },
             textStyle:{
                 color:"white",
-                fontSize: 40, 
+                fontSize: RFValue(40,Dimensions.get('window').height), 
                 //fontFamily: "Poppins",
                 fontWeight:"bold",
                 marginLeft : 10

@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, Linking } from 'react-native'
+import { View, StyleSheet, Linking ,Dimensions} from 'react-native'
 import { List, Text, Divider } from 'react-native-paper'
+import {  RFValue } from "react-native-responsive-fontsize";
 
 // Global constants
 const titleNumLines = 3
@@ -13,7 +14,7 @@ const styles = StyleSheet.create(
             alignItems: "stretch",
         },
         headingStyle: {
-            fontSize: 30,
+            fontSize: RFValue(35,Dimensions.get('window').height),
             fontWeight: "bold",
             color: "#cc0000",
             marginTop: 15,

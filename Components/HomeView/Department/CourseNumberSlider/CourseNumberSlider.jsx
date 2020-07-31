@@ -1,7 +1,8 @@
 import React from 'react';
-import { View,Alert,TextInput,StyleSheet} from 'react-native';
+import { View,Alert,TextInput,StyleSheet,Dimensions} from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import NumericInput from 'react-native-numeric-input'
+import {  RFValue } from "react-native-responsive-fontsize";
 
 class RangeSlider extends React.Component {
     constructor(props){ 

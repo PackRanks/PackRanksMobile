@@ -1,8 +1,9 @@
 import React from 'react'; 
-import {View,Text,StyleSheet,Image} from 'react-native'; 
+import {View,Text,StyleSheet,Image ,Dimensions} from 'react-native'; 
 import {Button} from 'react-native-paper';
 import {Card,Icon} from 'react-native-elements'; 
 import { Linking } from 'react-native'
+import {  RFValue } from "react-native-responsive-fontsize";
 
 const style = StyleSheet.create({
     content : {
@@ -35,7 +36,7 @@ const style = StyleSheet.create({
     }, 
     titleStyle : {
         fontWeight: "bold",
-        fontSize : 15, 
+        fontSize : RFValue(20,Dimensions.get('window').height), 
         color : "#cc0000",  
         marginTop : 10,
         marginBottom : 10
@@ -43,7 +44,7 @@ const style = StyleSheet.create({
     roleStyle : {
         color : "gray", 
         textAlign : "center",
-        fontSize : 14, 
+        fontSize : RFValue(14,Dimensions.get('window').height), 
         marginBottom : 10
     }, 
     buttonStyle : {

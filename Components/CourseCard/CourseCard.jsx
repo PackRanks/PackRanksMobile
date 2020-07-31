@@ -1,10 +1,12 @@
 import React,{useState} from 'react'; 
-import {View,StyleSheet,TouchableHighlight} from 'react-native'
+import {View,StyleSheet,TouchableHighlight,Dimensions} from 'react-native'
 import { Avatar, Button, Card, Title, Text, Paragraph, List,IconButton} from 'react-native-paper';
 import { Divider } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
+import {  RFValue } from "react-native-responsive-fontsize";
+
 
 // Styling for the whole component 
 const styles = StyleSheet.create(
@@ -16,19 +18,18 @@ const styles = StyleSheet.create(
     }, 
     ratingStyle:{
         color:"#cc0000",
-        fontSize: 30, 
+        fontSize: RFValue(40,Dimensions.get('window').height), 
         //fontFamily: "Poppins",
         fontWeight:"bold",
-        marginLeft: "-3%",
         marginRight: 3
     },
     titleStyle:{
-      fontSize: 20,
+      fontSize: RFValue(25,Dimensions.get('window').height),
       fontWeight: "bold", 
       color: "black"
     },
     descStyle:{
-      fontSize: 16
+      fontSize: RFValue(21,Dimensions.get('window').height)
     }, 
     cardViewComponent : 
     {
@@ -67,7 +68,7 @@ const styles = StyleSheet.create(
     preReqStyle : {
       color: "gray", 
       fontWeight: "normal",
-      fontSize: 15
+      fontSize:  RFValue(20,Dimensions.get('window').height)
     }, 
     locationHeader: {
       color: "#cc0000", 
