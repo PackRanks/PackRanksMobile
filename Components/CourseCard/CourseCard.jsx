@@ -248,11 +248,11 @@ class CardComponent extends React.Component{
 
     for(let num = 0; num < 7; num++){
       if(this.state.days.indexOf(daysOfWeek[num]) !== -1){
-          dayComponent.push(<Title style={{color : "#cc0000",marginRight: 10}}>{daysOfWeek[num]}</Title>)
+          dayComponent.push(<Title key={num} style={{color : "#cc0000",marginRight: 10}}>{daysOfWeek[num]}</Title>)
       }
 
       else{
-        dayComponent.push(<Title style={{color : "gray",marginRight: 10}}>{daysOfWeek[num]}</Title>)
+        dayComponent.push(<Title key={num} style={{color : "gray",marginRight: 10}}>{daysOfWeek[num]}</Title>)
       }
     }
 

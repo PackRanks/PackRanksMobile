@@ -13,8 +13,10 @@ const style = StyleSheet.create({
     }, 
     buttonView : {
         flexDirection : 'row',
-        justifyContent : "center",
-        alignItems : 'center' 
+        justifyContent : 'center',
+        alignItems : 'center',
+        flex : 1
+
     }, 
     pictureView : {
         width : 50, 
@@ -43,6 +45,11 @@ const style = StyleSheet.create({
         textAlign : "center",
         fontSize : 14, 
         marginBottom : 10
+    }, 
+    buttonStyle : {
+        marginLeft : 50,  
+        justifyContent : 'center', 
+        alignContent : 'center'
     }
 })
 
@@ -73,10 +80,6 @@ function getPic(name){
 
 
 function TeamCard(props){
-
-    getPic(props.name)
-    
-    
     return(
         <View>
             <Card title = {props.name} containerStyle={{width : 250, borderRadius : 30}} titleStyle={{size : 90,color : "#cc0000"}}>
@@ -88,8 +91,8 @@ function TeamCard(props){
                     </View>
                     <View style={style.buttonView}>
                         <Icon name='logo-linkedin' type="ionicon" color='black' onPress={() => Linking.openURL(props.linkedin)} />
-                        <Icon name='logo-github'type="ionicon" color='black' style={{marginLeft : 10}} onPress={() => Linking.openURL(props.github)} />
-                        <Icon name='mail' type="material" color='black' style={{marginLeft : 10}} onPress={() => Linking.openURL('mailto:'+ props.mail)} />
+                        <Icon name='logo-github'type="ionicon" color='black' containerStyle={style.buttonStyle} onPress={() => Linking.openURL(props.github)} />
+                        <Icon name='mail' type="material" color='black' containerStyle={style.buttonStyle} onPress={() => Linking.openURL('mailto:'+ props.mail)} />
                     </View>
                 </View>
             </Card>

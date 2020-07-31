@@ -6286,6 +6286,14 @@ react-native-navigation-bar@^0.2.1:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar/-/react-native-navigation-bar-0.2.1.tgz#e25e585742124040ff069a69a4445be83de77000"
   integrity sha1-4l5YV0ISQED/BppppERb6D3ncAA=
 
+react-native-numeric-input@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/react-native-numeric-input/-/react-native-numeric-input-1.8.3.tgz#e869aa1b60d0c38b92e84e44bb28944f48b4ccd3"
+  integrity sha512-8MeAgbM4+doAkwjPg7iEA604z4d7krJz9r0755YThldCdIvwWZh5VbtRDHxbkMVQ2Ix5xRujFSn7uQWMtln8RA==
+  dependencies:
+    prop-types "^15.6.1"
+    react-native-pixel-perfect "^1.0.1"
+
 react-native-paper@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.0.1.tgz#13d2272757fb738113582e900787f365cfa77c74"
@@ -6301,6 +6309,11 @@ react-native-picker-select@^7.0.0:
   integrity sha512-SO7b7wHfeM07oVTsLhBlT/VDvMXg2aP0Xy5CA+kL7+oV2Bq6nfKTVjpB2+HLVhFik9i/tlq5ROuGdUrfPhl3rg==
   dependencies:
     lodash.isequal "^4.5.0"
+
+react-native-pixel-perfect@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-pixel-perfect/-/react-native-pixel-perfect-1.0.2.tgz#8e6dc97e377caa4bd07f9e584ba438d53c0e25e8"
+  integrity sha512-0IvYCNkxuQbQC9q4tI+C3i6o38nbx916p7gBRBWuPxDhKBCuTkVV3VukcfW6vtjRlwQm6kwQcF9OtI+yUBt+YA==
 
 react-native-range-slider-expo@^1.1.5:
   version "1.1.5"
@@ -6402,6 +6415,11 @@ react-native-unimodules@~0.10.1:
     unimodules-permissions-interface "~5.2.1"
     unimodules-sensors-interface "~5.2.1"
     unimodules-task-manager-interface "~5.2.1"
+
+react-native-view-overflow@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-view-overflow/-/react-native-view-overflow-0.0.5.tgz#56c49f0f7cdb9fd145de241d6f6bf4cfe5660915"
+  integrity sha512-p/peyU3IC7M84bZEz2K7hpLrKBPUT3W7/+wnXjGw40hX/Iaj0OmOqJI6mJcBUlpcHJvGYbx2OOpPZa4+hwJC6w==
 
 react-native-web@~0.11.7:
   version "0.11.7"
