@@ -124,7 +124,7 @@ class DepartmentDropDown extends React.Component{
                     {this.state.component}
                     <Text style={style.courseNumberTextStyle}>Please use the slider for the desired course number! </Text>
                     <View style={style.sliderStyle}>
-                        <CourseNumberSlider/>
+                        <CourseNumberSlider min={this.state.minCourseNumber} max={this.state.maxCourseNumber}/>
                     </View>
                     <View style={style.buttonStyle}>
                         <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => alert('Right button pressed')}>Get Courses</Button>
