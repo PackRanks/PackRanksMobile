@@ -12,7 +12,7 @@ function NavBar(props){
         {
             container:{
                 backgroundColor:"#cc0000",
-                justifyContent: "center",
+                justifyContent: "center"
             },
             imageStyle:{
                 width: 45, 
@@ -20,17 +20,17 @@ function NavBar(props){
                 margin: 6
             }, 
             centerStyle:{
+                flex: 1,
                 flexDirection: "row",
                 justifyContent:"center", 
-                paddingLeft: "17%"
+                alignItems: "center"
             },
             textStyle:{
                 color:"white",
                 fontSize: 40, 
                 //fontFamily: "Poppins",
                 fontWeight:"bold",
-                marginLeft : 10,
-                flex: 1,
+                marginLeft : 10
             }, 
             navBarStyle:{
                 marginTop:15,
@@ -47,7 +47,8 @@ function NavBar(props){
     )
 
     return(
-        <View style={style.container}> 
+        <View style={style.container}>
+            
             {/* NavBar */}
             <NavigationBar
                 componentLeft = {() => 
@@ -64,20 +65,19 @@ function NavBar(props){
                 componentCenter = {() => 
                     <View style={style.centerStyle}>
                             <Image style={style.imageStyle} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
-                        <Text style={style.textStyle} allowFontScaling={true} >{props.title}</Text>
+                        <Text style={style.textStyle}>{props.title}</Text>
                     </View>
                 }
 
                 componentRight = {() => 
-                    // <Icon
-                    //     size={30}
-                    //     name='dots-vertical'
-                    //     type='material-community'
-                    //     color='#fff'
-                    //     onPress={() => props.navi.openDrawer()}
-                    //     style={style.dotIconStyle}
-                    // />
-                    <View></View>
+                    <Icon
+                        size={30}
+                        name='dots-vertical'
+                        type='material-community'
+                        color='#fff'
+                        onPress={() => props.navi.openDrawer()}
+                        style={style.dotIconStyle}
+                    />
                 }
                 navigationBarStyle= {style.navBarStyle}
                 statusBarStyle    = {{ barStyle: 'light-content'}}
