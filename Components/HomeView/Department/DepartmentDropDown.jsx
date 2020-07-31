@@ -49,14 +49,25 @@ const dropdownStyles = StyleSheet.create({
     inputIOS: {
         fontSize: 18,
         borderWidth: 1,
-        borderRadius: 50,
+        borderRadius: 10,
         color: 'black',
         backgroundColor: "white",
         paddingLeft: 20,
         paddingRight: 20, 
         textAlign: "center",
         justifyContent: "center",
-    }
+        borderColor : 'white'
+      }, 
+      inputAndroid: {
+        width : 200,
+        fontSize: 18,
+        borderWidth: 10,
+        borderRadius: 50,
+        color: 'black',
+        backgroundColor: "white", 
+        textAlign: "center",
+        justifyContent: "center",
+      },
   });
 
 class DepartmentDropDown extends React.Component{

@@ -31,7 +31,7 @@ const style = StyleSheet.create({
         margin: 15, 
         flexDirection : "row", 
          justifyContent: "center", 
-        alignItems: "center", 
+        alignContent: "center", 
         color:"white"
     },
     termTextStyle: {
@@ -43,7 +43,8 @@ const style = StyleSheet.create({
     segemntedControlsStyle: {
         width: "90%", 
         flexDirection : "row", 
-         justifyContent: "center", 
+        justifyContent: "center", 
+        textAlign : 'center',
         alignSelf: "center", 
         color:"white"
     }
@@ -53,14 +54,25 @@ const dropdownStyles = StyleSheet.create({
     inputIOS: {
         fontSize: 18,
         borderWidth: 1,
-        borderRadius: 50,
+        borderRadius: 10,
         color: 'black',
         backgroundColor: "white",
         paddingLeft: 20,
         paddingRight: 20, 
         textAlign: "center",
         justifyContent: "center",
-      }
+        borderColor : 'white'
+      }, 
+      inputAndroid: {
+        width : 200,
+        fontSize: 18,
+        borderWidth: 10,
+        borderRadius: 50,
+        color: 'black',
+        backgroundColor: "white", 
+        textAlign: "center",
+        justifyContent: "center",
+      },
   });
 
 
@@ -110,7 +122,7 @@ class HomeView extends React.Component{
                         />
                     </View>
                         <SegmentedControl
-                                values={['GEP', 'Department']}
+                                values={['GEP', 'Department']}x
                                 selectedIndex={0}
                                 onValueChange={(value) => this.setState({typeCourse : value})}
                                 style={style.segemntedControlsStyle}
