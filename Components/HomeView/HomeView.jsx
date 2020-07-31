@@ -122,7 +122,7 @@ class HomeView extends React.Component{
                         />
                     </View>
                         <SegmentedControl
-                                values={['GEP', 'Department']}x
+                                values={['GEP', 'Department']}
                                 selectedIndex={0}
                                 onValueChange={(value) => this.setState({typeCourse : value})}
                                 style={style.segemntedControlsStyle}

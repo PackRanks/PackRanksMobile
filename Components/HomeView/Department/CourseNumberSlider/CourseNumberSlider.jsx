@@ -18,7 +18,7 @@ class RangeSlider extends React.Component {
     reachMinLimit(value){ 
         if(value > 999){
             Alert.alert('Max Limit', 'Reset to 999')
-            this.setState({max : 999})
+            this.setState({min : 999})
         }
 
         else if(value < 0){
