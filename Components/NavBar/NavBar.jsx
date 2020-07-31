@@ -17,20 +17,27 @@ function NavBar(props){
             imageStyle:{
                 width: 45, 
                 height: 45,
-                margin: 6
+                margin: 6,
+                marginLeft: 100
             }, 
             centerStyle:{
                 flex: 1,
                 flexDirection: "row",
-                justifyContent:"center", 
-                alignItems: "center"
+                //justifyContent:"center", 
+                //alignItems: "center",
+                //width: "100%",
+                backgroundColor: "blue"
             },
             textStyle:{
                 color:"white",
                 fontSize: 40, 
                 //fontFamily: "Poppins",
                 fontWeight:"bold",
-                marginLeft : 10
+                //marginLeft : 10
+                //marginRight: 200,
+                flex: 1,
+                textAlign: "center",
+                marginRight: 80
             }, 
             navBarStyle:{
                 marginTop:15,
