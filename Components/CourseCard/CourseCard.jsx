@@ -6,12 +6,17 @@ import * as WebBrowser from 'expo-web-browser';
 import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
 import {  RFValue } from "react-native-responsive-fontsize";
+import { isAndroid } from 'react-native-device-detection';
+
+const Device = require('react-native-device-detection');
+
+
 
 // Styling for the whole component 
 const styles = StyleSheet.create(
   {
     cardStyle: {
-      width: RFValue(300,Dimensions.get('window').height), 
+      width: Device.isTablet ?  RFValue(700,Dimensions.get('window').height) : RFValue(170,Dimensions.get('window').width), 
       justifyContent: "center", 
       alignSelf: "center"
     }, 

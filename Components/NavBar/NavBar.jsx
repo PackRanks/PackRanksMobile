@@ -30,7 +30,7 @@ function NavBar(props){
                 fontSize: RFValue(40,Dimensions.get('window').height), 
                 //fontFamily: "Poppins",
                 fontWeight:"bold",
-                marginLeft : 10
+                marginLeft : 5
             }, 
             navBarStyle:{
                 marginTop:15,
