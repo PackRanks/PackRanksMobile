@@ -4,6 +4,7 @@ import {Button} from 'react-native-paper';
 import {Card,Icon} from 'react-native-elements'; 
 import { Linking } from 'react-native'
 import {  RFValue } from "react-native-responsive-fontsize";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const style = StyleSheet.create({
     content : {
@@ -26,9 +27,9 @@ const style = StyleSheet.create({
     picStyle: {
         justifyContent: 'center', 
         alignContent : 'center', 
-        width: 100, 
-        height: 100, 
-        borderRadius: 100/ 2, 
+        width: hp(20), 
+        height: hp(20), 
+        borderRadius: 1000/ 2, 
       }, 
     profileView : {
         alignItems : 'center', 
@@ -36,19 +37,22 @@ const style = StyleSheet.create({
     }, 
     titleStyle : {
         fontWeight: "bold",
-        fontSize : RFValue(20,Dimensions.get('window').height), 
+        fontSize : hp(3.2), 
         color : "#cc0000",  
         marginTop : 10,
-        marginBottom : 10
+        marginBottom : 10, 
+        textAlign: 'center', 
+        justifyContent : 'center'
     }, 
     roleStyle : {
         color : "gray", 
+        justifyContent : 'center', 
         textAlign : "center",
-        fontSize : RFValue(14,Dimensions.get('window').height), 
+        fontSize :  hp(2), 
         marginBottom : 10
     }, 
     buttonStyle : {
-        marginLeft : 50,  
+        marginLeft : 60,  
         justifyContent : 'center', 
         alignContent : 'center'
     }
@@ -83,7 +87,7 @@ function getPic(name){
 function TeamCard(props){
     return(
         <View>
-            <Card title = {props.name} containerStyle={{width : 250, borderRadius : 30}} titleStyle={{size : 90,color : "#cc0000"}}>
+            <Card title = {props.name} containerStyle={{width : wp(70), borderRadius : 30}} titleStyle={{fontSize : hp(4) ,color : "#cc0000"}}>
                 <View style={style.content}>
                     <View style={style.profileView}>
                         <Image source={getPic(props.name)} style={style.picStyle}/>
@@ -91,9 +95,9 @@ function TeamCard(props){
                         <Text style={style.roleStyle}>{props.role}</Text>
                     </View>
                     <View style={style.buttonView}>
-                        <Icon name='logo-linkedin' type="ionicon" color='black' onPress={() => Linking.openURL(props.linkedin)} />
-                        <Icon name='logo-github'type="ionicon" color='black' containerStyle={style.buttonStyle} onPress={() => Linking.openURL(props.github)} />
-                        <Icon name='mail' type="material" color='black' containerStyle={style.buttonStyle} onPress={() => Linking.openURL('mailto:'+ props.mail)} />
+                        <Icon size={hp(4)} name='logo-linkedin' type="ionicon" color='black' onPress={() => Linking.openURL(props.linkedin)} />
+                        <Icon size={hp(4)} name='logo-github'type="ionicon" color='black' containerStyle={style.buttonStyle} onPress={() => Linking.openURL(props.github)} />
+                        <Icon size={hp(4)} name='mail' type="material" color='black' containerStyle={style.buttonStyle} onPress={() => Linking.openURL('mailto:'+ props.mail)} />
                     </View>
                 </View>
             </Card>

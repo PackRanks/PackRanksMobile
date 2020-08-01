@@ -5,35 +5,30 @@ import { Divider } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
-import {  RFValue } from "react-native-responsive-fontsize";
-import { isAndroid } from 'react-native-device-detection';
-
-const Device = require('react-native-device-detection');
-
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 // Styling for the whole component 
 const styles = StyleSheet.create(
   {
     cardStyle: {
-      width: Device.isTablet ?  RFValue(700,Dimensions.get('window').height) : RFValue(170,Dimensions.get('window').width), 
+      width: wp('83%'), // Device.isTablet ?  RFValue(700,Dimensions.get('window').height) : RFValue(170,Dimensions.get('window').width), 
       justifyContent: "center", 
       alignSelf: "center"
     }, 
     ratingStyle:{
         color:"#cc0000",
-        fontSize: RFValue(40,Dimensions.get('screen').height), 
+        fontSize: hp("4%"), 
         //fontFamily: "Poppins",
         fontWeight:"bold",
         marginRight: 3
     },
     titleStyle:{
-      fontSize: RFValue(18,Dimensions.get('screen').height),
+      fontSize: hp("2.8%"),
       fontWeight: "bold", 
       color: "black"
     },
     descStyle:{
-      fontSize: RFValue(15,Dimensions.get('window').height)
+      fontSize: hp("1.92%"),
     }, 
     cardViewComponent : 
     {
@@ -45,27 +40,30 @@ const styles = StyleSheet.create(
     }, 
     genericName: {
       color: "#cc0000", 
+      fontSize: hp("2%"), 
       fontWeight: "bold"
     }, 
     nameHeader: {
       color: "gray", 
+      fontSize: hp("2%"), 
       fontWeight: "normal"
     }, 
     catalogStyle: {
       color: "#cc0000", 
       fontWeight: "bold", 
       textDecorationLine: 'underline',
-      fontSize:  RFValue(15,Dimensions.get('window').height)
+      fontSize: hp("2%"), 
     },
     rateMyProfessorStyle: {
       color: "#cc0000", 
       fontWeight: "bold", 
       textDecorationLine: 'underline',
-      fontSize:  RFValue(15,Dimensions.get('window').height)
+      fontSize:  hp("2%")
     }, 
     preReqHeader: {
       color: "#cc0000", 
-      fontWeight: "bold"
+      fontWeight: "bold", 
+      fontSize: hp("2%")
     }, 
     preReqView: {
       flexDirection : "row", 
@@ -74,36 +72,40 @@ const styles = StyleSheet.create(
     preReqStyle : {
       color: "gray", 
       fontWeight: "normal",
-      fontSize:  RFValue(12,Dimensions.get('window').height)
+      fontSize: hp("2%")
     }, 
     locationHeader: {
       color: "#cc0000", 
-      fontWeight: "bold"
+      fontWeight: "bold", 
+      fontSize: hp("2%")
     }, 
     locationDesc: {
       color: "gray", 
-      fontWeight: "normal"
+      fontWeight: "normal", 
+      fontSize: hp("2%")
     }, 
     container: {
-      height: 400,
+      height: hp("30%"),
       width: "100%",
       flexDirection: "column", 
       justifyContent: 'flex-end',
     },
     map: {
-     height: 400,
-     width: "100%",
+     height: hp("30%"),
+     width: '100%'
     }, 
     seatView :{
       flexDirection: 'row',
     },
     seatHeader: {
       color: "#cc0000", 
-      fontWeight: "bold"
+      fontWeight: "bold", 
+      fontSize: hp("2%")
     },
     seatDesc: {
       color: "gray", 
-      fontWeight: "normal"
+      fontWeight: "normal", 
+      fontSize: hp("2%")
     },
     TimeView : {
       flexDirection : 'column', 
@@ -113,7 +115,8 @@ const styles = StyleSheet.create(
     }, 
     timeDesc: {
       color: "gray", 
-      fontWeight: "normal"
+      fontWeight: "normal", 
+      fontSize: hp("2%")
     },
   } 
 )
@@ -255,11 +258,11 @@ class CardComponent extends React.Component{
 
     for(let num = 0; num < 7; num++){
       if(this.state.days.indexOf(daysOfWeek[num]) !== -1){
-          dayComponent.push(<Title key={num} style={{color : "#cc0000",marginRight: 10}}>{daysOfWeek[num]}</Title>)
+          dayComponent.push(<Title key={num} style={{fontSize: hp("2%"), color : "#cc0000",marginRight: 10}}>{daysOfWeek[num]}</Title>)
       }
 
       else{
-        dayComponent.push(<Title key={num} style={{color : "gray",marginRight: 10}}>{daysOfWeek[num]}</Title>)
+        dayComponent.push(<Title key={num} style={{fontSize: hp("2%"), color : "gray",marginRight: 10}}>{daysOfWeek[num]}</Title>)
       }
     }
 
@@ -327,7 +330,7 @@ class CardComponent extends React.Component{
                         </Card.Content>
                         <Card.Actions>
                               {/* Button for the closed and open card */}
-                              <Button theme={theme} onPress={() => alert('Added to Wishlist')}>Added to WishList</Button>
+                              <Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Added to WishList</Button>
                         </Card.Actions>
                       </Card>
                   </List.Section>

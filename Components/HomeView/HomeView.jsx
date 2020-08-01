@@ -6,24 +6,19 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import GepDropDown from './GEP/GepDropDown.jsx'
 import DepartmentDropDown from './Department/DepartmentDropDown.jsx'
 import {  RFValue } from "react-native-responsive-fontsize";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 // Styling 
 const style = StyleSheet.create({
     titleStyle : {
         textAlign: "center",
-        fontSize : RFValue(35,Dimensions.get('window').height), 
-        fontWeight: "bold", 
-        color: "#cc0000"
-    }, 
-    descriptionStyle: {
-        textAlign: "center",
-        fontSize : RFValue(24,Dimensions.get('window').height), 
+        fontSize : hp('4%'),
         fontWeight: "bold", 
         color: "#cc0000"
     }, 
     featuresStyle: {
         marginTop: 10,
-        fontSize : RFValue(22,Dimensions.get('window').height), 
+        fontSize : hp('3%'),
         color: "#cc0000",
         textAlign: "center"
     }, 
@@ -36,7 +31,7 @@ const style = StyleSheet.create({
     },
     termTextStyle: {
         marginRight: 15,
-        fontSize : RFValue(23,Dimensions.get('window').height), 
+        fontSize : hp('2%'),
         fontWeight: "bold",
         color: "#cc0000"
     }, 
@@ -52,7 +47,8 @@ const style = StyleSheet.create({
 
 const dropdownStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: RFValue(23,Dimensions.get('window').height),
+        width : wp('60%'),
+        fontSize : hp('2%'),
         borderWidth: 1,
         borderRadius: 10,
         color: 'black',
@@ -64,8 +60,8 @@ const dropdownStyles = StyleSheet.create({
         borderColor : 'white'
       }, 
       inputAndroid: {
-        width : 200,
-        fontSize: RFValue(23,Dimensions.get('window').height),
+        width : wp('60%'),
+        fontSize : hp('2%'),
         borderWidth: 10,
         borderRadius: 50,
         color: 'black',

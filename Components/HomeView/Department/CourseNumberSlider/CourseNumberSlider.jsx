@@ -3,7 +3,8 @@ import { View,Alert,TextInput,StyleSheet,Dimensions} from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import NumericInput from 'react-native-numeric-input'
 import {  RFValue } from "react-native-responsive-fontsize";
-
+import { widthPercentageToDP } from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 class RangeSlider extends React.Component {
     constructor(props){ 
         super()
@@ -74,11 +75,22 @@ class RangeSlider extends React.Component {
         // Temporary fix for getting and upating the value for states
         return (
             <View style={style.viewStyle}>
-                <NumericInput minValue={0} maxValue={999} initValue={this.state.min} value={this.state.min} onLimitReached={ value => {console.log(value);this.reachMinLimit(value);this.reachMinLimit(this.state.min)}} rounded={true} type={'up-down'} totalWidth={90} totalHeight={50} onChange={value => this.setState({min : value})} />
+                <NumericInput 
+                    minValue={0} 
+                    maxValue={999} 
+                    initValue={this.state.min} 
+                    value={this.state.min} 
+                    onLimitReached={ value => {console.log(value);this.reachMinLimit(value);this.reachMinLimit(this.state.min)}} 
+                    rounded={true} 
+                    type={'up-down'} 
+                    totalWidth={wp(20)} 
+                    totalHeight={50} 
+                    onChange={value => this.setState({min : value})} 
+                />
                 <View style={style.sliderView}>
                     <MultiSlider
                         values={[this.state.min, this.state.max]}
-                        sliderLength={150}
+                        sliderLength={wp(30)}
                         onValuesChange={this.multiSliderValuesChange}
                         onValuesChangeFinish={this.multiSliderValuesChange}
                         min={0}
@@ -93,7 +105,17 @@ class RangeSlider extends React.Component {
                         }}
                     />
                 </View>
-                <NumericInput maxValue={999} initValue={this.state.max} value={this.state.max} onLimitReached={this.reachMaxLimit} rounded={true} type={'up-down'} totalWidth={90} totalHeight={50} onChange={value => this.setState({max : value})} />
+                <NumericInput 
+                    maxValue={999} 
+                    initValue={this.state.max} 
+                    value={this.state.max} 
+                    onLimitReached={this.reachMaxLimit} 
+                    rounded={true} 
+                    type={'up-down'} 
+                    totalWidth={wp(20)} 
+                    totalHeight={50} 
+                    onChange={value => this.setState({max : value})} 
+                />
                 {this.reachMinLimit(this.state.min)}
                 {this.reachMaxLimit(this.state.max)}
             </View>

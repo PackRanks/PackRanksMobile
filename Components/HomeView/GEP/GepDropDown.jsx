@@ -4,6 +4,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
 import CourseCard from '../../CourseCard/CourseCard'
 import {  RFValue } from "react-native-responsive-fontsize";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const style = StyleSheet.create({
     termViewStyle: {
@@ -16,16 +17,15 @@ const style = StyleSheet.create({
         marginRight: 15,
         fontSize : 18, 
         fontWeight: "bold",
-        color: "#cc0000"
-    }, 
-    courseStyle: { 
-        
+        color: "#cc0000", 
+        fontSize : hp('2%'),
     }
 })
 
 const dropdownStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: RFValue(23,Dimensions.get('window').height),
+        width : wp('60%'),
+        fontSize : hp('2%'),
         borderWidth: 1,
         borderRadius: 10,
         color: 'black',
@@ -37,8 +37,8 @@ const dropdownStyles = StyleSheet.create({
         borderColor : 'white'
       }, 
       inputAndroid: {
-        width : 200,
-        fontSize: RFValue(23,Dimensions.get('window').height),
+        width : wp('60%'),
+        fontSize : hp('2%'),
         borderWidth: 10,
         borderRadius: 50,
         color: 'black',
@@ -47,6 +47,7 @@ const dropdownStyles = StyleSheet.create({
         justifyContent: "center",
       },
   });
+
 
 class GepDropDown extends React.Component{
     constructor(){

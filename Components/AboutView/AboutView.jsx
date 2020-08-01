@@ -2,7 +2,7 @@ import React from 'react';
 import {View,StyleSheet} from 'react-native';  
 import {Text} from 'react-native-paper'; 
 import TeamCard from './TeamCard/TeamCard.jsx'
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const style = StyleSheet.create(
     {
@@ -13,7 +13,7 @@ const style = StyleSheet.create(
         header : {
             textAlign : 'center', 
             fontWeight : 'bold',  
-            fontSize : 23, 
+            fontSize : hp(5), 
             color : "#cc0000", 
             textDecorationLine : "underline", 
             marginTop : 15, 
@@ -21,7 +21,7 @@ const style = StyleSheet.create(
         }, 
         content : {
             textAlign : 'center', 
-            fontSize : 18, 
+            fontSize : hp(2.4), 
             color : "gray", 
             marginTop : 10, 
             marginBottom : 10

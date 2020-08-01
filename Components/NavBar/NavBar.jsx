@@ -4,6 +4,7 @@ import { NavigationBar } from 'navigationbar-react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements'
 import {  RFValue } from "react-native-responsive-fontsize";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function NavBar(props){
 
@@ -15,8 +16,8 @@ function NavBar(props){
                 justifyContent: "center"
             },
             imageStyle:{
-                width: 45, 
-                height: 45,
+                width: hp(6), 
+                height: hp(6),
                 margin: 6
             }, 
             centerStyle:{
@@ -27,14 +28,14 @@ function NavBar(props){
             },
             textStyle:{
                 color:"white",
-                fontSize: RFValue(40,Dimensions.get('window').height), 
+                fontSize: hp(4), 
                 //fontFamily: "Poppins",
                 fontWeight:"bold",
                 marginLeft : 5
             }, 
             navBarStyle:{
                 marginTop:15,
-                height: 60, 
+                height: hp(6.3), 
                 backgroundColor: '#cc0000', 
             }, 
             navIconStyle: {
@@ -53,7 +54,7 @@ function NavBar(props){
             <NavigationBar
                 componentLeft = {() => 
                     <Icon
-                        size={30}
+                        size={hp(4)}
                         name='text'
                         type='material-community'
                         color='#fff'
@@ -71,7 +72,7 @@ function NavBar(props){
 
                 componentRight = {() => 
                     <Icon
-                        size={30}
+                        size={hp(4)}
                         name='dots-vertical'
                         type='material-community'
                         color='#fff'
