@@ -1,5 +1,5 @@
 import React,{useState} from 'react'; 
-import {View,StyleSheet,TouchableHighlight,Dimensions} from 'react-native'
+import {View,StyleSheet,TouchableHighlight,Dimensions,PixelRatio} from 'react-native'
 import { Avatar, Button, Card, Title, Text, Paragraph, List,IconButton} from 'react-native-paper';
 import { Divider } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
@@ -7,29 +7,28 @@ import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
 import {  RFValue } from "react-native-responsive-fontsize";
 
-
 // Styling for the whole component 
 const styles = StyleSheet.create(
   {
     cardStyle: {
-      width: "90%", 
+      width: RFValue(300,Dimensions.get('window').height), 
       justifyContent: "center", 
       alignSelf: "center"
     }, 
     ratingStyle:{
         color:"#cc0000",
-        fontSize: RFValue(40,Dimensions.get('window').height), 
+        fontSize: RFValue(40,Dimensions.get('screen').height), 
         //fontFamily: "Poppins",
         fontWeight:"bold",
         marginRight: 3
     },
     titleStyle:{
-      fontSize: RFValue(25,Dimensions.get('window').height),
+      fontSize: RFValue(18,Dimensions.get('screen').height),
       fontWeight: "bold", 
       color: "black"
     },
     descStyle:{
-      fontSize: RFValue(21,Dimensions.get('window').height)
+      fontSize: RFValue(15,Dimensions.get('window').height)
     }, 
     cardViewComponent : 
     {
@@ -50,12 +49,14 @@ const styles = StyleSheet.create(
     catalogStyle: {
       color: "#cc0000", 
       fontWeight: "bold", 
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      fontSize:  RFValue(15,Dimensions.get('window').height)
     },
     rateMyProfessorStyle: {
       color: "#cc0000", 
       fontWeight: "bold", 
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      fontSize:  RFValue(15,Dimensions.get('window').height)
     }, 
     preReqHeader: {
       color: "#cc0000", 
@@ -68,7 +69,7 @@ const styles = StyleSheet.create(
     preReqStyle : {
       color: "gray", 
       fontWeight: "normal",
-      fontSize:  RFValue(20,Dimensions.get('window').height)
+      fontSize:  RFValue(12,Dimensions.get('window').height)
     }, 
     locationHeader: {
       color: "#cc0000", 
