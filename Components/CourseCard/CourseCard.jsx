@@ -1,8 +1,10 @@
 import React,{useState} from 'react'; 
-import {View,StyleSheet,TouchableHighlight,Dimensions,PixelRatio} from 'react-native'
+import {View,StyleSheet,TouchableHighlight,Dimensions,TouchableOpacity,PixelRatio,Platform} from 'react-native'
 import { Avatar, Button, Card, Title, Text, Paragraph, List,IconButton} from 'react-native-paper';
 import { Divider } from 'react-native-elements';
+import openMap from 'react-native-open-maps';
 import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -212,25 +214,31 @@ class CardComponent extends React.Component{
   // Map View for the Card Content 
   MapPortion(){
     return(
-      <View style={styles.mapContainer}>
-          <View style={styles.preReqView}>
-                <Title style={styles.locationHeader}>Location:  </Title>
-                <Title style={styles.locationDesc}>2203 SAS Hall</Title>
-        </View>
-        <MapView 
-            style={styles.map}                            
-            region={{
-            latitude: this.state.latitude,
-            longitude: this.state.longitude,
-            latitudeDelta: 0.001,
-            longitudeDelta: .003245,
-          }}
-        >
-          <Marker
-            coordinate={{ latitude: this.state.latitude, longitude:this.state.longitude }}
-            title={this.state.location}
-          />
-        </MapView>
+    <View style={styles.mapContainer}>
+              <View style={styles.preReqView}>
+                    <Title style={styles.locationHeader}>Location:  </Title>
+                    <Title style={styles.locationDesc}>2203 SAS Hall</Title>
+            </View>
+            <MapView 
+                style={styles.map}                            
+                region={{
+                latitude: this.state.latitude,
+                longitude: this.state.longitude,
+                latitudeDelta: 0.001,
+                longitudeDelta: .003245,
+              }}
+              onPress={() => openMap({ 
+                query : this.state.location,  
+                travelType : 'walk',
+                latitude: this.state.latitude, 
+                longitude: this.state.longitude, 
+                })}
+            >
+              <Marker
+                coordinate={{ latitude: this.state.latitude, longitude:this.state.longitude }}
+                title={this.state.location}
+              />
+            </MapView>
     </View>
     )
   }
