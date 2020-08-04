@@ -86,10 +86,8 @@ class GepDropDown extends React.Component{
                     />
                 </View>
                 <View style={style.courseStyle}> 
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
+                    <CourseCard isWishList={true}/>
+                    <CourseCard isWishList={false}/>
                 </View>
             </View>
         )

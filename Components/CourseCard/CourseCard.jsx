@@ -9,6 +9,14 @@ import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+const theme = {
+  colors: {
+    primary: '#cc0000',
+    accent: '#cc0000',
+  },
+}
+
+
 // Styling for the whole component 
 const styles = StyleSheet.create(
   {
@@ -264,6 +272,20 @@ class CardComponent extends React.Component{
     )
   }
 
+  // Create outside button when the card is closed 
+  OutSideButton(isWishList){ 
+    if(isWishList){
+      return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Remove from WishList</Button>)
+    }
+
+    else{
+      return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Added to WishList</Button>)
+    }
+  }
+
+
+
+
   // Highlight the days of meetings in red and gray for days of not meeting for a course 
   WeekDays(){
 
@@ -291,14 +313,6 @@ class CardComponent extends React.Component{
   render(){
     // Rating for the courses 
     const Rating = props => <Text style={styles.ratingStyle}>{this.state.rating}</Text>
-      const theme = {
-        colors: {
-          primary: '#cc0000',
-          accent: '#cc0000',
-        },
-      }
-
-      
       return(
           <View style={styles.cardStyle}>
                   <List.Section>
@@ -344,7 +358,7 @@ class CardComponent extends React.Component{
                         </Card.Content>
                         <Card.Actions>
                               {/* Button for the closed and open card */}
-                              <Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Added to WishList</Button>
+                              {this.OutSideButton(this.props.isWishList)}
                         </Card.Actions>
                       </Card>
                   </List.Section>
