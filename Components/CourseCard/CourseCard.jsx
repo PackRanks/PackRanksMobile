@@ -90,8 +90,14 @@ const styles = StyleSheet.create(
       flexDirection: "column", 
       justifyContent: 'flex-end',
     },
+    mapContainer: {
+      height: hp("20%"),
+      width: "100%",
+      flexDirection: "column", 
+      justifyContent: 'flex-end',
+    },
     map: {
-     height: hp("30%"),
+     height: hp("17%"),
      width: '100%'
     }, 
     seatView :{
@@ -206,7 +212,7 @@ class CardComponent extends React.Component{
   // Map View for the Card Content 
   MapPortion(){
     return(
-      <View style={styles.container}>
+      <View style={styles.mapContainer}>
           <View style={styles.preReqView}>
                 <Title style={styles.locationHeader}>Location:  </Title>
                 <Title style={styles.locationDesc}>2203 SAS Hall</Title>
@@ -305,7 +311,7 @@ class CardComponent extends React.Component{
                                     <List.Item
                                       left={() => this.CourseName()}
                                     />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%",marginTop: 10, marginBottom: 20 }}/>
+                                    <Divider style={{ backgroundColor: 'gray', width: "100%",marginTop: 10, marginBottom: 20}}/>
                                     <List.Item
                                       left={() => this.Catalog()}
                                       right={() => this.RateMyProfLink()}
@@ -314,7 +320,7 @@ class CardComponent extends React.Component{
                                     <List.Item
                                       left={() => this.Prerequisite()}
                                     />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20,marginBottom: 30}}/>
+                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
                                     <List.Item
                                       left={() => this.MapPortion()}
                                     />
