@@ -2,7 +2,7 @@ import React from 'react';
 import {View,Text,StyleSheet,Image ,Dimensions} from 'react-native'; 
 import {Button} from 'react-native-paper';
 import {Card,Icon} from 'react-native-elements'; 
-import { Linking } from 'react-native'
+import { Linking } from 'react-native';
 import {  RFValue } from "react-native-responsive-fontsize";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 

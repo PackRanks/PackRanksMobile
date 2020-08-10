@@ -86,16 +86,29 @@ class GepDropDown extends React.Component{
                     />
                 </View>
                 <View style={style.courseStyle}> 
-                    <CourseCard isWishList={true}/>
+                    <CourseCard 
+                         courseTitle={"MA 242 - 50A"}
+                         courseName={"Calculus III"}
+                         profName = {'Kurtz, Lesile Anne'}
+                         isWishList={true}
+                         rating = {99}
+                         catalog={"http://www.wolfware.ncsu.edu/courses/details/?sis_id=SIS:2020:8:1:MA:242:005"}
+                         rateMyProfLink={"https://www.ratemyprofessors.com/ShowRatings.jsp?tid=977497"}
+                         preReq = {"MA 241 with grade of C- or better or AP Calculus credit, or Higher Level IB credit."}
+                         time = {"11:30 AM - 12:20 PM"}
+                         days = {"MWF"}
+                         seatStatus = {"Open"}
+                         seatAval ={"7"}
+                         seatTotal = {"35"}
+                         latitude = {35.785110}
+                         longitude={-78.665860}
+                    />
                     <CourseCard isWishList={false}/>
                 </View>
             </View>
         )
     }
 }
-
-
-
 
 
 export default GepDropDown; 
