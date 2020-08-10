@@ -103,7 +103,6 @@ class GepDropDown extends React.Component{
                          latitude = {35.785110}
                          longitude={-78.665860}
                     />
-                    <CourseCard isWishList={false}/>
                 </View>
             </View>
         )

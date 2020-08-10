@@ -1,10 +1,9 @@
-import React,{useState} from 'react'; 
-import {View,StyleSheet,TouchableHighlight,Dimensions,TouchableOpacity,PixelRatio,Platform} from 'react-native'
-import { Avatar, Button, Card, Title, Text, Paragraph, List,IconButton} from 'react-native-paper';
+import React from 'react'; 
+import {View,StyleSheet,TouchableHighlight} from 'react-native'
+import {Button, Card, Title, Text, List} from 'react-native-paper';
 import { Divider } from 'react-native-elements';
 import openMap from 'react-native-open-maps';
 import * as WebBrowser from 'expo-web-browser';
-import * as Linking from 'expo-linking';
 import MapView , { AnimatedRegion, Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements'; 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -21,7 +20,7 @@ const theme = {
 const styles = StyleSheet.create(
   {
     cardStyle: {
-      width: wp('83%'), // Device.isTablet ?  RFValue(700,Dimensions.get('window').height) : RFValue(170,Dimensions.get('window').width), 
+      width: wp('83%'),
       justifyContent: "center", 
       alignSelf: "center"
     }, 
@@ -138,89 +137,58 @@ const styles = StyleSheet.create(
 )
 
 
-class CardComponent extends React.Component{
-
-  constructor(){
-    super()
-    this.state = {
-      rating : 99, 
-      profName : "Kurtz, Lesile Anne", 
-      courseTitle: "MA 242 - 50A", 
-      courseTitleFull: "Calculus III", 
-      catalog: "http://www.wolfware.ncsu.edu/courses/details/?sis_id=SIS:2020:8:1:MA:242:005", 
-      RateMyProf: "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=977497", 
-      preReq: " MA 241 with grade of C- or better or AP Calculus credit, or Higher Level IB credit.", 
-      location: "2203 SAS Hall", 
-      time: "11:30 AM - 12:20 PM", 
-      days: "MWF", 
-      seatStatus: 'Open',  
-      seatAval: "7",
-      seatTotal : "35", 
-      latitude: 35.785110, 
-      longitude: -78.665860,
-    }
-
-    this.CourseName=this.CourseName.bind(this)
-    this.RateMyProfessorHandleOpenWithWebBrowser = this.RateMyProfessorHandleOpenWithWebBrowser.bind(this)
-    this.CatalogHandleOpenWithWebBrowser = this.CatalogHandleOpenWithWebBrowser.bind(this)
-    this.Prerequisite = this.Prerequisite.bind(this)
-    this.MapPortion=this.MapPortion.bind(this)
-    this.SeatArrangement = this.SeatArrangement.bind(this)
-    this.TimePortion = this.TimePortion.bind(this)
-    this.WeekDays = this.WeekDays.bind(this)
-  }
 
   // Course Name in the Card Content 
-  CourseName(){
+  function CourseName(courseName){
     return(
       <View style={styles.courseTitleView}>
               <Title style={styles.genericName}>Name:  </Title>
-              <Title style={styles.nameHeader}>{this.state.courseTitleFull}</Title>
+              <Title style={styles.nameHeader}>{courseName}</Title>
       </View>
     )
   }
 
   // Catalog Link in the Card Content 
-  Catalog(){
+  function Catalog(link){
     return(
-      <TouchableHighlight activeOpacity={.9}  underlayColor="#d3d3d3" onPress={() => this.CatalogHandleOpenWithWebBrowser()}>
+      <TouchableHighlight activeOpacity={.9}  underlayColor="#d3d3d3" onPress={() => CatalogHandleOpenWithWebBrowser(link)}>
         <Title style={styles.catalogStyle}>Course Catalog</Title>
       </TouchableHighlight>
     )
   }
 
   // Prerequisite for the course in the Card Content 
-  Prerequisite(){
+  function Prerequisite(preReq){
     return(
       <View style={styles.preReqView}>
               <Title style={styles.preReqHeader}>Prereqs:  </Title>
-              <Title style={styles.preReqStyle}>{this.state.preReq}</Title>
+              <Title style={styles.preReqStyle}>{preReq}</Title>
       </View>
     )
   }
 
   // Open Browser to RateMyProf Link
-  RateMyProfessorHandleOpenWithWebBrowser(){
-    WebBrowser.openBrowserAsync(this.state.RateMyProf);
+  function RateMyProfessorHandleOpenWithWebBrowser(link){
+    WebBrowser.openBrowserAsync(link);
   } 
 
 
   // Open Browser for the catalog link
-  CatalogHandleOpenWithWebBrowser(){
-    WebBrowser.openBrowserAsync(this.state.catalog);
+  function CatalogHandleOpenWithWebBrowser(link){
+    WebBrowser.openBrowserAsync(link);
   } 
 
   // RateMyProf Link in the Card Content 
-  RateMyProfLink(){
+  function RateMyProfLink(link){
     return(
-      <TouchableHighlight activeOpacity={.9}  underlayColor="#d3d3d3" onPress={() => this.RateMyProfessorHandleOpenWithWebBrowser()}>
+      <TouchableHighlight activeOpacity={.9}  underlayColor="#d3d3d3" onPress={() => RateMyProfessorHandleOpenWithWebBrowser(link)}>
         <Title style={styles.rateMyProfessorStyle}>RateMyProfessor</Title>
       </TouchableHighlight>
     )
   }
 
   // Map View for the Card Content 
-  MapPortion(){
+  function MapPortion(latitude,longitude,location){
     return(
     <View style={styles.mapContainer}>
               <View style={styles.preReqView}>
@@ -230,21 +198,21 @@ class CardComponent extends React.Component{
             <MapView 
                 style={styles.map}                            
                 region={{
-                latitude: this.state.latitude,
-                longitude: this.state.longitude,
+                latitude: latitude,
+                longitude: longitude,
                 latitudeDelta: 0.001,
                 longitudeDelta: .003245,
               }}
               onPress={() => openMap({ 
-                query : this.state.location,  
+                query : location,  
                 travelType : 'walk',
-                latitude: this.state.latitude, 
-                longitude: this.state.longitude, 
+                latitude: latitude, 
+                longitude: longitude, 
                 })}
             >
               <Marker
-                coordinate={{ latitude: this.state.latitude, longitude:this.state.longitude }}
-                title={this.state.location}
+                coordinate={{ latitude: latitude, longitude: longitude }}
+                title={location}
               />
             </MapView>
     </View>
@@ -252,28 +220,28 @@ class CardComponent extends React.Component{
   }
 
   // Display the number of seats available and seat status in a particular course
-  SeatArrangement(){
+ function  SeatArrangement(seatStatus,seatAval,seatTotal){
     return(
       <View style={styles.seatView}>
-              <Title style={styles.seatHeader}>Seat ({this.state.seatStatus}):  </Title>
-              <Title style={styles.seatDesc}>{this.state.seatAval}/{this.state.seatTotal}</Title>
+              <Title style={styles.seatHeader}>Seat ({seatStatus}):  </Title>
+              <Title style={styles.seatDesc}>{seatAval}/{seatTotal}</Title>
       </View>
     )
   }
 
   // Display the meeting time and days for a course
-  TimePortion(){
+  function TimePortion(time,days){
     return(
       <View style={styles.TimeView}>
         <Icon name='alarm' type='material' color='gray'/>
-        {this.WeekDays()}
-        <Title style={styles.timeDesc}>{this.state.time}</Title>
+        {WeekDays(days)}
+        <Title style={styles.timeDesc}>{time}</Title>
       </View>
     )
   }
 
   // Create outside button when the card is closed 
-  OutSideButton(isWishList){ 
+  function OutSideButton(isWishList){ 
     if(isWishList){
       return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Remove from WishList</Button>)
     }
@@ -287,13 +255,13 @@ class CardComponent extends React.Component{
 
 
   // Highlight the days of meetings in red and gray for days of not meeting for a course 
-  WeekDays(){
+  function WeekDays(days){
 
     const daysOfWeek = ['S','M','T','W','Th','F','S']
     const dayComponent = []
 
     for(let num = 0; num < 7; num++){
-      if(this.state.days.indexOf(daysOfWeek[num]) !== -1){
+      if(days.indexOf(daysOfWeek[num]) !== -1){
           dayComponent.push(<Title key={num} style={{fontSize: hp("2%"), color : "#cc0000",marginRight: 10}}>{daysOfWeek[num]}</Title>)
       }
 
@@ -310,61 +278,70 @@ class CardComponent extends React.Component{
   }
 
 
-  render(){
-    // Rating for the courses 
-    const Rating = props => <Text style={styles.ratingStyle}>{this.state.rating}</Text>
-      return(
-          <View style={styles.cardStyle}>
-                  <List.Section>
-                      <Card elevation={11}>
-                      <Divider style={{ backgroundColor: 'white', width: "100%" }}/>
 
-                        {/* Card Header*/}
-                        <Card.Content>
-                              <List.Accordion
-                                title={this.state.courseTitle}
-                                titleStyle={styles.titleStyle}
-                                description={this.state.profName}
-                                descriptionStyle={styles.descStyle}
-                                left={Rating}
-                              >
-                                    {/* Content of the Card */}
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginBottom: 10 }}/>
-                                    <List.Item
-                                      left={() => this.CourseName()}
-                                    />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%",marginTop: 10, marginBottom: 20}}/>
-                                    <List.Item
-                                      left={() => this.Catalog()}
-                                      right={() => this.RateMyProfLink()}
-                                    />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20 }}/>
-                                    <List.Item
-                                      left={() => this.Prerequisite()}
-                                    />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
-                                    <List.Item
-                                      left={() => this.MapPortion()}
-                                    />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
-                                    <List.Item
-                                      left={() => this.SeatArrangement()}
-                                    />
-                                    <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 10}}/>
-                                    <List.Item
-                                      left={() => this.TimePortion()}
-                                    />
-                              </List.Accordion>
-                        </Card.Content>
-                        <Card.Actions>
-                              {/* Button for the closed and open card */}
-                              {this.OutSideButton(this.props.isWishList)}
-                        </Card.Actions>
-                      </Card>
-                  </List.Section>
-          </View>
-      )
+  function Rating(rating){ 
+    // Rating for the courses 
+   return(<Text style={styles.ratingStyle}>
+                {rating}
+          </Text>)
   }
+
+
+
+function CardComponent(props){ 
+    return(
+          <View style={styles.cardStyle}>
+              <List.Section>
+                  <Card elevation={11}>
+                  <Divider style={{ backgroundColor: 'white', width: "100%" }}/>
+
+                    {/* Card Header*/}
+                    <Card.Content>
+                          <List.Accordion
+                            title={props.courseTitle}
+                            titleStyle={styles.titleStyle}
+                            description={props.profName}
+                            descriptionStyle={styles.descStyle}
+                            left={ () => Rating(props.rating)}
+                          >
+                                {/* Content of the Card */}
+                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginBottom: 10 }}/>
+                                <List.Item
+                                  left={() => CourseName(props.courseName)}
+                                />
+                                <Divider style={{ backgroundColor: 'gray', width: "100%",marginTop: 10, marginBottom: 20}}/>
+                                <List.Item
+                                  left={() => Catalog(props.catalog)}
+                                  right={() => RateMyProfLink(props.rateMyProfLink)}
+                                />
+                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20 }}/>
+                                <List.Item
+                                  left={() => Prerequisite(props.preReq)}
+                                />
+                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
+                                <List.Item
+                                  left={() => MapPortion(props.latitude,props.longitude,props.location)}
+                                />
+                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
+                                <List.Item
+                                  left={() => SeatArrangement(props.seatStatus,props.seatAval,props.seatTotal)}
+                                />
+                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 10}}/>
+                                <List.Item
+                                  left={() => TimePortion(props.time,props.days)}
+                                />
+                          </List.Accordion>
+                    </Card.Content>
+                    <Card.Actions>
+                          {/* Button for the closed and open card */}
+                          {OutSideButton(props.isWishList)}
+                    </Card.Actions>
+                  </Card>
+              </List.Section>
+         </View>
+    )
 }
 
-export default CardComponent; 
+
+
+export default CardComponent;
