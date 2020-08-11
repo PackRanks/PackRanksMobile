@@ -102,6 +102,7 @@ class GepDropDown extends React.Component{
                          seatTotal = {"35"}
                          latitude = {35.785110}
                          longitude={-78.665860}
+                         location={"2203 SAS Hall"}
                     />
                 </View>
             </View>
