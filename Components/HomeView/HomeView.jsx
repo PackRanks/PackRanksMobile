@@ -76,25 +76,25 @@ class HomeView extends React.Component{
     constructor(){
         super(); 
         this.state = {
-            term : null, 
-            typeCourse: 'GEP', 
-            department : null
+            term : '2020 Fall Term', 
+            typeCourse: 'GEP',
         }
 
         this.CourseSelection = this.CourseSelection.bind(this)
     }
 
 
-    CourseSelection(typeCourse){
+    CourseSelection(typeCourse, term){
         if(typeCourse === 'GEP'){
+            console.log(this.state.term)
             return (
-                <GepDropDown/>
+                <GepDropDown term={term}/>
             )
         }
     
         else{
             return(
-                <DepartmentDropDown/>
+                <DepartmentDropDown term={term}/>
             )
         }
     }
@@ -123,7 +123,7 @@ class HomeView extends React.Component{
                                 onValueChange={(value) => this.setState({typeCourse : value})}
                                 style={style.segemntedControlsStyle}
                         />
-                        {this.CourseSelection(this.state.typeCourse)}     
+                        {this.CourseSelection(this.state.typeCourse,this.state.term)}     
                 </View>
         )
     }

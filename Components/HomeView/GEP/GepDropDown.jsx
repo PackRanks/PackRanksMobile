@@ -7,6 +7,8 @@ import CourseCard from '../../CourseCard/CourseCard'
 import {  RFValue } from "react-native-responsive-fontsize";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+const gep_url =  "http://packranks-backend.herokuapp.com/gep"
+
 const style = StyleSheet.create({
     termViewStyle: {
         margin: 15, 
@@ -74,11 +76,30 @@ const dropdownStyles = StyleSheet.create({
 
 
 class GepDropDown extends React.Component{
-    constructor(){
+    constructor(props){
         super()
         this.state = {
-
+            gepType : null, 
+            term : props.term, 
+            courseData : null
         }
+
+        this.CourseCardSet = this.CourseCardSet.bind(this)
+    }
+
+    CourseCardSet(){
+        const GEP = this;
+        let url = "http://packranks-backend.herokuapp.com/gep";
+        fetch( 
+            url, {
+                method: "GET",
+                headers: {"GEP": "HUM", "num_courses": 10, "term": "Fall"}
+           }
+        ).then(
+           response => response.json()
+        ).then(
+            json => console.log(json)
+        )
     }
 
     render(){
@@ -110,7 +131,7 @@ class GepDropDown extends React.Component{
                     />
                 </View>
                     <View>
-                            <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => alert('Right button pressed')}>Get Courses</Button>
+                            <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
                     </View>
                 <View style={style.courseStyle}> 
                     <CourseCard 
