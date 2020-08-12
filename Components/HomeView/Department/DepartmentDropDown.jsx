@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'apsl-react-native-button'
-import {StyleSheet,View,Text,Dimensions} from 'react-native'
+import {StyleSheet,View,Text,Dimensions} from 'react-native'; 
+
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
 import CourseNumberSlider from './CourseNumberSlider/CourseNumberSlider.jsx'
@@ -39,21 +40,28 @@ const style = StyleSheet.create({
     sliderStyle : {
         marginTop: 50
     }, 
+    textButtonStyle : {
+        color : "white", 
+        textAlign: "center", 
+        fontWeight : "bold"
+    }, 
     buttonStyle : {
-        width : 150,
-        height : 55,
+        width : wp(40),
+        height : hp(7),
         backgroundColor: "#cc0000", 
         borderColor : "#cc0000", 
-        borderRadius : 200
+        borderRadius : 200, 
+        justifyContent : 'center', 
+        alignItems : 'center', 
     }, 
     textButtonStyle : {
         color : "white", 
         textAlign: "center", 
         fontWeight : "bold"
     }, 
-    buttonView : {
-        justifyContent: "center", 
-        alignItems: "center" 
+    buttonView : { 
+        justifyContent : 'center', 
+        alignContent : 'center', 
     }
 })
 
@@ -148,7 +156,7 @@ class DepartmentDropDown extends React.Component{
                     <View style={style.sliderStyle}>
                         <CourseNumberSlider min={this.state.minCourseNumber} max={this.state.maxCourseNumber}/>
                     </View>
-                    <View style={style.buttonStyle}>
+                    <View style={style.buttonView}>
                         <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => alert('Right button pressed')}>Get Courses</Button>
                     </View>
                 </View>

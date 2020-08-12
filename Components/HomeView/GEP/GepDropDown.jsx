@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'apsl-react-native-button'
 import {StyleSheet,View,Text, ViewComponent,Dimensions} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
@@ -19,6 +20,29 @@ const style = StyleSheet.create({
         fontWeight: "bold",
         color: "#cc0000", 
         fontSize : hp('2%'),
+    }, 
+    textButtonStyle : {
+        color : "white", 
+        textAlign: "center", 
+        fontWeight : "bold"
+    }, 
+    buttonStyle : {
+        width : wp(40),
+        height : hp(7),
+        backgroundColor: "#cc0000", 
+        borderColor : "#cc0000", 
+        borderRadius : 200, 
+        justifyContent : 'center', 
+        alignItems : 'center', 
+    }, 
+    textButtonStyle : {
+        color : "white", 
+        textAlign: "center", 
+        fontWeight : "bold"
+    }, 
+    container : { 
+        justifyContent : 'center', 
+        alignItems : 'center', 
     }
 })
 
@@ -75,7 +99,7 @@ class GepDropDown extends React.Component{
         }
         
         return(
-            <View>
+            <View style={style.container}>
                 <View style={style.termViewStyle}>
                     <Text style={style.termTextStyle}> Select a GEP</Text>
                     <RNPickerSelect
@@ -85,6 +109,9 @@ class GepDropDown extends React.Component{
                         items={gepFinal}
                     />
                 </View>
+                    <View>
+                            <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => alert('Right button pressed')}>Get Courses</Button>
+                    </View>
                 <View style={style.courseStyle}> 
                     <CourseCard 
                          courseTitle={"MA 242 - 50A"}
