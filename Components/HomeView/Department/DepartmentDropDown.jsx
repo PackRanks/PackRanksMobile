@@ -117,7 +117,6 @@ class DepartmentDropDown extends React.Component{
     }
 
     setMin(value){
-        console.log(value);
         this.setState({minCourseNumber: value})
     }
 
@@ -144,22 +143,29 @@ class DepartmentDropDown extends React.Component{
 
         let min_num = this.state.minCourseNumber;
         let max_num = this.state.maxCourseNumber;
+        console.log("min")
         console.log(min_num)
+        console.log("max")
         console.log(max_num)
+        console.log("dept")
+        console.log(this.state.dept)
+        console.log("term")
+        console.log(this.state.term)
 
         fetch( 
             url, {
                 method: "GET",
-                headers: {"Dept": this.state.dept, "num_courses": 10, "term": this.state.term, "level_min": min_num, "level_max": max_num}
+                headers: {"Dept": this.state.dept, "num_courses": 10, "term": this.state.term, "level_min": this.state.minCourseNumber, "level_max": this.state.maxCourseNumber}
            }
         ).then(
            response => response.json()
         ).then(
-            (json) => {this.setState({courseData:this.parseData(json)})}
+            (json) => {console.log("hello");}
         )
     }
 
     parseData(data) {
+        console.log(data);
         return parseCourseData(data);
     }
 
@@ -182,7 +188,7 @@ class DepartmentDropDown extends React.Component{
                                 <Text style={style.courseNumberTextStyle}> Select a Dept</Text>
                                 <RNPickerSelect
                                     style={{...dropdownStyles}}
-                                    onValueChange={(value) => this.setState({gepType : value})}
+                                    onValueChange={(value) => this.setState({dept: value})}
                                     placeholder={{ label: 'Select a Dept', value: null,color:"gray"}}
                                     items = {deptFinal}
                                 />
@@ -197,7 +203,7 @@ class DepartmentDropDown extends React.Component{
                     {this.state.component}
                     <Text style={style.sliderInstructionStyle}>Please use the slider for the desired course number! </Text>
                     <View style={style.sliderStyle}>
-                        <CourseNumberSlider setMin={this.setMin} setMax={this.setMax} min={this.state.minCourseNumber} max={this.state.maxCourseNumber}/>
+                        <CourseNumberSlider set_min={this.setMin} set_max={this.setMax} min={this.state.minCourseNumber} max={this.state.maxCourseNumber}/>
                     </View>
                     <View style={style.buttonView}>
                         <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>

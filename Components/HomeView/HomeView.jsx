@@ -78,15 +78,24 @@ class HomeView extends React.Component{
         this.state = {
             term : '2020 Fall Term', 
             typeCourse: 'GEP',
+            typeTab: null
         }
 
         this.CourseSelection = this.CourseSelection.bind(this)
+        this.changeTerm = this.changeTerm.bind(this)
+    }
+
+    changeTerm(term_val) {
+        console.log("we are changing the term")
+
+        this.setState({term: term_val}, 
+            ()=>{this.setState({typeTab: this.CourseSelection(this.state.typeCourse, term_val)})}
+        )
     }
 
 
     CourseSelection(typeCourse, term){
         if(typeCourse === 'GEP'){
-            console.log(this.state.term)
             return (
                 <GepDropDown term={term}/>
             )
@@ -100,6 +109,9 @@ class HomeView extends React.Component{
     }
     
     render(){
+        
+        console.log(this.state.term)
+
         return(
                 <View> 
                     <Text style={style.titleStyle}>Welcome to PackRanks!</Text>
@@ -108,7 +120,7 @@ class HomeView extends React.Component{
                         <Text style={style.termTextStyle}>Select a Term</Text>
                         <RNPickerSelect
                         style={{...dropdownStyles}}
-                            onValueChange={(value) => this.setState({term : value})}
+                            onValueChange={(value) => this.changeTerm(value)}
                             placeholder={{ label: 'Select a Term', value: null,color:"gray"}}
                             items={[
                                 { label: '2020 Fall Term', value: '2020 Fall Term' },
@@ -123,7 +135,7 @@ class HomeView extends React.Component{
                                 onValueChange={(value) => this.setState({typeCourse : value})}
                                 style={style.segemntedControlsStyle}
                         />
-                        {this.CourseSelection(this.state.typeCourse,this.state.term)}     
+                        {this.state.typeTab}     
                 </View>
         )
     }

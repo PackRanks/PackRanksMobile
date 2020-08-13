@@ -22,13 +22,13 @@ class RangeSlider extends React.Component {
         if(value > 999){
             Alert.alert('Max Limit', 'Reset to 999')
             this.setState({min : 999});
-            this.props.setMin(999);
+            this.props.set_min(999);
         }
 
         else if(value < 0){
             Alert.alert('Min Limit', 'Reset to 0')
             this.setState({min : 0})
-            this.props.setMin(0);
+            this.props.set_min(0);
         }
 
     }
@@ -38,13 +38,13 @@ class RangeSlider extends React.Component {
         if(value > 999){
             Alert.alert('Max Limit', 'Reset to 999')
             this.setState({max : 999})
-            this.props.setMax(999);
+            this.props.set_max(999);
         }
 
         else if(value < 0){
             Alert.alert('Min Limit', 'Reset to 0')
             this.setState({max : 0})
-            this.props.setMax(0);
+            this.props.set_max(0);
         }
         
     }
@@ -53,9 +53,8 @@ class RangeSlider extends React.Component {
     multiSliderValuesChange = (values) => {
         this.setState({min : values[0]})
         this.setState({max : values[1]})
-        console.log(values[0]);
-        this.props.setMin(values[0]);
-        this.props.setMax(values[1]);
+        this.props.set_min(values[0]);
+        this.props.set_max(values[1]);
     }
 
     render() {
@@ -81,7 +80,7 @@ class RangeSlider extends React.Component {
                     maxValue={999} 
                     initValue={this.state.min} 
                     value={this.state.min} 
-                    onLimitReached={ value => {console.log(value);this.reachMinLimit(value);this.reachMinLimit(this.state.min)}} 
+                    onLimitReached={ value => {this.reachMinLimit(value);this.reachMinLimit(this.state.min)}} 
                     rounded={true} 
                     type={'up-down'} 
                     totalWidth={wp(20)} 
