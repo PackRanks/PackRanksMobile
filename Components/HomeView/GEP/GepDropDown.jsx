@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements';
 import CourseCard from '../../CourseCard/CourseCard'
 import {  RFValue } from "react-native-responsive-fontsize";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {parseCourseData} from '../parseCourseData';
 
 const gep_url =  "http://packranks-backend.herokuapp.com/gep"
 
@@ -81,7 +82,7 @@ class GepDropDown extends React.Component{
         this.state = {
             gepType : null, 
             term : props.term, 
-            courseData : null
+            courseData : []
         }
 
         this.CourseCardSet = this.CourseCardSet.bind(this)
@@ -94,91 +95,17 @@ class GepDropDown extends React.Component{
         fetch( 
             url, {
                 method: "GET",
-                headers: {"GEP": "HUM", "num_courses": 5, "term": "Fall"}
+                headers: {"GEP": this.state.gepType, "num_courses": 10, "term": this.state.term}
            }
         ).then(
            response => response.json()
         ).then(
-            json => this.parseData(json)
+            (json) => {this.setState({courseData:this.parseData(json)})}
         )
     }
 
     parseData(data) {
-        
-        let all_course_data = [];
-
-        for (var i=0; i<data.length;i++) {
-            single_course_info = data[i];
-            course_info = {};
-
-            course_info['courseTitle'] = single_course_info['Catalog Link'][0]
-            course_info['catalog'] = single_course_info['Catalog Link'][1]
-
-            course_info['courseName'] = single_course_info['Name']
-            course_info['profName'] = single_course_info['RateMyProfessor Link'][0]
-
-            course_info['rating'] = single_course_info['Rating']
-            
-            try {
-                course_info['rateMyProfLink'] = single_course_info['RateMyProfessor Link'][1]
-            }
-            catch {
-                // set hyperlink for professor to empty if there is no RMP
-                course_info['rateMyProfLink'] = ""
-            }
-
-            course_info['preReq'] = single_course_info['Prerequisites']
-            course_info['time'] = single_course_info['Times']
-
-            // TODO: implement days when it is eventually passed to the front-end
-            course_info['days'] = "MWF"
-
-            // extract seat status and open information
-            seats_info = single_course_info['Seats']
-
-            // try to split seats
-            try {
-        
-                seats_split = seats_info.split(": ")
-
-                // splitting by status and seats
-                course_info['seatStatus'] = seats_split[0]
-
-                // check if course is open
-                if (seats_split[1].includes("/")) {
-                    console.log(seats_split[1])
-                    course_info['seatAval'] = seats_split[1].split("/")[0]
-                    course_info['seatTotal'] = seats_split[1].split("/")[1]
-                }
-                // if waitlisted, don't display total seats
-                else {
-                    course_info['seatAval'] = seats_split[1]
-
-                    // TODO: IMPLEMENT WAITLISTED FOR MOBILE CARD
-                    course_info['seatTotal'] = 100
-                }
-            }
-            // else it must be full
-            catch {
-                course_info['seatStatus'] = 'Closed'
-                course_info['seatAval'] = 0
-                course_info['seatTotal'] = 0
-            }
-            
-            // save location
-            course_info['location'] = single_course_info['Location'][0]
-
-            // TODO: IMPLEMENT LATITUDE AND LONGITUDE
-            course_info['latitutde'] = 35.785110
-            course_info['longitude'] = -78.665860
-
-            // add to data
-            all_course_data.push(course_info);
-
-        }
-
-        // save state
-        this.setState({courseData: all_course_data})
+        return parseCourseData(data);
     }
 
     render(){
@@ -197,6 +124,8 @@ class GepDropDown extends React.Component{
             gepFinal[i] = {label: gepLabels[i].label,
             value: gepValues[i].value}
         }
+
+        let course_data = this.state.courseData;
         
         return(
             <View style={style.container}>
@@ -213,25 +142,27 @@ class GepDropDown extends React.Component{
                             <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
                     </View>
                 <View style={style.courseStyle}>
-                    {this.state.courseData.map(key, value)} 
-                    <CourseCard 
-                         courseTitle={"MA 242 - 50A"}
-                         courseName={"Calculus III"}
-                         profName = {'Kurtz, Lesile Anne'}
-                         isWishList={true}
-                         rating = {99}
-                         catalog={"http://www.wolfware.ncsu.edu/courses/details/?sis_id=SIS:2020:8:1:MA:242:005"}
-                         rateMyProfLink={"https://www.ratemyprofessors.com/ShowRatings.jsp?tid=977497"}
-                         preReq = {"MA 241 with grade of C- or better or AP Calculus credit, or Higher Level IB credit."}
-                         time = {"11:30 AM - 12:20 PM"}
-                         days = {"MWF"}
-                         seatStatus = {"Open"}
-                         seatAval ={"7"}
-                         seatTotal = {"35"}
-                         latitude = {35.785110}
-                         longitude={-78.665860}
-                         location={"2203 SAS Hall"}
-                    />
+                    {course_data.map(data => {
+                        return (<CourseCard
+                            courseTitle={data.courseTitle}
+                            courseName={data.courseName}
+                            profName = {data.profName}
+                            isWishList={false}
+                            rating = {data.rating}
+                            catalog={data.catalog}
+                            rateMyProfLink={data.rateMyProfLink}
+                            preReq = {data.preReq}
+                            time = {data.time}
+                            days = {data.days}
+                            seatStatus = {data.seatStatus}
+                            seatAval ={data.seatAval}
+                            seatTotal = {data.seatTotal}
+                            latitude = {data.latitude}
+                            longitude={data.longitude}
+                            location={data.location}
+                        />
+                        )
+                    })} 
                 </View>
             </View>
         )

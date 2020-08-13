@@ -193,7 +193,7 @@ const styles = StyleSheet.create(
     <View style={styles.mapContainer}>
               <View style={styles.preReqView}>
                     <Title style={styles.locationHeader}>Location:  </Title>
-                    <Title style={styles.locationDesc}>2203 SAS Hall</Title>
+                    <Title style={styles.locationDesc}>{location}</Title>
             </View>
             <MapView 
                 style={styles.map}                            
@@ -243,11 +243,11 @@ const styles = StyleSheet.create(
   // Create outside button when the card is closed 
   function OutSideButton(isWishList){ 
     if(isWishList){
-      return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Remove from WishList</Button>)
+      return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Removed from Wishlist')}>Remove from WishList</Button>)
     }
 
     else{
-      return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Added to WishList</Button>)
+      return(<Button theme={theme} labelStyle={{fontSize: hp("2%")}} onPress={() => alert('Added to Wishlist')}>Add to WishList</Button>)
     }
   }
 

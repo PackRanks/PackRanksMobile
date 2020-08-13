@@ -5,6 +5,7 @@ import NumericInput from 'react-native-numeric-input'
 import {  RFValue } from "react-native-responsive-fontsize";
 import { widthPercentageToDP } from 'react-native-responsive-screen';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 class RangeSlider extends React.Component {
     constructor(props){ 
         super()
@@ -20,43 +21,43 @@ class RangeSlider extends React.Component {
     reachMinLimit(value){ 
         if(value > 999){
             Alert.alert('Max Limit', 'Reset to 999')
-            this.setState({min : 999})
+            this.setState({min : 999});
+            this.props.setMin(999);
         }
 
         else if(value < 0){
             Alert.alert('Min Limit', 'Reset to 0')
             this.setState({min : 0})
+            this.props.setMin(0);
         }
 
-        console.log(this.state)
     }
-
 
     reachMaxLimit(value){ 
 
         if(value > 999){
             Alert.alert('Max Limit', 'Reset to 999')
             this.setState({max : 999})
+            this.props.setMax(999);
         }
 
         else if(value < 0){
             Alert.alert('Min Limit', 'Reset to 0')
             this.setState({max : 0})
+            this.props.setMax(0);
         }
-        console.log(this.state)
+        
     }
-
-
 
     // Update the values in state when the 
     multiSliderValuesChange = (values) => {
         this.setState({min : values[0]})
         this.setState({max : values[1]})
-        console.log(this.state)
+        console.log(values[0]);
+        this.props.setMin(values[0]);
+        this.props.setMax(values[1]);
     }
 
-
-    
     render() {
 
         const style = StyleSheet.create(
