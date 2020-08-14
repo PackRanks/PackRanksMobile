@@ -100,8 +100,6 @@ class HomeView extends React.Component{
     }
     
     render(){
-        console.log('Rendering in the method')
-        console.log(this.state.term)
 
         return(
                 <View> 

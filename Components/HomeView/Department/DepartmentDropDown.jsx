@@ -148,14 +148,6 @@ class DepartmentDropDown extends React.Component{
 
         let min_num = this.state.minCourseNumber;
         let max_num = this.state.maxCourseNumber;
-        console.log("min")
-        console.log(min_num)
-        console.log("max")
-        console.log(max_num)
-        console.log("dept")
-        console.log(this.state.dept)
-        console.log("term")
-        console.log(this.state.term)
 
         fetch( 
             url, {
