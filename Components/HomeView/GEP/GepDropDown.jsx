@@ -91,14 +91,11 @@ class GepDropDown extends React.Component{
 
     componentWillReceiveProps(nextProps) {
         this.setState({ term: nextProps.term });  
-        console.log(this.state.term)
       }
 
     CourseCardSet(){
         const GEP = this;
         let url = "http://packranks-backend.herokuapp.com/gep";
-        console.log('At course card set')
-       console.log(this.state.terms)
         fetch( 
             url, {
                 method: "GET",

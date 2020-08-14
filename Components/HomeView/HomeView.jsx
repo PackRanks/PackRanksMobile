@@ -86,9 +86,6 @@ class HomeView extends React.Component{
     }
 
     CourseSelection(typeCourse,term){
-        console.log('At course selection')
-        console.log(this.state.term)
-        console.log(term)
         if(typeCourse === 'GEP'){
             return (
                 <GepDropDown term={this.state.term}/>
@@ -114,7 +111,7 @@ class HomeView extends React.Component{
                         <Text style={style.termTextStyle}>Select a Term</Text>
                         <RNPickerSelect
                             style={{...dropdownStyles}}
-                            onValueChange={(value) => {this.setState( {term : value});console.log(this.state.term);}}
+                            onValueChange={(value) => {this.setState( {term : value})}}
                             placeholder={{ label: 'Select a Term', value: null,color:"gray"}}
                             items={[
                                 { label: '2020 Fall Term', value: '2020 Fall Term' },
