@@ -76,40 +76,34 @@ class HomeView extends React.Component{
     constructor(){
         super(); 
         this.state = {
-            term : '2020 Fall Term', 
+            term : null, 
             typeCourse: 'GEP',
             typeTab: null
         }
 
         this.CourseSelection = this.CourseSelection.bind(this)
-        this.changeTerm = this.changeTerm.bind(this)
+        this.render = this.render.bind(this)
     }
 
-    changeTerm(term_val) {
-        console.log("we are changing the term")
-
-        this.setState({term: term_val}, 
-            ()=>{this.setState({typeTab: this.CourseSelection(this.state.typeCourse, term_val)})}
-        )
-    }
-
-
-    CourseSelection(typeCourse, term){
+    CourseSelection(typeCourse,term){
+        console.log('At course selection')
+        console.log(this.state.term)
+        console.log(term)
         if(typeCourse === 'GEP'){
             return (
-                <GepDropDown term={term}/>
+                <GepDropDown term={this.state.term}/>
             )
         }
-    
+
         else{
             return(
-                <DepartmentDropDown term={term}/>
+                <DepartmentDropDown term={this.state.term}/>
             )
         }
     }
     
     render(){
-        
+        console.log('Rendering in the method')
         console.log(this.state.term)
 
         return(
@@ -119,13 +113,13 @@ class HomeView extends React.Component{
                     <View style={style.termViewStyle}>
                         <Text style={style.termTextStyle}>Select a Term</Text>
                         <RNPickerSelect
-                        style={{...dropdownStyles}}
-                            onValueChange={(value) => this.changeTerm(value)}
+                            style={{...dropdownStyles}}
+                            onValueChange={(value) => {this.setState( {term : value});console.log(this.state.term);}}
                             placeholder={{ label: 'Select a Term', value: null,color:"gray"}}
                             items={[
                                 { label: '2020 Fall Term', value: '2020 Fall Term' },
-                                { label: '2020 Summer Session 1', value: '2020 Summer Session 1' },
-                                { label: '2020 Summer Session 2', value: '2020 Summer Session 2' }
+                                { label: '2020 Summer Session 1', value: 'Summer Term 1' },
+                                { label: '2020 Summer Session 2', value: 'Summer Term 2'}
                             ]}
                         />
                     </View>
@@ -135,7 +129,7 @@ class HomeView extends React.Component{
                                 onValueChange={(value) => this.setState({typeCourse : value})}
                                 style={style.segemntedControlsStyle}
                         />
-                        {this.state.typeTab}     
+                       {this.CourseSelection(this.state.typeCourse,this.state.term)}
                 </View>
         )
     }

@@ -1,8 +1,6 @@
 export function parseCourseData(data) {
         
     let all_course_data = [];
-    console.log(data);
-
     for (var i=0; i<data.length;i++) {
         single_course_info = data[i];
         course_info = {};

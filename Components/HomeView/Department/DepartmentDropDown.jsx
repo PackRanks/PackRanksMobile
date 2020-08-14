@@ -159,13 +159,10 @@ class DepartmentDropDown extends React.Component{
            }
         ).then(
            response => response.json()
-        ).then(
-            (json) => {console.log("hello");}
         )
     }
 
     parseData(data) {
-        console.log(data);
         return parseCourseData(data);
     }
 
