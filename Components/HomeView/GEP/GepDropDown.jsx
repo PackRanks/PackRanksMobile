@@ -96,6 +96,7 @@ class GepDropDown extends React.Component{
     CourseCardSet(){
         const GEP = this;
         let url = "http://packranks-backend.herokuapp.com/gep";
+
         fetch( 
             url, {
                 method: "GET",

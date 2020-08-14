@@ -103,7 +103,8 @@ class DepartmentDropDown extends React.Component{
             component : null, 
             minCourseNumber: 0, 
             maxCourseNumber: 999,
-            term: props.term
+            term: props.term,
+            courseData: []
         }
         
         this.getDepts=this.getDepts.bind(this)
@@ -114,6 +115,10 @@ class DepartmentDropDown extends React.Component{
         this.parseData = this.parseData.bind(this)
         this.setMin = this.setMin.bind(this)
         this.setMax = this.setMax.bind(this)
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        this.setState({ term: nextProps.term });  
     }
 
     setMin(value){
@@ -135,7 +140,7 @@ class DepartmentDropDown extends React.Component{
             response => response.json()
         ).then(data => {this.setState({deptCode : data.dept_code},() => {this.showDepartmentCode()})})
     }
-
+    
     CourseCardSet() {
 
         const Dept = this;
@@ -159,6 +164,8 @@ class DepartmentDropDown extends React.Component{
            }
         ).then(
            response => response.json()
+        ).then(
+            (json) => {this.setState({courseData:this.parseData(json)})}
         )
     }
 
@@ -194,6 +201,9 @@ class DepartmentDropDown extends React.Component{
         }
         
     render(){
+
+        let course_data = this.state.courseData;
+
         return(
             <View>
                 <View style={style.container}>
@@ -206,6 +216,30 @@ class DepartmentDropDown extends React.Component{
                         <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
                     </View>
                 </View>
+                <View style={style.courseStyle}>
+                    {course_data.map(data => {
+                        return (<CourseCard
+                            courseTitle={data.courseTitle}
+                            courseName={data.courseName}
+                            profName = {data.profName}
+                            isWishList={false}
+                            rating = {data.rating}
+                            catalog={data.catalog}
+                            rateMyProfLink={data.rateMyProfLink}
+                            preReq = {data.preReq}
+                            time = {data.time}
+                            days = {data.days}
+                            seatStatus = {data.seatStatus}
+                            seatAval ={data.seatAval}
+                            seatTotal = {data.seatTotal}
+                            latitude = {data.latitude}
+                            longitude={data.longitude}
+                            location={data.location}
+                        />
+                        )
+                    })} 
+                </View>
+                
             </View>
         )
     } 
