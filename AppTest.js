@@ -1,16 +1,18 @@
 // delete file before merging with master
 
 import * as React from 'react';
-import {Text,View,StyleSheet,Image,ScrollView} from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Icon } from 'react-native-elements';
-import {DrawerContentScrollView,DrawerItemList,DrawerItem} from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
 import AboutView from './Components/AboutView/AboutView.jsx'
 import HelpView from "./Components/HelpView/HelpView.jsx";
-import LoginView from './Components/LoginView/LoginView.jsx';
+import LoginView from './Components/InitialViewsFamily/LoginView/LoginView.jsx';
+import SignupView from './Components/InitialViewsFamily/SignupView.jsx';
 
 const style = StyleSheet.create(
   {
@@ -37,6 +39,23 @@ const style = StyleSheet.create(
     }
   })
 
+// Login Screen
+function LoginScreen({ navigation }) {
+  return (
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <LoginView />
+    </View>
+  );
+}
+
+// Signup Screen
+function SignupScreen({ navigation }) {
+  return (
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <SignupView />
+    </View>
+  );
+}
 
 // Home Screen 
 function HomeScreen({ navigation }) {
@@ -129,12 +148,26 @@ function CustomDrawerContent(props) {
 // Created Navigator and screens 
 const Drawer = createDrawerNavigator();
 
+// Created Stack Navigator to navigate between individual screens
+const Stack = createStackNavigator();
+
 // Dummy variable to toggle LoginView on/off for easy UI testing
 const isLoggedIn = false
 
+/**
+ * Idea: nested navigation
+ * isLoggedIn will change initial route
+ */
 export default function App() {
     if (!isLoggedIn) {
-        return (<LoginView />)
+      return (
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login" >
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Signup" component={SignupScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
     }
     else {
         return (

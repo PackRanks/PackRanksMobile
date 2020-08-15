@@ -142,7 +142,8 @@ const generalStyles = StyleSheet.create(
             //fontSize: 14,
             fontSize: hp('1.7%'),
             fontWeight: "normal",
-            color: LIGHT_TEXT_COLOR
+            color: LIGHT_TEXT_COLOR,
+            textAlign: "center",
         },
         cardHeadingView: {
             alignItems: "center",

@@ -3,7 +3,7 @@ import { View, TextInput, Image } from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
-import { generalStyles, loginStyles, ICON_SIZE } from './styles.js'
+import { generalStyles, loginStyles, ICON_SIZE } from '../styles.js'
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class LoginView extends React.Component {
         return (
             <View style={generalStyles.container}>
                 {/** PackRanks logo */}
-                <Image style={generalStyles.logo} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
+                <Image style={generalStyles.logo} source={require('../../../assets/Picture/PackRanksLogo1.png')}/>
                 {/** PackRanks app heading */}
                 <Text style={generalStyles.appNameHeading}>PackRanks</Text>
                 
@@ -59,7 +59,6 @@ class LoginView extends React.Component {
                             size={ICON_SIZE}
                             color='gray' 
                         />
-                        {/* TODO: scale icon size and textinput width by screen size */}
                         <TextInput 
                             style={generalStyles.inputText}
                             placeholder="Email"
@@ -78,7 +77,6 @@ class LoginView extends React.Component {
                             size={ICON_SIZE}
                             color='gray'
                         />
-                        {/* onChangeText={(e) => onChange(e)} */}
                         <TextInput 
                             style={generalStyles.inputText}
                             placeholder="Password"
@@ -98,6 +96,27 @@ class LoginView extends React.Component {
                         />
                     </View>
                     
+                    {/** Signup text and button */}
+                    <View style={loginStyles.signUpView}>
+                        <Text style={generalStyles.mediumText}>Not a member?</Text>
+                        <TouchableOpacity 
+                            onPress={() => navigation.navigate('Signup')}
+                            style={loginStyles.opacity}
+                        >
+                            <Text style={generalStyles.mediumTextUnderline}>Sign up now!</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                    {/** Forgot password button */}
+                    <View style={loginStyles.forgotView}>
+                        <TouchableOpacity
+                            onPress={() => alert("Coming soon!")}
+                            style={loginStyles.opacity}
+                        >
+                            <Text style={generalStyles.mediumTextUnderline}>Forgot Password?</Text>
+                        </TouchableOpacity>
+                    </View>
+
                     {/** Login button */}
                     <View style={loginStyles.buttonShadow} elevation={5}>
                         <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => alert('Sign in pressed')} >
@@ -121,7 +140,7 @@ class LoginView extends React.Component {
                                     size={ICON_SIZE}
                                     color='white'
                                 />
-                                <Text style={loginStyles.googleButtonText}>Sign in with Google</Text>
+                                <Text style={loginStyles.googleButtonText}>Continue with Google</Text>
                             </View>
                         </TouchableHighlight>
                     </View>
@@ -129,26 +148,6 @@ class LoginView extends React.Component {
                     {/** Google button description */}
                     <Text style={loginStyles.googleDesc}>You will automatically be signed up for PackRanks!</Text>
                     
-                    {/** Sign up text and button */}
-                    <View style={loginStyles.signUpView}>
-                        <Text style={generalStyles.mediumText}>Not a member?</Text>
-                        <TouchableOpacity 
-                            onPress={() => alert("Coming soon!")}
-                            style={loginStyles.opacity}
-                        >
-                            <Text style={generalStyles.mediumTextUnderline}>Sign up now!</Text>
-                        </TouchableOpacity>
-                    </View>
-                    
-                    {/** Forgot password button */}
-                    <View style={loginStyles.forgotView}>
-                        <TouchableOpacity
-                            onPress={() => alert("Coming soon!")}
-                            style={loginStyles.opacity}
-                        >
-                            <Text style={generalStyles.mediumTextUnderline}>Forgot Password?</Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
             </View>
         )
