@@ -4,6 +4,7 @@ import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from '../styles.js'
+import * as Google from 'expo-google-app-auth'
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class LoginView extends React.Component {
 
         /** Function bindings */
         this.changeEyeIcon = this.changeEyeIcon.bind(this)
-
+        this.signInWithGoogleAsync = this.signInWithGoogleAsync.bind(this)
+        
         /** States */
         this.state = {
             first_name: null,
@@ -23,7 +25,26 @@ class LoginView extends React.Component {
             hidePassword: true
         }
     }
-    
+
+    /** Signin/Signup with Google */
+    async signInWithGoogleAsync() {
+        try {
+            const result = await Google.logInAsync({
+                androidClientId: '810579218227-inktsllg94ro2nq0mov0kunql7s04p70.apps.googleusercontent.com',
+                iosClientId: '810579218227-0g71c7ebvlfa8q71m7fpd660nrmlt085.apps.googleusercontent.com',
+                scopes: ['profile', 'email'],
+            });
+        
+            if (result.type === 'success') {
+                return result.accessToken;
+            } else {
+                return { cancelled: true };
+            }
+        } catch (e) {
+            return { error: true };
+        }
+    }
+
     /** Handles changing of eye icons and hiding/showing of password */
     changeEyeIcon() {
         this.setState(prevState => ({
@@ -131,7 +152,7 @@ class LoginView extends React.Component {
 
                     {/** Sign in with google button */}
                     <View style={loginStyles.buttonShadow} elevation={5}>
-                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => alert('Sign in pressed')} >   
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.signInWithGoogleAsync()} >   
                             <View style={loginStyles.googleButton}>
                                 <Icon
                                     style={generalStyles.icons}
