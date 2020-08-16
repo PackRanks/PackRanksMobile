@@ -110,6 +110,7 @@ class GepDropDown extends React.Component{
     }
 
     parseData(data) {
+        console.log(data)
         return parseCourseData(data);
     }
 

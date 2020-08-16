@@ -30,11 +30,12 @@ const styles = StyleSheet.create(
         //fontFamily: "Poppins",
         fontWeight:"bold",
         marginRight: 3
+        
     },
     titleStyle:{
       fontSize: hp("2.8%"),
       fontWeight: "bold", 
-      color: "black"
+      color: "black", 
     },
     descStyle:{
       fontSize: hp("1.92%"),
@@ -45,7 +46,8 @@ const styles = StyleSheet.create(
       alignItems: "center"
     }, 
     courseTitleView : {
-        flexDirection : "row", 
+      flexDirection : 'row',
+      flexShrink : 1
     }, 
     genericName: {
       color: "#cc0000", 
@@ -55,7 +57,8 @@ const styles = StyleSheet.create(
     nameHeader: {
       color: "gray", 
       fontSize: hp("2%"), 
-      fontWeight: "normal"
+      fontWeight: "normal", 
+      
     }, 
     catalogStyle: {
       color: "#cc0000", 
@@ -103,11 +106,11 @@ const styles = StyleSheet.create(
       height: hp("20%"),
       width: "100%",
       flexDirection: "column", 
-      justifyContent: 'flex-end',
     },
     map: {
      height: hp("17%"),
-     width: '100%'
+     width: wp(72), 
+     
     }, 
     seatView :{
       flexDirection: 'row',
@@ -143,7 +146,9 @@ const styles = StyleSheet.create(
     return(
       <View style={styles.courseTitleView}>
               <Title style={styles.genericName}>Name:  </Title>
-              <Title style={styles.nameHeader}>{courseName}</Title>
+              <View style={{flexDirection : 'row',flexShrink : 1}}>
+                <Title style={styles.nameHeader}>{courseName}</Title>
+              </View>
       </View>
     )
   }
@@ -187,13 +192,29 @@ const styles = StyleSheet.create(
     )
   }
 
+
+
+  /* 
+
+  <View style={styles.courseTitleView}>
+              <Title style={styles.genericName}>Name:  </Title>
+              <View style={{flexDirection : 'row',flexShrink : 1}}>
+                <Title style={styles.nameHeader}>{courseName}</Title>
+              </View>
+      </View>
+
+
+  */ 
+
   // Map View for the Card Content 
   function MapPortion(latitude,longitude,location){
     return(
-    <View style={styles.mapContainer}>
+    <View style={styles.mapContainer, {paddingBottom : 10}}>
               <View style={styles.preReqView}>
                     <Title style={styles.locationHeader}>Location:  </Title>
-                    <Title style={styles.locationDesc}>{location}</Title>
+                    <View style={{flexDirection : 'row',}}>
+                      <Title style={styles.locationDesc}>{location}</Title>
+                    </View>
             </View>
             <MapView 
                 style={styles.map}                            
@@ -299,34 +320,35 @@ function CardComponent(props){
                     <Card.Content>
                           <List.Accordion
                             title={props.courseTitle}
+                            titleNumberOfLines={2}
                             titleStyle={styles.titleStyle}
                             description={props.profName}
                             descriptionStyle={styles.descStyle}
                             left={ () => Rating(props.rating)}
                           >
                                 {/* Content of the Card */}
-                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginBottom: 10 }}/>
+                                <Divider style={{ backgroundColor: 'gray', width: "100%"}}/>
                                 <List.Item
                                   left={() => CourseName(props.courseName)}
                                 />
-                                <Divider style={{ backgroundColor: 'gray', width: "100%",marginTop: 10, marginBottom: 20}}/>
+                                <Divider style={{ backgroundColor: 'gray', width: "100%"}}/>
                                 <List.Item
                                   left={() => Catalog(props.catalog)}
                                   right={() => RateMyProfLink(props.rateMyProfLink)}
                                 />
-                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20 }}/>
+                                <Divider style={{ backgroundColor: 'gray', width: "100%" }}/>
                                 <List.Item
                                   left={() => Prerequisite(props.preReq)}
                                 />
-                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
+                                <Divider style={{ backgroundColor: 'gray', width: "100%"}}/>
                                 <List.Item
                                   left={() => MapPortion(props.latitude,props.longitude,props.location)}
                                 />
-                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 20}}/>
+                                <Divider style={{ backgroundColor: 'gray', width: "100%"}}/>
                                 <List.Item
                                   left={() => SeatArrangement(props.seatStatus,props.seatAval,props.seatTotal)}
                                 />
-                                <Divider style={{ backgroundColor: 'gray', width: "100%", marginTop: 10}}/>
+                                <Divider style={{ backgroundColor: 'gray', width: "100%"}}/>
                                 <List.Item
                                   left={() => TimePortion(props.time,props.days)}
                                 />
