@@ -162,7 +162,7 @@ export default function App() {
     if (!isLoggedIn) {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login" >
+          <Stack.Navigator initialRouteName="Signup" >
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
           </Stack.Navigator>

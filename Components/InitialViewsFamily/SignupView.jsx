@@ -2,6 +2,7 @@ import React from 'react'
 import { View, TextInput, Image } from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
+import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from './styles.js'
 
@@ -54,6 +55,9 @@ class SignupView extends React.Component {
                     </View>
 
                     {/** Last name input box */}
+                    <Text style={generalStyles.mediumText}>
+                        Last name
+                    </Text>
                     <View style={generalStyles.inputView}>
                         {/* Add textinput title - flex column */}
                         <TextInput 
@@ -65,6 +69,9 @@ class SignupView extends React.Component {
                     </View>
 
                     {/** Email input box */}
+                    <Text style={generalStyles.mediumText}>
+                        Email
+                    </Text>
                     <View style={generalStyles.inputView}>
                         {/* Add textinput title */}
                         <TextInput 
@@ -76,6 +83,9 @@ class SignupView extends React.Component {
                     </View>
 
                     {/** Create Password input box */}
+                    <Text style={generalStyles.mediumText}>
+                        Password
+                    </Text>
                     <View style={generalStyles.inputView}>
                         {/* Add textinput title */}
                         <TextInput 
@@ -85,6 +95,14 @@ class SignupView extends React.Component {
                             onChangeText={text => this.setState({last_name: text})}
                         />
                         {/* Add eye toggle */}
+                    </View>
+
+                    <View style={loginStyles.buttonShadow} elevation={5}>
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => alert('Sign in pressed')} >
+                            <View style={loginStyles.loginButton}>
+                                <Text style={loginStyles.loginButtonText}>SIGN UP</Text>
+                            </View>
+                        </TouchableHighlight>
                     </View>
 
                     {/* TODO: implement pword basic req check & client side error handling (red boxes) */}
