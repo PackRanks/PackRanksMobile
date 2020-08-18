@@ -36,7 +36,7 @@ class LoginView extends React.Component {
             });
         
             if (result.type === 'success') {
-                return result.accessToken;
+                console.log(result); 
             } else {
                 return { cancelled: true };
             }
