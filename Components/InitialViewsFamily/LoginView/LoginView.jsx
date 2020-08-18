@@ -28,6 +28,10 @@ class LoginView extends React.Component {
 
     /** Signin/Signup with Google */
     async signInWithGoogleAsync() {
+
+        // back-end url
+        let url = "http://packranks-backend.herokuapp.com/googleauth";
+
         try {
             const result = await Google.logInAsync({
                 androidClientId: '810579218227-inktsllg94ro2nq0mov0kunql7s04p70.apps.googleusercontent.com',
@@ -36,7 +40,27 @@ class LoginView extends React.Component {
             });
         
             if (result.type === 'success') {
-                console.log(result); 
+
+                let first_name = result.user.givenName;
+                let last_name = result.user.familyName;
+                let email = result.user.email;
+                let token = result.idToken;
+                
+                fetch(url,
+                {
+                            method: "POST",
+                            body: JSON.stringify({
+                              first_name: first_name,
+                              last_name: last_name,
+                              email: email,
+                              token: token
+                            })
+                }).then(
+                        (response) => {response.json()}
+                ).then(
+                        (data) => {alert('User has been successfully authenticated.')}
+                )
+                return { success: true };
             } else {
                 return { cancelled: true };
             }
