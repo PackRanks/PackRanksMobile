@@ -5,8 +5,9 @@ import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from './styles.js'
+import { useNavigation } from '@react-navigation/native';
 
-class SignupView extends React.Component {
+class SignupViewComponent extends React.Component {
     constructor(props) {
         super(props)
 
@@ -21,7 +22,8 @@ class SignupView extends React.Component {
             password: null,
             login_email: null,
             eyeIcon: "md-eye", // Eyes from Ionicons icon lib
-            hidePassword: true
+            hidePassword: true, 
+            navigation : this.props.navigation
         }
     }
 
@@ -98,7 +100,7 @@ class SignupView extends React.Component {
                     </View>
 
                     <View style={loginStyles.buttonShadow} elevation={5}>
-                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => alert('Sign in pressed')} >
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.state.navigation.navigate('LoginStack', { screen: 'Login' })} >
                             <View style={loginStyles.loginButton}>
                                 <Text style={loginStyles.loginButtonText}>SIGN UP</Text>
                             </View>
@@ -122,6 +124,14 @@ class SignupView extends React.Component {
             </View>
         )
     }
+}
+
+
+function SignupView(){ 
+    const navigation = useNavigation();
+    return(
+        <SignupViewComponent navigation={navigation}/> 
+    )
 }
 
 export default SignupView

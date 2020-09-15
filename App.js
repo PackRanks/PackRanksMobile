@@ -51,7 +51,6 @@ function LoginStack(){
         <Stack.Screen name={'Login'} component={LoginView}/>
         <Stack.Screen name={'ForgotConfirmView'} component={ForgotConfirmView}/>
         <Stack.Screen name={'ForgotView'} component={ForgotView}/>
-        <Stack.Screen name={'PasswordTextInput'} component={PasswordTextInput}/>
         <Stack.Screen name={'SignupView'} component={SignupView}/>
     </Stack.Navigator>
   )
@@ -152,7 +151,7 @@ export default function App() {
   return (
     <NavigationContainer> 
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} 
-        initialRouteName="Home" 
+        initialRouteName="LoginStack" 
         drawerContentOptions={{activeTintColor: "#cc0000"}}
       >
         {/* Options for the drawer */}

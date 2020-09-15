@@ -5,15 +5,19 @@ import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from '../styles.js'
 import * as Google from 'expo-google-app-auth'
+import { useNavigation } from '@react-navigation/native';
 
-class LoginView extends React.Component {
+
+
+
+class LoginViewComponent extends React.Component {
     constructor(props) {
         super(props)
 
         /** Function bindings */
         this.changeEyeIcon = this.changeEyeIcon.bind(this)
         this.signInWithGoogleAsync = this.signInWithGoogleAsync.bind(this)
-        
+        console.log('hello')
         /** States */
         this.state = {
             first_name: null,
@@ -22,8 +26,13 @@ class LoginView extends React.Component {
             password: null,
             login_email: null,
             eyeIcon: "md-eye", // Eyes from Ionicons icon lib
-            hidePassword: true
+            hidePassword: true, 
+            navigation : this.props.navigation
         }
+
+        const { navigation } = this.props.navigation;
+        console.log(navigation)
+
     }
 
     /** Signin/Signup with Google */
@@ -145,7 +154,7 @@ class LoginView extends React.Component {
                     <View style={loginStyles.signUpView}>
                         <Text style={generalStyles.mediumText}>Not a member?</Text>
                         <TouchableOpacity 
-                            onPress={() => navigation.navigate('Signup')}
+                            onPress={() => this.state.navigation.navigate('LoginStack', { screen: 'SignupView' })}
                             style={loginStyles.opacity}
                         >
                             <Text style={generalStyles.mediumTextUnderline}>Sign up now!</Text>
@@ -155,7 +164,7 @@ class LoginView extends React.Component {
                     {/** Forgot password button */}
                     <View style={loginStyles.forgotView}>
                         <TouchableOpacity
-                            onPress={() => alert("Coming soon!")}
+                            onPress={() => this.state.navigation.navigate('LoginStack', { screen: 'ForgotView' })}
                             style={loginStyles.opacity}
                         >
                             <Text style={generalStyles.mediumTextUnderline}>Forgot Password?</Text>
@@ -164,7 +173,7 @@ class LoginView extends React.Component {
 
                     {/** Login button */}
                     <View style={loginStyles.buttonShadow} elevation={5}>
-                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => alert('Sign in pressed')} >
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.state.navigation.navigate('Home')} >
                             <View style={loginStyles.loginButton}>
                                 <Text style={loginStyles.loginButtonText}>LOGIN</Text>
                             </View>
@@ -198,5 +207,13 @@ class LoginView extends React.Component {
         )
     }
 }
+
+function LoginView(){
+    const navigation = useNavigation();
+    return(
+        <LoginViewComponent navigation={navigation}/> 
+    )
+}
+
 
 export default LoginView;
