@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from 'apsl-react-native-button'
-import {StyleSheet,View,Text,Dimensions} from 'react-native'; 
+import {StyleSheet,View,Text,Dimensions,Alert} from 'react-native'; 
 
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
@@ -149,16 +149,26 @@ class DepartmentDropDown extends React.Component{
         let min_num = this.state.minCourseNumber;
         let max_num = this.state.maxCourseNumber;
 
-        fetch( 
-            url, {
-                method: "GET",
-                headers: {"Dept": this.state.dept, "num_courses": 10, "term": this.state.term, "level_min": this.state.minCourseNumber, "level_max": this.state.maxCourseNumber}
-           }
-        ).then(
-           response => response.json()
-        ).then(
-            (json) => {this.setState({courseData:this.parseData(json)})}
-        )
+
+
+        if(this.state.term === null || this.state.dept === null || this.state.minCourseNumber > this.state.maxCourseNumber || this.state.maxCourseNumber < 0 || this.state.maxCourseNumber > 999 || this.state.minCourseNumber > 999 || this.state.minCourseNumber < 0){
+            alert('error')
+            console.log('if')
+        }
+
+        else{
+            console.log('else')
+            fetch( 
+                url, {
+                    method: "GET",
+                    headers: {"Dept": this.state.dept, "num_courses": 10, "term": this.state.term, "level_min": this.state.minCourseNumber, "level_max": this.state.maxCourseNumber}
+               }
+            ).then(
+               response => response.json()
+            ).then(
+                (json) => {this.setState({courseData:this.parseData(json)})}
+            )
+        }
     }
 
     parseData(data) {
