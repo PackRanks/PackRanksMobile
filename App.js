@@ -8,6 +8,14 @@ import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
 import AboutView from './Components/AboutView/AboutView.jsx'
 import HelpView from "./Components/HelpView/HelpView.jsx";
+import { createStackNavigator } from '@react-navigation/stack'; 
+import ForgotConfirmView from './Components/InitialViewsFamily/ForgotConfirmView'; 
+import ForgotView from './Components/InitialViewsFamily/ForgotConfirmView'; 
+import PasswordTextInput from './Components/InitialViewsFamily/PasswordTextInput'; 
+import ResetView from './Components/InitialViewsFamily/ResetView'; 
+import SignupView from './Components/InitialViewsFamily/SignupView'; 
+import LoginView from './Components/InitialViewsFamily/LoginView/LoginView'; 
+
 
 const style = StyleSheet.create(
   {
@@ -34,6 +42,20 @@ const style = StyleSheet.create(
     }
   })
 
+const Stack = createStackNavigator()
+
+// Initial View family 
+function LoginStack(){ 
+  return(
+    <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }} >
+        <Stack.Screen name={'Login'} component={LoginView}/>
+        <Stack.Screen name={'ForgotConfirmView'} component={ForgotConfirmView}/>
+        <Stack.Screen name={'ForgotView'} component={ForgotView}/>
+        <Stack.Screen name={'PasswordTextInput'} component={PasswordTextInput}/>
+        <Stack.Screen name={'SignupView'} component={SignupView}/>
+    </Stack.Navigator>
+  )
+} 
 
 // Home Screen 
 function HomeScreen({ navigation }) {
@@ -214,6 +236,23 @@ export default function App() {
         <Drawer.Screen 
             name="Settings" 
             component={AccountSettingScreen}
+            options={{
+              title: 'Settings',
+              drawerIcon: ({focused, size}) => (
+                <Icon
+                  name='cogs'
+                  type='material-community'
+                  color='#fff'
+                  size={30}
+                  color={focused ? '#cc0000' : '#ccc'}
+                />
+              ),
+            }}/>
+
+
+      <Drawer.Screen 
+            name="LoginStack" 
+            component={LoginStack}
             options={{
               title: 'Settings',
               drawerIcon: ({focused, size}) => (
