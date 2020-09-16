@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from 'apsl-react-native-button'
-import {StyleSheet,View,Text,Dimensions,Alert} from 'react-native'; 
+import {StyleSheet,View,Text,Dimensions,alert} from 'react-native'; 
 
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
@@ -151,13 +151,7 @@ class DepartmentDropDown extends React.Component{
 
 
 
-        if(this.state.term === null 
-            //|| this.state.dept === null 
-            //|| this.state.minCourseNumber > this.state.maxCourseNumber 
-            //|| this.state.maxCourseNumber < 0 
-            //|| this.state.maxCourseNumber > 999 
-            //|| this.state.minCourseNumber > 999 
-            || this.state.minCourseNumber < 0){
+        if(this.state.term === null ){
             alert('Please choose a term!')
         }
 

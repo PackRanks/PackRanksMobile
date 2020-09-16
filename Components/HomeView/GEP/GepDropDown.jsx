@@ -97,16 +97,27 @@ class GepDropDown extends React.Component{
         const GEP = this;
         let url = "http://packranks-backend.herokuapp.com/gep";
 
-        fetch( 
-            url, {
-                method: "GET",
-                headers: {"GEP": this.state.gepType, "num_courses": 10, "term": this.state.term}
-           }
-        ).then(
-           response => response.json()
-        ).then(
-            (json) => {this.setState({courseData:this.parseData(json)})}
-        )
+        if(this.state.gepType === null){
+            alert('Please select a GEP!')
+        }
+
+        else if(this.state.term === null ){
+            alert('Please choose a term!')
+        }   
+
+        else{
+            fetch( 
+                url, {
+                    method: "GET",
+                    headers: {"GEP": this.state.gepType, "num_courses": 10, "term": this.state.term}
+               }
+            ).then(
+               response => response.json()
+            ).then(
+                (json) => {this.setState({courseData:this.parseData(json)})}
+            )
+        }
+
     }
 
     parseData(data) {
