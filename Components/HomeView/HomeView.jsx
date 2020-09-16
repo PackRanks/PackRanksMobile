@@ -98,6 +98,16 @@ class HomeView extends React.Component{
             )
         }
     }
+
+    colorButtonStyle(){
+        if(this.state.gepType === null || this.state.term === null){
+            return '#A9A9A9'
+        }
+
+        else{
+            return '#cc0000'
+        }
+    }
     
     render(){
         return(

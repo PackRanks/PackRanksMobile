@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from 'apsl-react-native-button'
-import {StyleSheet,View,Text,Dimensions,alert} from 'react-native'; 
+import {StyleSheet,View,Text} from 'react-native'; 
 
 import RNPickerSelect from 'react-native-picker-select';
 import { Icon } from 'react-native-elements';
@@ -193,6 +193,16 @@ class DepartmentDropDown extends React.Component{
         }
     }
 
+    colorButtonStyle(){
+        if(this.state.dept === null || this.state.term === null || this.state.minCourseNumber === null || this.state.maxCourseNumber === null){
+            return '#A9A9A9'
+        }
+    
+        else{
+            return '#cc0000'
+        }
+    }
+
     parseData(data) {
         return parseCourseData(data);
     }
@@ -237,7 +247,7 @@ class DepartmentDropDown extends React.Component{
                         <CourseNumberSlider set_min={this.setMin} set_max={this.setMax} min={this.state.minCourseNumber} max={this.state.maxCourseNumber}/>
                     </View>
                     <View style={style.buttonView}>
-                        <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
+                    <Button textStyle={style.textButtonStyle} style={{...style.buttonStyle, backgroundColor: this.colorButtonStyle(),  borderColor : this.colorButtonStyle(), }} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
                     </View>
                 </View>
                 <View style={style.courseStyle}>

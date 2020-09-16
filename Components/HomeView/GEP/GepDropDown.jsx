@@ -32,8 +32,6 @@ const style = StyleSheet.create({
     buttonStyle : {
         width : wp(40),
         height : hp(7),
-        backgroundColor: "#cc0000", 
-        borderColor : "#cc0000", 
         borderRadius : 200, 
         justifyContent : 'center', 
         alignItems : 'center', 
@@ -74,6 +72,8 @@ const dropdownStyles = StyleSheet.create({
         justifyContent: "center",
       },
   });
+
+
 
 
 class GepDropDown extends React.Component{
@@ -125,6 +125,16 @@ class GepDropDown extends React.Component{
         return parseCourseData(data);
     }
 
+    colorButtonStyle(){
+        if(this.state.gepType === null || this.state.term === null){
+            return '#A9A9A9'
+        }
+
+        else{
+            return '#cc0000'
+        }
+    }
+
     render(){
         const gepOptions = ['Health and Exercise Studies', 'Humanities', 'Interdisciplinary Perspectives', 'Mathematical Sciences', 'Natural Sciences', 'Social Sciences', 'US Diversity', 'Additional Breadth', 'Visual and Performing Arts'];
         const gepLabels = gepOptions.map((option) => (
@@ -156,7 +166,7 @@ class GepDropDown extends React.Component{
                     />
                 </View>
                     <View>
-                            <Button textStyle={style.textButtonStyle} style={style.buttonStyle} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
+                            <Button textStyle={style.textButtonStyle} style={{...style.buttonStyle, backgroundColor: this.colorButtonStyle(),  borderColor : this.colorButtonStyle(), }} title="Right button" onPress={() => this.CourseCardSet()}>Get Courses</Button>
                     </View>
                 <View style={style.courseStyle}>
                     {course_data.map(data => {
