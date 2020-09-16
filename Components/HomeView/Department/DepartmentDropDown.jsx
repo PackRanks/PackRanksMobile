@@ -151,13 +151,41 @@ class DepartmentDropDown extends React.Component{
 
 
 
-        if(this.state.term === null || this.state.dept === null || this.state.minCourseNumber > this.state.maxCourseNumber || this.state.maxCourseNumber < 0 || this.state.maxCourseNumber > 999 || this.state.minCourseNumber > 999 || this.state.minCourseNumber < 0){
-            alert('error')
-            console.log('if')
+        if(this.state.term === null 
+            //|| this.state.dept === null 
+            //|| this.state.minCourseNumber > this.state.maxCourseNumber 
+            //|| this.state.maxCourseNumber < 0 
+            //|| this.state.maxCourseNumber > 999 
+            //|| this.state.minCourseNumber > 999 
+            || this.state.minCourseNumber < 0){
+            alert('Please choose a term!')
+        }
+
+        else if(this.state.dept === null ){
+            alert('Please choose a department!')
+        }   
+
+        else if(this.state.minCourseNumber > this.state.maxCourseNumber ){
+            alert('Your minimum course number is more than maximum course number. Please change your course numbers!')
+        }
+
+        else if(this.state.maxCourseNumber < 0 ){
+            alert('Your maximum course number is less than zero. Please change your maximum course number!')
+        }
+
+        else if(this.state.maxCourseNumber > 999 ){ 
+            alert('Your maximum course number is more than 999. Please change your maximum course number!')
+        }
+
+        else if(this.state.minCourseNumber > 999 ){ 
+            alert('Your minimum course number is more than 999. Please change your minimum course number!')
+        }
+
+        else if(this.state.minCourseNumber < 0){ 
+            alert('Your minimum course number is less than 0. Please change your minimum course number!')
         }
 
         else{
-            console.log('else')
             fetch( 
                 url, {
                     method: "GET",
@@ -241,7 +269,6 @@ class DepartmentDropDown extends React.Component{
                         )
                     })} 
                 </View>
-                
             </View>
         )
     } 
