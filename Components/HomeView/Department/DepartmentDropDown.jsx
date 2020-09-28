@@ -101,8 +101,8 @@ class DepartmentDropDown extends React.Component{
             dept : null, 
             deptCode: null, 
             component : null, 
-            minCourseNumber: 0, 
-            maxCourseNumber: 999,
+            minCourseNumber: 100, 
+            maxCourseNumber: 899,
             term: props.term,
             courseData: []
         }
@@ -110,7 +110,6 @@ class DepartmentDropDown extends React.Component{
         this.getDepts=this.getDepts.bind(this)
         this.getDepts(); 
         this.showDepartmentCode=this.showDepartmentCode.bind(this)
-
         this.CourseCardSet = this.CourseCardSet.bind(this)
         this.parseData = this.parseData.bind(this)
         this.setMin = this.setMin.bind(this)
@@ -167,12 +166,12 @@ class DepartmentDropDown extends React.Component{
             alert('Your maximum course number is less than zero. Please change your maximum course number!')
         }
 
-        else if(this.state.maxCourseNumber > 999 ){ 
-            alert('Your maximum course number is more than 999. Please change your maximum course number!')
+        else if(this.state.maxCourseNumber > 899 ){ 
+            alert('Your maximum course number is more than 899. Please change your maximum course number!')
         }
 
-        else if(this.state.minCourseNumber > 999 ){ 
-            alert('Your minimum course number is more than 999. Please change your minimum course number!')
+        else if(this.state.minCourseNumber > 899 ){ 
+            alert('Your minimum course number is more than 899. Please change your minimum course number!')
         }
 
         else if(this.state.minCourseNumber < 0){ 
@@ -188,7 +187,10 @@ class DepartmentDropDown extends React.Component{
             ).then(
                response => response.json()
             ).then(
-                (json) => {this.setState({courseData:this.parseData(json)})}
+                (json) => {
+                    console.log(json); 
+                    this.setState({courseData:this.parseData(json)
+                    })}
             )
         }
     }
