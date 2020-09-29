@@ -17,6 +17,7 @@ class LoginViewComponent extends React.Component {
         /** Function bindings */
         this.changeEyeIcon = this.changeEyeIcon.bind(this)
         this.signInWithGoogleAsync = this.signInWithGoogleAsync.bind(this)
+        this.regularSignIn = this.regularSignIn.bind(this)
         console.log('hello')
         /** States */
         this.state = {
@@ -87,6 +88,45 @@ class LoginViewComponent extends React.Component {
             eyeIcon: prevState.eyeIcon === "md-eye-off" ? "md-eye" : "md-eye-off",
             hidePassword: !prevState.hidePassword
         }))
+    }
+
+    regularSignIn(){
+        if(this.state.email === null){
+            alert('Please use an email!')
+        }
+
+        else if(this.state.password === null){
+            alert('Please use an password!')
+        }
+
+        else{
+            if (!(new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(this.state.email))) {  
+                alert('Please enter a valid email address!')
+            }
+
+            else{
+                let url = "http://packranks-backend.herokuapp.com/login";
+                fetch(url,
+                    {
+                            method: "POST",
+                            body: JSON.stringify({
+                                email: this.state.email.toLowerCase(),
+                                password:this.state.password
+                            })
+                    }).then((response) => (response.json()))
+                    .then(data => {
+                        if (data.success === true){
+                            this.state.navigation.navigate('Home')
+                        }
+
+                        else{
+                            console.log(data.success)
+                            alert('Please enter a valid email address or password!')
+                        }
+                    })
+            }
+        }
+
     }
 
     render(){
@@ -176,7 +216,7 @@ class LoginViewComponent extends React.Component {
 
                     {/** Login button */}
                     <View style={loginStyles.buttonShadow} elevation={5}>
-                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.state.navigation.navigate('Home')} >
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.regularSignIn()} >
                             <View style={loginStyles.loginButton}>
                                 <Text style={loginStyles.loginButtonText}>LOGIN</Text>
                             </View>
