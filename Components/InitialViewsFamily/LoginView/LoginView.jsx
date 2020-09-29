@@ -66,9 +66,12 @@ class LoginViewComponent extends React.Component {
                             })
                 }).then(
                         (response) => {response.json()}
-                ).then(
-                        (data) => {alert('User has been successfully authenticated.')}
                 )
+
+                this.state.navigation.navigate('Home')
+
+
+
                 return { success: true };
             } else {
                 return { cancelled: true };
