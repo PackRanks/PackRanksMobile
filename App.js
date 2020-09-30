@@ -148,6 +148,7 @@ function AccountSettingScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 function DrawerScreens({navigation}) {
+
   return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} 
         initialRouteName="Home" 
@@ -248,4 +249,4 @@ function DrawerScreens({navigation}) {
             }}/>
       </Drawer.Navigator>
   ); 
-}co
+}
