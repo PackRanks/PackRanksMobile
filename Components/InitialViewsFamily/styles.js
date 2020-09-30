@@ -96,6 +96,7 @@ const generalStyles = StyleSheet.create(
             height: "100%"
         },
         inputView: {
+            marginTop: 10, 
             flexDirection: 'row',
             alignItems: 'center',
             borderWidth: 1,

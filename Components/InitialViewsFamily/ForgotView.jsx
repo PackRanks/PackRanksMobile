@@ -35,6 +35,8 @@ class ForgotViewComponent extends React.Component {
     }
 
      resetPassword(){
+
+
         if (!(new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(this.state.email))) {  
         
             //throw error with toast-notes
@@ -50,8 +52,12 @@ class ForgotViewComponent extends React.Component {
                             email: this.state.email.toLowerCase()
                         })
                 }).then(
-                    (response) => (response.json())
-                ).then((data) => {this.state.navigation.navigate('LoginStack', { screen: 'ForgotConfirmView' })})
+                    (response) => {response.json();console.log(response.json())}
+                ).then((data) => {
+                    {/*Successfully sent reset link */}
+                    console.log(data)
+                    this.state.navigation.navigate('LoginStack', { screen: 'ForgotConfirmView', params: {email: this.state.email},})
+                })
         }
 
     }
@@ -89,10 +95,6 @@ class ForgotViewComponent extends React.Component {
                             onChangeText={text => this.setState({email: text})}
                         />
                     </View>
-
-                  
-    
-
                     <View style={loginStyles.buttonShadow} elevation={5}>
                         <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.resetPassword()} > 
                             <View style={loginStyles.loginButton}>
@@ -100,23 +102,6 @@ class ForgotViewComponent extends React.Component {
                             </View>
                         </TouchableHighlight>
                     </View>
-
-                    {/*  TODO: implement pword basic req check & client side error handling (red boxes) */}
-
-                    {/* TODO: add check box to accept T&C & PP. also links to T&C & PP */}
-
-                    {/* Things to address:
-                    
-                    - Add password confirmation? Or too tedious on mobile (on mobile, you want to be quick, forms should be short) 
-                    - shouldn't need astericks to mark imp fields if all fields are imp. just make them turn red if they try to submit empty field
-                    - add hidden views that display error messages when necessary
-                        - make sure there's enough spacing btwn elements to begin with to make this possible
-                    - should input checks be done (onBlur) on the frontend or backend?
-                        - look at what Tacobell and other apps are doing
-
-                        // () => this.state.navigation.navigate('LoginStack', { screen: 'Login' })
-                    */}
-
                 </View>
             </View>
         )
