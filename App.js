@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {Text,View,StyleSheet,Image,ScrollView} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,6 +9,14 @@ import NavBar from "./Components/NavBar/NavBar.jsx"
 import HomeView from "./Components/HomeView/HomeView.jsx";
 import AboutView from './Components/AboutView/AboutView.jsx'
 import HelpView from "./Components/HelpView/HelpView.jsx";
+import { createStackNavigator } from '@react-navigation/stack'; 
+import ForgotConfirmView from './Components/InitialViewsFamily/ForgotConfirmView'; 
+import ForgotView from './Components/InitialViewsFamily/ForgotView'; 
+import SignupView from './Components/InitialViewsFamily/SignupView'; 
+import LoginView from './Components/InitialViewsFamily/LoginView/LoginView'; 
+import AsyncStorage from '@react-native-community/async-storage';
+
+
 
 const style = StyleSheet.create(
   {
@@ -34,9 +43,25 @@ const style = StyleSheet.create(
     }
   })
 
+const Stack = createStackNavigator()
+
+// Initial View family 
+export default function StackScreens(){ 
+  return(
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }} >
+          <Stack.Screen name={'Login'} component={LoginView}/>
+          <Stack.Screen name={'ForgotConfirmView'} component={ForgotConfirmView}/>
+          <Stack.Screen name={'ForgotView'} component={ForgotView}/>
+          <Stack.Screen name={'SignupView'} component={SignupView}/>
+          <Stack.Screen name={'Drawer'} component={DrawerScreens}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+} 
 
 // Home Screen 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation, route}) {
   return (
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Home"}/>
@@ -107,28 +132,23 @@ function AccountSettingScreen({ navigation }) {
 }
 
 // Creates the Content with the customized profile section in the vertical drawer 
-function CustomDrawerContent(props) {
+ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={style.profileViewStyle}>
         <Image source={require("./assets/Picture/AnthonyPic.jpeg")} style={style.picStyle}/>
         <Text style={style.textProfileStyle}>Hello, Andong Wang</Text>
       </View>
-      <DrawerItemList {...props} />
+      <DrawerItemList {...props}/>
     </DrawerContentScrollView>
   );
 }
 
-
-
-
-
 // Created Navigator and screens 
 const Drawer = createDrawerNavigator();
 
-export default function App() {
+function DrawerScreens({navigation}) {
   return (
-    <NavigationContainer> 
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} 
         initialRouteName="Home" 
         drawerContentOptions={{activeTintColor: "#cc0000"}}
@@ -227,6 +247,5 @@ export default function App() {
               ),
             }}/>
       </Drawer.Navigator>
-    </NavigationContainer>
   ); 
-}
+}co
