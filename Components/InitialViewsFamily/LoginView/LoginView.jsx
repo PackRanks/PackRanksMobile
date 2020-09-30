@@ -83,7 +83,7 @@ class LoginViewComponent extends React.Component {
                         (response) => {response.json()}
                 )
 
-                this.state.navigation.navigate('Drawer',{screen: 'Home', user : userData})
+                this.state.navigation.navigate('Drawer', { screen: 'Home',user: user})
 
                 return { success: true };
             } else {

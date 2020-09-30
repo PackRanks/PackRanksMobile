@@ -133,11 +133,18 @@ function AccountSettingScreen({ navigation }) {
 
 // Creates the Content with the customized profile section in the vertical drawer 
  function CustomDrawerContent(props) {
+
+  
+  const fullName = props.user['firstName'] + " " + props.user['lastName']
+  const imageUrl = props.user['profilePic']
+
+
+  
   return (
     <DrawerContentScrollView {...props}>
       <View style={style.profileViewStyle}>
-        <Image source={require("./assets/Picture/AnthonyPic.jpeg")} style={style.picStyle}/>
-        <Text style={style.textProfileStyle}>Hello, Andong Wang</Text>
+        <Image source={{uri: imageUrl}} style={style.picStyle}/>
+        <Text style={style.textProfileStyle}>{fullName}</Text>
       </View>
       <DrawerItemList {...props}/>
     </DrawerContentScrollView>
@@ -147,10 +154,11 @@ function AccountSettingScreen({ navigation }) {
 // Created Navigator and screens 
 const Drawer = createDrawerNavigator();
 
-function DrawerScreens({navigation}) {
+function DrawerScreens({route}) {
+  const user = route.params.user
 
   return (
-      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} 
+      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} user={user} />} 
         initialRouteName="Home" 
         drawerContentOptions={{activeTintColor: "#cc0000"}}
       >
