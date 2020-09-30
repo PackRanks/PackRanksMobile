@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, TextInput, Image } from 'react-native'
+import { View, TextInput, Image,TouchableHighlight } from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from './styles.js'
+import { useNavigation } from '@react-navigation/native';
 
-class ForgotView extends React.Component {
+
+class ForgotViewComponent extends React.Component {
     constructor(props) {
         super(props)
 
@@ -20,13 +22,43 @@ class ForgotView extends React.Component {
             password: null,
             login_email: null,
             eyeIcon: "md-eye", // Eyes from Ionicons icon lib
-            hidePassword: true
+            hidePassword: true, 
+            navigation : this.props.navigation
         }
+    }
+
+    changeEyeIcon() {
+        this.setState(prevState => ({
+            eyeIcon: prevState.eyeIcon === "md-eye-off" ? "md-eye" : "md-eye-off",
+            hidePassword: !prevState.hidePassword
+        }))
+    }
+
+     resetPassword(){
+        if (!(new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(this.state.email))) {  
+        
+            //throw error with toast-notes
+            alert('Please enter a valid email address')
+        }
+ 
+        else{
+            let url = "http://packranks-backend.herokuapp.com/resetLink";
+            fetch(url,
+                {
+                        method: "POST",
+                        body: JSON.stringify({
+                            email: this.state.email.toLowerCase()
+                        })
+                }).then(
+                    (response) => (response.json())
+                ).then((data) => {this.state.navigation.navigate('LoginStack', { screen: 'ForgotConfirmView' })})
+        }
+
     }
 
     render() {
         return (
-            <View style={generalStyles.container}>
+           <View style={generalStyles.container}>
                 {/** PackRanks logo */}
                 <Image style={generalStyles.logo} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
                 {/** PackRanks app heading */}
@@ -36,28 +68,66 @@ class ForgotView extends React.Component {
                 <View style={generalStyles.card} elevation={0}>
                     {/** Card heading and description */}
                     <View style={generalStyles.cardHeadingView}>
-                        <Text style={generalStyles.cardHeading}>Sign Up</Text>
-                        <Text style={generalStyles.cardHeadingDesc}>Join PackRanks to make the course search process a breeze at NC State!</Text>
+                        <View style={{flexDirection : 'row', justifyContent:'space-between'}}>
+                            <Icon  style={generalStyles.icons,{marginRight : 5}} name='md-arrow-round-back' size={30} color='gray' onPress={() => this.state.navigation.goBack()}/>
+                            <Text style={generalStyles.cardHeading}>Forgot Password</Text>
+                        </View>
+                        <Text style={generalStyles.cardHeadingDesc}>Enter your email and we'll send you a link to reset your password.</Text>
                     </View>
-
-                    <Text></Text>
+          
 
                     {/** Email input box */}
+                    <Text style={generalStyles.mediumText}>
+                        Email
+                    </Text>
                     <View style={generalStyles.inputView}>
                         {/* Add textinput title */}
                         <TextInput 
                             style={generalStyles.inputText}
                             placeholder="Email"
                             placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
+                            onChangeText={text => this.setState({email: text})}
                         />
                     </View>
 
-                    {/* add send reset link button */}
+                  
+    
+
+                    <View style={loginStyles.buttonShadow} elevation={5}>
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.resetPassword()} > 
+                            <View style={loginStyles.loginButton}>
+                                <Text style={loginStyles.loginButtonText}>SIGN UP</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+
+                    {/*  TODO: implement pword basic req check & client side error handling (red boxes) */}
+
+                    {/* TODO: add check box to accept T&C & PP. also links to T&C & PP */}
+
+                    {/* Things to address:
+                    
+                    - Add password confirmation? Or too tedious on mobile (on mobile, you want to be quick, forms should be short) 
+                    - shouldn't need astericks to mark imp fields if all fields are imp. just make them turn red if they try to submit empty field
+                    - add hidden views that display error messages when necessary
+                        - make sure there's enough spacing btwn elements to begin with to make this possible
+                    - should input checks be done (onBlur) on the frontend or backend?
+                        - look at what Tacobell and other apps are doing
+
+                        // () => this.state.navigation.navigate('LoginStack', { screen: 'Login' })
+                    */}
+
                 </View>
             </View>
         )
     }
+}
+
+function ForgotView(){
+    const navigation = useNavigation();
+    return(
+        <ForgotViewComponent navigation={navigation}/> 
+    )
 }
 
 export default ForgotView

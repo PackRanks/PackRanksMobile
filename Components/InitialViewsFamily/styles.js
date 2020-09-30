@@ -20,7 +20,8 @@ const loginStyles = StyleSheet.create(
             //fontSize: 14,
             fontSize: hp('1.7%'),
             fontWeight: "normal",
-            color: LIGHT_TEXT_COLOR
+            color: LIGHT_TEXT_COLOR, 
+            paddingBottom: 20
         },
         signUpView: {
             flexDirection: "row",
@@ -109,6 +110,7 @@ const generalStyles = StyleSheet.create(
             paddingRight: 10,
             paddingBottom: 10,
             fontSize: hp('1.8%'),
+            marginLeft: 7
         },
         icons: {
             margin: 10,

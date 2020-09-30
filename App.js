@@ -10,7 +10,7 @@ import AboutView from './Components/AboutView/AboutView.jsx'
 import HelpView from "./Components/HelpView/HelpView.jsx";
 import { createStackNavigator } from '@react-navigation/stack'; 
 import ForgotConfirmView from './Components/InitialViewsFamily/ForgotConfirmView'; 
-import ForgotView from './Components/InitialViewsFamily/ForgotConfirmView'; 
+import ForgotView from './Components/InitialViewsFamily/ForgotView'; 
 import PasswordTextInput from './Components/InitialViewsFamily/PasswordTextInput'; 
 import ResetView from './Components/InitialViewsFamily/ResetView'; 
 import SignupView from './Components/InitialViewsFamily/SignupView'; 

@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, TextInput, Image } from 'react-native'
-import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from './styles.js'
+import { Icon } from 'react-native-elements'
+import { useNavigation } from '@react-navigation/native';
 
 class ForgotConfirmView extends React.Component {
     constructor(props) {
@@ -36,7 +37,11 @@ class ForgotConfirmView extends React.Component {
                 <View style={generalStyles.card} elevation={0}>
                     {/** Card heading and description */}
                     <View style={generalStyles.cardHeadingView}>
-                        <Text style={generalStyles.cardHeading}>Sign Up</Text>
+                        <View style={{flexDirection : 'row', justifyContent:'space-between'}}>
+                            <Text style={generalStyles.cardHeading}>Sign Ups</Text>
+                            <Icon  style={generalStyles.icons,{marginRight : 10}} name='md-arrow-round-back' size={30} color='gray'/>
+                        </View>
+                       
                         <Text style={generalStyles.cardHeadingDesc}>Join PackRanks to make the course search process a breeze at NC State!</Text>
                     </View>
 

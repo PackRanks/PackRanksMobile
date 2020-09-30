@@ -6,6 +6,8 @@ import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handl
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
 import { generalStyles, loginStyles, ICON_SIZE } from './styles.js'
 import { useNavigation } from '@react-navigation/native';
+import ReCaptchaComponent from './ReCaptcha.jsx'
+
 
 class SignupViewComponent extends React.Component {
     constructor(props) {
@@ -20,11 +22,85 @@ class SignupViewComponent extends React.Component {
             last_name: null,
             email: null,
             password: null,
+            confirmPassword : null, 
             login_email: null,
             eyeIcon: "md-eye", // Eyes from Ionicons icon lib
             hidePassword: true, 
             navigation : this.props.navigation
         }
+        this.signUp = this.signUp.bind(this)
+    }
+
+    signUp(){
+         {/* Check for valid First Name and Last Name*/}
+         if (this.state.first_name === null || this.state.last_name === null  ) {
+            alert('Please enter a valid first name and last name.')
+            return
+        }
+
+         {/* Check for valid email */}
+         if (this.state.email === null  ) {
+            alert('Please enter a valid email address.')
+            return
+        }
+
+
+        {/* Check for valid email */}
+        if (!(new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(this.state.email))) {  
+            alert('Please enter a valid email address.')
+            return
+        }
+
+
+        {/* Check for password match */}
+        if (this.state.password !== this.state.confirmPassword) {
+            alert('Passwords do not match!')
+            return
+        }
+
+        { /* Check for valid password length */ }
+        if (this.state.password.length < 8) {
+            alert('Password must be 8 or more characters!')
+            return
+        }
+
+        let url = "http://packranks-backend.herokuapp.com/signup";
+        fetch(url,
+            {
+                    method: "POST",
+                    body: JSON.stringify({
+                        first_name: this.state.first_name,
+                        last_name: this.state.last_name,
+                        email: this.state.email,
+                        password: this.state.password
+                    })
+            }).then(
+                (response) => (response.json())
+            ).then((data) => {
+                if (data.success === true) {
+                    this.state.navigation.navigate('LoginStack', { screen: 'Login' })
+                }
+
+                else{
+                    alert('This account exists or details are invalid')
+                }
+            })
+
+    }
+
+    changeEyeIcon() {
+        this.setState(prevState => ({
+            eyeIcon: prevState.eyeIcon === "md-eye-off" ? "md-eye" : "md-eye-off",
+            hidePassword: !prevState.hidePassword
+        }))
+    }
+
+    callback(){
+        console.log()
+    }
+    
+    expiredCallback(){
+        console.log()
     }
 
     render() {
@@ -39,7 +115,10 @@ class SignupViewComponent extends React.Component {
                 <View style={generalStyles.card} elevation={0}>
                     {/** Card heading and description */}
                     <View style={generalStyles.cardHeadingView}>
-                        <Text style={generalStyles.cardHeading}>Sign Up</Text>
+                        <View style={{flexDirection : 'row', justifyContent:'space-between'}}>
+                            <Icon  style={generalStyles.icons,{marginRight : 5}} name='md-arrow-round-back' size={30} color='gray' onPress={() => this.state.navigation.goBack()}/>
+                            <Text style={generalStyles.cardHeading}>Sign Up</Text>
+                        </View>
                         <Text style={generalStyles.cardHeadingDesc}>Join PackRanks to make the course search process a breeze at NC State!</Text>
                     </View>
 
@@ -80,44 +159,95 @@ class SignupViewComponent extends React.Component {
                             style={generalStyles.inputText}
                             placeholder="Email"
                             placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
+                            onChangeText={text => this.setState({email: text})}
                         />
                     </View>
 
-                    {/** Create Password input box */}
                     <Text style={generalStyles.mediumText}>
-                        Password
+                            Password
                     </Text>
                     <View style={generalStyles.inputView}>
-                        {/* Add textinput title */}
+                        {/** Lock icon */}
+                        <Icon
+                            style={generalStyles.icons}
+                            name='md-lock'
+                            //type='material'
+                            size={ICON_SIZE}
+                            color='gray'
+                        />
                         <TextInput 
                             style={generalStyles.inputText}
-                            placeholder="At least 8 characters"
+                            placeholder="Password"
                             placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
+                            onChangeText={text => this.setState({password: text})}
+                            secureTextEntry={this.state.hidePassword}
                         />
-                        {/* Add eye toggle */}
+                        {/** Eye icon & hide password toggle */}
+                        {/* Password shower/hider code taken from: https://medium.com/@Mdmoin07/react-native-hide-show-password-input-d4be4d0f70aa */}
+                        <Icon 
+                            style={generalStyles.icons}
+                            name={this.state.eyeIcon}
+                            //type='ionicons'
+                            size={ICON_SIZE}
+                            color='gray' 
+                            onPress={() => this.changeEyeIcon()}
+                        />
+                    </View>
+
+                    <Text style={generalStyles.mediumText}>
+                            Confirm Password
+                    </Text>
+                    <View style={generalStyles.inputView}>
+                        {/** Lock icon */}
+                        <Icon
+                            style={generalStyles.icons}
+                            name='md-lock'
+                            //type='material'
+                            size={ICON_SIZE}
+                            color='gray'
+                        />
+                        <TextInput 
+                            style={generalStyles.inputText}
+                            placeholder="Password"
+                            placeholderTextColor={generalStyles.placeholderText.color}
+                            onChangeText={text => this.setState({confirmPassword: text})}
+                            secureTextEntry={this.state.hidePassword}
+                        />
+                        {/** Eye icon & hide password toggle */}
+                        {/* Password shower/hider code taken from: https://medium.com/@Mdmoin07/react-native-hide-show-password-input-d4be4d0f70aa */}
+                        <Icon 
+                            style={generalStyles.icons}
+                            name={this.state.eyeIcon}
+                            //type='ionicons'
+                            size={ICON_SIZE}
+                            color='gray' 
+                            onPress={() => this.changeEyeIcon()}
+                        />
                     </View>
 
                     <View style={loginStyles.buttonShadow} elevation={5}>
-                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.state.navigation.navigate('LoginStack', { screen: 'Login' })} >
+                 
+                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.signUp()} > 
                             <View style={loginStyles.loginButton}>
                                 <Text style={loginStyles.loginButtonText}>SIGN UP</Text>
                             </View>
                         </TouchableHighlight>
                     </View>
 
-                    {/* TODO: implement pword basic req check & client side error handling (red boxes) */}
+                    {/*  TODO: implement pword basic req check & client side error handling (red boxes) */}
 
                     {/* TODO: add check box to accept T&C & PP. also links to T&C & PP */}
 
                     {/* Things to address:
+                    
                     - Add password confirmation? Or too tedious on mobile (on mobile, you want to be quick, forms should be short) 
                     - shouldn't need astericks to mark imp fields if all fields are imp. just make them turn red if they try to submit empty field
                     - add hidden views that display error messages when necessary
                         - make sure there's enough spacing btwn elements to begin with to make this possible
                     - should input checks be done (onBlur) on the frontend or backend?
                         - look at what Tacobell and other apps are doing
+
+                        // () => this.state.navigation.navigate('LoginStack', { screen: 'Login' })
                     */}
 
                 </View>
