@@ -141,6 +141,8 @@ class DepartmentDropDown extends React.Component{
     }
     
     CourseCardSet() {
+        console.log(this.state.minCourseNumber)
+        console.log(this.state.maxCourseNumber)
 
         const Dept = this;
         let url = "http://packranks-backend.herokuapp.com/dept";
@@ -179,6 +181,8 @@ class DepartmentDropDown extends React.Component{
         }
 
         else{
+            console.log(this.state.min)
+            console.log(this.state.max)
             fetch( 
                 url, {
                     method: "GET",
@@ -188,7 +192,6 @@ class DepartmentDropDown extends React.Component{
                response => response.json()
             ).then(
                 (json) => {
-                    console.log(json); 
                     this.setState({courseData:this.parseData(json)
                     })}
             )

@@ -16,8 +16,6 @@ import SignupView from './Components/InitialViewsFamily/SignupView';
 import LoginView from './Components/InitialViewsFamily/LoginView/LoginView'; 
 import WishListView from './Components/Wishlist/WishlistView'
 
-
-
 const style = StyleSheet.create(
   {
     profileViewStyle: {
