@@ -67,8 +67,6 @@ class LoginViewComponent extends React.Component {
        
                 await AsyncStorage.setItem('user', JSON.stringify(user))
 
-                const userData = await AsyncStorage.getItem('user')
-                
                 
                 fetch(url,
                 {

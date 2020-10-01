@@ -14,7 +14,7 @@ import ForgotConfirmView from './Components/InitialViewsFamily/ForgotConfirmView
 import ForgotView from './Components/InitialViewsFamily/ForgotView'; 
 import SignupView from './Components/InitialViewsFamily/SignupView'; 
 import LoginView from './Components/InitialViewsFamily/LoginView/LoginView'; 
-import AsyncStorage from '@react-native-community/async-storage';
+import WishListView from './Components/Wishlist/WishlistView'
 
 
 
@@ -79,6 +79,7 @@ function WishlistScreen({ navigation }) {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Wishlist"}/>
       <ScrollView>
+        <WishListView/>     
       </ScrollView>
     </View>
   ); 
@@ -138,8 +139,6 @@ function AccountSettingScreen({ navigation }) {
   const fullName = props.user['firstName'] + " " + props.user['lastName']
   const imageUrl = props.user['profilePic']
 
-
-  
   return (
     <DrawerContentScrollView {...props}>
       <View style={style.profileViewStyle}>

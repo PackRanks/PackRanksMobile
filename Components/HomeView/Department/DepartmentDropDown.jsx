@@ -258,7 +258,7 @@ class DepartmentDropDown extends React.Component{
                             courseTitle={data.courseTitle}
                             courseName={data.courseName}
                             profName = {data.profName}
-                            isWishList={false}
+                            isWishList={true}
                             rating = {data.rating}
                             catalog={data.catalog}
                             rateMyProfLink={data.rateMyProfLink}

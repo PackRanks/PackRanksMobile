@@ -302,6 +302,12 @@ const styles = StyleSheet.create(
 
   function Rating(rating){ 
     // Rating for the courses 
+
+   if(rating === "No Rating"){
+    return(<Text style={styles.ratingStyle}>
+      N/A
+    </Text>)
+   }
    return(<Text style={styles.ratingStyle}>
                 {rating}
           </Text>)
