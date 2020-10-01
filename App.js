@@ -15,6 +15,7 @@ import ForgotView from './Components/InitialViewsFamily/ForgotView';
 import SignupView from './Components/InitialViewsFamily/SignupView'; 
 import LoginView from './Components/InitialViewsFamily/LoginView/LoginView'; 
 import WishListView from './Components/Wishlist/WishlistView'
+import SettingsView from './Components/SettingsView/SettingsView'
 
 const style = StyleSheet.create(
   {
@@ -125,6 +126,7 @@ function AccountSettingScreen({ navigation }) {
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Settings"}/>
       <ScrollView>
+        <SettingsView navigation={navigation}/>
       </ScrollView>
     </View>
   );

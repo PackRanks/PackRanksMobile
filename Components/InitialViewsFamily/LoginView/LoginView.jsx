@@ -125,6 +125,7 @@ class LoginViewComponent extends React.Component {
                             })
                     }).then((response) => (response.json()))
                     .then(data => {
+                        console.log(data)
                         if (data.success === true){
                             this.state.navigation.navigate('Drawer',{screen: 'Home'})
                         }
