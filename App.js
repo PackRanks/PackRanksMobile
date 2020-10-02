@@ -16,6 +16,7 @@ import SignupView from './Components/InitialViewsFamily/SignupView';
 import LoginView from './Components/InitialViewsFamily/LoginView/LoginView'; 
 import WishListView from './Components/Wishlist/WishlistView'
 import SettingsView from './Components/SettingsView/SettingsView'
+import ContactView from './Components/ContactView/ContactView'
 
 const style = StyleSheet.create(
   {
@@ -114,7 +115,8 @@ function ContactScreen({ navigation }) {
   return (
     <View style={{flex: 1, flexDirection: 'column'}}>
       <NavBar navi={navigation} title={"Contact"}/>
-      <ScrollView>
+      <ScrollView style={{backgroundColor : "#cc0000"}}>
+        <ContactView/>
       </ScrollView>
     </View>
   );

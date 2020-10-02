@@ -121,7 +121,6 @@ class HomeView extends React.Component{
                             onValueChange={(value) => {this.setState( {term : value})}}
                             placeholder={{ label: 'Select a Term', value: null,color:"gray"}}
                             items={[
-                                { label: '2021 Spring Term', value: '2021 Spring Term' },
                                 { label: '2020 Fall Term', value: '2020 Fall Term' },
                                 { label: '2020 Summer Session 1', value: 'Summer Term 1' },
                                 { label: '2020 Summer Session 2', value: 'Summer Term 2'}
