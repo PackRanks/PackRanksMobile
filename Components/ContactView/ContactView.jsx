@@ -118,15 +118,17 @@ class ContactPageComponent extends React.Component {
                     <Text style={generalStyles.mediumText}>
                         Message 
                     </Text>
-                    <View style={generalStyles.inputView}>
+                    <View style={generalStyles.messageView}>
                         <TextInput 
                             multiline={true}
-                            numberOfLines={6}
-                            style={generalStyles.inputText}
+                            numberOfLines={3}
+                            style={generalStyles.inputTextMessageView}
                             placeholder="Message"
                             placeholderTextColor={generalStyles.placeholderText.color}
                             onChangeText={text => this.setState({last_name: text})}
                             textAlignVertical = {'top'}
+                            scrollEnabled={true}
+                            maxHeight={hp(10)}
                         />
                     </View>
 

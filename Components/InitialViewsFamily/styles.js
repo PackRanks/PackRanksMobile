@@ -105,11 +105,25 @@ const generalStyles = StyleSheet.create(
             width: "80%",
             marginBottom: 10
         },
+        messageView: {
+            marginTop: 10, 
+            flexDirection: 'row',
+            alignItems: 'center',
+            borderWidth: 1,
+            borderColor: LIGHT_TEXT_COLOR,
+            borderRadius: 9,
+            width: "80%",
+            height : "12%"
+        },
         inputText: {
             flex: 1,
             paddingTop: 10,
             paddingRight: 10,
             paddingBottom: 10,
+            fontSize: hp('1.8%'),
+            marginLeft: 7
+        },
+        inputTextMessageView: {
             fontSize: hp('1.8%'),
             marginLeft: 7
         },
