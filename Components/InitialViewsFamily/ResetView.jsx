@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Image } from 'react-native'
+import { View, TextInput, Image,KeyboardAvoidingView} from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
@@ -26,7 +26,7 @@ class SignupView extends React.Component {
 
     render() {
         return (
-            <View style={generalStyles.container}>
+            <KeyboardAvoidingView style={generalStyles.container}>
                 {/** PackRanks logo */}
                 <Image style={generalStyles.logo} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
                 {/** PackRanks app heading */}
@@ -66,7 +66,7 @@ class SignupView extends React.Component {
 
                     {/* TODO: implement pword basic req check & client side error handling (red boxes) */}
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }

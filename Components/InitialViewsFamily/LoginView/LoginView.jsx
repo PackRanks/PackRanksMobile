@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Image } from 'react-native'
+import { View, TextInput, Image,KeyboardAvoidingView } from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
@@ -18,7 +18,7 @@ class LoginViewComponent extends React.Component {
         this.changeEyeIcon = this.changeEyeIcon.bind(this)
         this.signInWithGoogleAsync = this.signInWithGoogleAsync.bind(this)
         this.regularSignIn = this.regularSignIn.bind(this)
-        console.log('hello')
+       
         /** States */
         this.state = {
             first_name: null,
@@ -32,8 +32,6 @@ class LoginViewComponent extends React.Component {
         }
 
         const { navigation } = this.props.navigation;
-        console.log(navigation)
-
     }
 
     /** Signin/Signup with Google */
@@ -142,7 +140,7 @@ class LoginViewComponent extends React.Component {
 
     render(){
         return (
-            <View style={generalStyles.container}>
+            <KeyboardAvoidingView style={generalStyles.container}>
                 {/** PackRanks logo */}
                 <Image style={generalStyles.logo} source={require('../../../assets/Picture/PackRanksLogo1.png')}/>
                 {/** PackRanks app heading */}
@@ -257,7 +255,7 @@ class LoginViewComponent extends React.Component {
                     <Text style={loginStyles.googleDesc}>You will automatically be signed up for PackRanks!</Text>
                     
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
