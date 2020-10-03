@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Image,TouchableHighlight,KeyboardAvoidingView } from 'react-native'
+import { View, TextInput, Image,TouchableHighlight } from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 //import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
@@ -64,7 +64,7 @@ class ForgotViewComponent extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="position" style={generalStyles.container}>
+           <View style={generalStyles.container}>
                 {/** PackRanks logo */}
                 <Image style={generalStyles.logo} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
                 {/** PackRanks app heading */}
@@ -103,7 +103,7 @@ class ForgotViewComponent extends React.Component {
                         </TouchableHighlight>
                     </View>
                 </View>
-            </KeyboardAvoidingView>
+            </View>
         )
     }
 }

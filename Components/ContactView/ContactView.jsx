@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Image } from 'react-native'
+import { View, TextInput, Image, KeyboardAvoidingView } from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
@@ -55,92 +55,95 @@ class ContactPageComponent extends React.Component {
 
     render() {
         return (
-           <View style={generalStyles.container}>
-                {/** Card underlay */}
-                <View style={generalStyles.card} elevation={0}>
-                    {/** Card heading and description */}
-                    <View style={generalStyles.cardHeadingView}>
-                        <View>
-                            <Text style={generalStyles.cardHeading}>Contact Us!</Text>
-                        </View>
-                        <Text style={generalStyles.cardHeadingDesc}>Message us for any problems or future features!</Text>
-                    </View>
-          
-                    <Text style={generalStyles.mediumText}>
-                        First Name
-                    </Text>
-                    <View style={generalStyles.inputView}>
-                        <TextInput 
-                            style={generalStyles.inputText}
-                            placeholder="First Name"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({first_name: text})}
-                        />
-                    </View>
+            <KeyboardAvoidingView behavior='position'>
 
-                    
-                    <Text style={generalStyles.mediumText}>
-                        Last Name
-                    </Text>
-                    <View style={generalStyles.inputView}>
-                        <TextInput 
-                            style={generalStyles.inputText}
-                            placeholder="Last Name"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
-                        />
-                    </View>
-
-                    <Text style={generalStyles.mediumText}>
-                        Email
-                    </Text>
-                    <View style={generalStyles.inputView}>
-                        <TextInput 
-                            style={generalStyles.inputText}
-                            placeholder="Email"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({email: text})}
-                        />
-                    </View>
-
-                    <Text style={generalStyles.mediumText}>
-                        Phone Number 
-                    </Text>
-                    <View style={generalStyles.inputView}>
-                        <TextInput 
-                            style={generalStyles.inputText}
-                            placeholder="Phone Number"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({phoneNumber: text})}
-                        />
-                    </View>
-
-                    <Text style={generalStyles.mediumText}>
-                        Message 
-                    </Text>
-                    <View style={generalStyles.messageView}>
-                        <TextInput 
-                            multiline={true}
-                            numberOfLines={3}
-                            style={generalStyles.inputTextMessageView}
-                            placeholder="Message"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
-                            textAlignVertical = {'top'}
-                            scrollEnabled={true}
-                            maxHeight={hp(10)}
-                        />
-                    </View>
-
-                    <View style={loginStyles.buttonShadow} elevation={5}>
-                        <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.resetPassword()} > 
-                            <View style={loginStyles.loginButton}>
-                                <Text style={loginStyles.loginButtonText}>Send Message</Text>
+            <View style={generalStyles.container}>
+                    {/** Card underlay */}
+                    <View style={generalStyles.card} elevation={0}>
+                        {/** Card heading and description */}
+                        <View style={generalStyles.cardHeadingView}>
+                            <View>
+                                <Text style={generalStyles.cardHeading}>Contact Us!</Text>
                             </View>
-                        </TouchableHighlight>
+                            <Text style={generalStyles.cardHeadingDesc}>Message us for any problems or future features!</Text>
+                        </View>
+            
+                        <Text style={generalStyles.mediumText}>
+                            First Name
+                        </Text>
+                        <View style={generalStyles.inputView}>
+                            <TextInput 
+                                style={generalStyles.inputText}
+                                placeholder="First Name"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({first_name: text})}
+                            />
+                        </View>
+
+                        
+                        <Text style={generalStyles.mediumText}>
+                            Last Name
+                        </Text>
+                        <View style={generalStyles.inputView}>
+                            <TextInput 
+                                style={generalStyles.inputText}
+                                placeholder="Last Name"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({last_name: text})}
+                            />
+                        </View>
+
+                        <Text style={generalStyles.mediumText}>
+                            Email
+                        </Text>
+                        <View style={generalStyles.inputView}>
+                            <TextInput 
+                                style={generalStyles.inputText}
+                                placeholder="Email"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({email: text})}
+                            />
+                        </View>
+
+                        <Text style={generalStyles.mediumText}>
+                            Phone Number 
+                        </Text>
+                        <View style={generalStyles.inputView}>
+                            <TextInput 
+                                style={generalStyles.inputText}
+                                placeholder="Phone Number"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({phoneNumber: text})}
+                            />
+                        </View>
+
+                        <Text style={generalStyles.mediumText}>
+                            Message 
+                        </Text>
+                        <View style={generalStyles.inputView}>
+                            <TextInput 
+                                multiline={true}
+                                numberOfLines={3}
+                                style={generalStyles.inputText}
+                                placeholder="Message"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({last_name: text})}
+                                textAlignVertical = {'top'}
+                                scrollEnabled={true}
+                                maxHeight={hp(10)}
+                            />
+                        </View>
+
+                        <View style={loginStyles.buttonShadow} elevation={5}>
+                            <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => this.resetPassword()} > 
+                                <View style={loginStyles.loginButton}>
+                                    <Text style={loginStyles.loginButtonText}>Send Message</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
