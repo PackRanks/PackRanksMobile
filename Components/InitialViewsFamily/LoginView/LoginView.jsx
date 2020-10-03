@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Image } from 'react-native'
+import { View, TextInput, Image,KeyboardAvoidingView} from 'react-native'
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { Text } from 'react-native-paper'
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
