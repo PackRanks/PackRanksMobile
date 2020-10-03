@@ -56,8 +56,7 @@ class ContactPageComponent extends React.Component {
     render() {
         return (
             <KeyboardAvoidingView behavior='position'>
-
-            <View style={generalStyles.container}>
+                <View style={generalStyles.container}>
                     {/** Card underlay */}
                     <View style={generalStyles.card} elevation={0}>
                         {/** Card heading and description */}

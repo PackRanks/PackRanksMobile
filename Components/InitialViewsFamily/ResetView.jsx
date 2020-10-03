@@ -26,47 +26,49 @@ class SignupView extends React.Component {
 
     render() {
         return (
-            <View style={generalStyles.container}>
-                {/** PackRanks logo */}
-                <Image style={generalStyles.logo} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
-                {/** PackRanks app heading */}
-                <Text style={generalStyles.appNameHeading}>PackRanks</Text>
+            <KeyboardAvoidingView behavior='position'>
+             <View style={generalStyles.container}>
+                    {/** PackRanks logo */}
+                    <Image style={generalStyles.logo} source={require('../../assets/Picture/PackRanksLogo1.png')}/>
+                    {/** PackRanks app heading */}
+                    <Text style={generalStyles.appNameHeading}>PackRanks</Text>
 
-                {/** Card underlay */}
-                <View style={generalStyles.card} elevation={0}>
-                    {/** Card heading and description */}
-                    <View style={generalStyles.cardHeadingView}>
-                        <Text style={generalStyles.cardHeading}>Sign Up</Text>
-                        <Text style={generalStyles.cardHeadingDesc}>Join PackRanks to make the course search process a breeze at NC State!</Text>
+                    {/** Card underlay */}
+                    <View style={generalStyles.card} elevation={0}>
+                        {/** Card heading and description */}
+                        <View style={generalStyles.cardHeadingView}>
+                            <Text style={generalStyles.cardHeading}>Sign Up</Text>
+                            <Text style={generalStyles.cardHeadingDesc}>Join PackRanks to make the course search process a breeze at NC State!</Text>
+                        </View>
+
+                        {/** Create Password input box */}
+                        <View style={generalStyles.inputView}>
+                            {/* Add textinput title */}
+                            <TextInput 
+                                style={generalStyles.inputText}
+                                placeholder="At least 8 characters"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({last_name: text})}
+                            />
+                            {/* Add eye toggle */}
+                        </View>
+
+                        {/** Create Password confirmation input box */}
+                        <View style={generalStyles.inputView}>
+                            {/* Add textinput title */}
+                            <TextInput 
+                                style={generalStyles.inputText}
+                                placeholder="Must match"
+                                placeholderTextColor={generalStyles.placeholderText.color}
+                                onChangeText={text => this.setState({last_name: text})}
+                            />
+                            {/* Add eye toggle */}
+                        </View>
+
+                        {/* TODO: implement pword basic req check & client side error handling (red boxes) */}
                     </View>
-
-                    {/** Create Password input box */}
-                    <View style={generalStyles.inputView}>
-                        {/* Add textinput title */}
-                        <TextInput 
-                            style={generalStyles.inputText}
-                            placeholder="At least 8 characters"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
-                        />
-                        {/* Add eye toggle */}
-                    </View>
-
-                    {/** Create Password confirmation input box */}
-                    <View style={generalStyles.inputView}>
-                        {/* Add textinput title */}
-                        <TextInput 
-                            style={generalStyles.inputText}
-                            placeholder="Must match"
-                            placeholderTextColor={generalStyles.placeholderText.color}
-                            onChangeText={text => this.setState({last_name: text})}
-                        />
-                        {/* Add eye toggle */}
-                    </View>
-
-                    {/* TODO: implement pword basic req check & client side error handling (red boxes) */}
-                </View>
-            </View>
+            </View>`
+         </KeyboardAvoidingView>
         )
     }
 }
