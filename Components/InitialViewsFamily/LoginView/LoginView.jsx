@@ -140,7 +140,7 @@ class LoginViewComponent extends React.Component {
 
     render(){
         return (
-            <KeyboardAvoidingView style={generalStyles.container}>
+            <KeyboardAvoidingView behavior="position" style={generalStyles.container}>
                 {/** PackRanks logo */}
                 <Image style={generalStyles.logo} source={require('../../../assets/Picture/PackRanksLogo1.png')}/>
                 {/** PackRanks app heading */}
