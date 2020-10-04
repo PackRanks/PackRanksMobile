@@ -1,10 +1,10 @@
 import {View,Button,StyleSheet} from 'react-native'
 import React from 'react'; 
 import AsyncStorage from '@react-native-community/async-storage';
-import CourseCard from '../CourseCard/CourseCard'
-import { useNavigation } from '@react-navigation/native';
-// import {parseCourseData} from '../parseCourseData';
-// import CourseCard from '../../CourseCard/CourseCard'
+import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler'
+import { generalStyles, loginStyles, ICON_SIZE } from '../InitialViewsFamily/styles'
+import { Text } from 'react-native-paper'
+
 
 const style = StyleSheet.create(
     {
@@ -25,9 +25,13 @@ function WishlistView(props){
     
     return(
         <View style={style.viewStyle}>
-            <Button title="Sign Out" onPress={() => {
-                signOut(props.navigation)}}
-            />
+             <View style={loginStyles.buttonShadow} elevation={5}>
+                <TouchableHighlight style={loginStyles.loginTouchableHighlight} onPress={() => signOut(props.navigation)} > 
+                    <View style={loginStyles.loginButton}>
+                        <Text style={loginStyles.loginButtonText}>Sign Out</Text>
+                    </View>
+                </TouchableHighlight>
+            </View>
         </View>
     )
 }
