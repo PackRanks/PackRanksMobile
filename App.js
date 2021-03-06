@@ -138,15 +138,17 @@ function AccountSettingScreen({ navigation }) {
  function CustomDrawerContent(props) {
 
   
-  const fullName = props.user['firstName'] + " " + props.user['lastName']
-  const imageUrl = props.user['profilePic']
+  //const fullName = props.user['firstName'] + " " + props.user['lastName']
+  //const imageUrl = props.user['profilePic']
 
   return (
     <DrawerContentScrollView {...props}>
+      {/*
       <View style={style.profileViewStyle}>
         <Image source={{uri: imageUrl}} style={style.picStyle}/>
         <Text style={style.textProfileStyle}>{fullName}</Text>
       </View>
+      */}
       <DrawerItemList {...props}/>
     </DrawerContentScrollView>
   );
@@ -156,10 +158,11 @@ function AccountSettingScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 function DrawerScreens({route}) {
-  const user = route.params.user
+  //const user = route.params.user
 
+  // add user = user props
   return (
-      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} user={user} />} 
+      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} 
         initialRouteName="Home" 
         drawerContentOptions={{activeTintColor: "#cc0000"}}
       >
@@ -180,6 +183,7 @@ function DrawerScreens({route}) {
           }}
         />
 
+        {/*
         <Drawer.Screen name="Wishlist" component={WishlistScreen}
              options={{
               drawerLabel: 'Wishlist',
@@ -195,6 +199,7 @@ function DrawerScreens({route}) {
               ),
             }}
         />
+          */}
 
         <Drawer.Screen name="About" component={AboutScreen} 
              options={{
@@ -226,6 +231,7 @@ function DrawerScreens({route}) {
             }}
         />
 
+        {/*
         <Drawer.Screen name="Contact" component={ContactScreen} 
            options={{
             title:'Contact',
@@ -256,6 +262,7 @@ function DrawerScreens({route}) {
                 />
               ),
             }}/>
+          */}
       </Drawer.Navigator>
   ); 
 }
