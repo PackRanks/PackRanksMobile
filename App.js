@@ -49,7 +49,7 @@ const Stack = createStackNavigator()
 export default function StackScreens(){ 
   return(
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }} >
+      <Stack.Navigator initialRouteName={'Drawer'} screenOptions={{ headerShown: false }} >
           <Stack.Screen name={'Login'} component={LoginView}/>
           <Stack.Screen name={'ForgotConfirmView'} component={ForgotConfirmView}/>
           <Stack.Screen name={'ForgotView'} component={ForgotView}/>
